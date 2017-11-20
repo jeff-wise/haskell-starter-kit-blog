@@ -1,0 +1,38 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gateway
+spec:
+  selector:
+    service: gateway
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: service-gateway
+  labels:
+    service: gateway
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: gateway
+    spec:
+      containers:
+      - name: service-gateway
+        image: tome-server/service-gateway:0.1.0
+        env:
+        - name: RABBITMQ_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rabbit-a-rabbitmq
+              key: rabbitmq-password
+        ports:
+        - containerPort: 80

@@ -1,0 +1,10 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: site-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: tome-ip
+spec:
+  backend:
+    serviceName: site-server
+    servicePort: 80

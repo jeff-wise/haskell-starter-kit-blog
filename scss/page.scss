@@ -1,0 +1,165 @@
+
+
+@import "variables.scss";
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+      }
+
+body {
+  background-color: $light-grey;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 93%;
+}
+
+
+a {
+  text-decoration: none;
+  //color: #246285
+  // color: #135386;
+  // color: #185577;
+  color: #14567a;
+  // color: #13608A;
+  color: #055783;
+  
+}
+
+a:hover {
+  color: #086DB4;
+}
+
+
+
+#navbar {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #323a3e;
+//     border-bottom: 1px solid #DDD;
+
+  padding-left: 1.5em;
+  padding-right: 5em;
+
+  #navbar-left {
+    flex: 1;
+
+    img {
+      width: 2.5em;
+    }
+
+    .home {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      padding-top: 3px;
+    }
+
+    .home:hover {
+      cursor: pointer;
+    }
+
+    .tome {
+      font-family: AvenirNextLTPro-BoldCn;
+      margin-right: 0.3em;
+      font-size: 1.4em;
+      // color: #C9C88B;
+      // color: #AB8BC9;
+      color: #8BC99B;
+    }
+
+    .platform {
+      font-family: AvenirNextLTPro-LightCn;
+      font-size: 1.2em;
+      color: #E2E2E2;
+    }
+
+  }
+
+  #navbar-center {
+    display: inline-flex;
+    justify-content: space-around;
+    flex: 1;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9em;
+
+    a {
+      padding-left: 0.2em;
+      padding-right: 0.2em;
+      border-bottom: solid 1px #323a3e;
+    }
+
+    a.selected {
+      border-bottom: solid 1px #DEDEDE;
+    }
+
+  }
+
+  #navbar-right {
+    flex: 1;
+  }
+
+  a {
+    color: #DEDEDE;
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    text-decoration: none;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+
+}
+
+
+
+// #header {
+//   display: flex;
+//   flex-direction: column; 
+//   font-size: 0.95em;
+//   font-weight: 400;
+// }
+
+

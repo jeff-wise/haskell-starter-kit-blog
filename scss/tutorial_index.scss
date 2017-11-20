@@ -1,0 +1,323 @@
+
+
+@import "variables.scss";
+
+
+#content-main > .header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  background: #455055;
+
+  .header {
+
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    .title {
+      font-family: AvenirNextLTPro-Heavy;
+      font-size: 48px;
+      color: #DFDFDF;
+      margin-right: 20px;
+      width: 370px;
+    }
+
+    .summary {
+      font-size: 1em;
+      color: #E3E3E3;
+      line-height: 1.7em;
+      font-family: AvenirNextLTPro-Regular;
+      width: 700px;
+
+      a {
+        // color: #c0f2ff;
+        // background: #4F5B61;
+        //padding: 3px 6px 3px 6px;
+        //color: #A5D9FF;
+        //background: #485459;
+        color: #8bbbc9;
+        font-weight: 700;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+#content-main > .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #F2F2F2;
+}
+
+
+#tutorial-index > .content > .section {
+
+  width: 960px;
+
+  .header {
+    font-size: 1.4em;
+    color: #444;
+    padding: 1em;
+    border-radius: 1px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 1em;
+      height: 1em;
+      margin-right: 0.5em;
+    }
+  }
+
+  .specs {
+    margin-top: 2em;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: row;
+    margin-right: -20px;
+    margin-top: 2em;
+  }
+
+  .spec {
+    margin-right: 20px;
+    text-align: center;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    flex: 1;
+    background: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 2px;
+
+    .title {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+
+    .description {
+      margin-bottom: 1em;
+      color: #353535;
+      line-height: 1.2em;
+    }
+
+    a.button {
+      display: block;
+      background: #FEFEFE;
+      border-radius: 5px;
+      border: 1px solid #EAEAEA;
+      margin-top: 1em;
+      color: #565656;
+      padding-top: 0.8em;
+      padding-bottom: 0.8em;
+    }
+
+    a.button:hover {
+      border: 1px solid #DDD;
+      cursor: pointer;
+      color: #118c4b;
+    }
+  }
+}
+
+
+#tutorial-tab-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+
+
+#tutorial-tab-bar > .tabs-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1100px;
+
+  .tab {
+    font-size: 1.15em;
+    color: #777777;
+    padding-top: 2em;
+    padding-bottom: 0.5em;
+    font-weight: 700;
+    border-bottom: 1px solid #F6F6F6;
+  }
+  
+  .tab:hover {
+    cursor: pointer;
+  }
+
+  .tab.selected {
+    //color: #476A83;
+    //color: #35729E;
+    color: #2774AC;
+    border-bottom: 1px solid #2774AC;
+  }
+}
+
+
+.tutorial-index {
+  display: flex;
+  justify-content: center;
+}
+
+
+.tutorial-category {
+  display: none;
+}
+
+
+.tutorial-category.selected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 960px;
+  background: #FFFFFF;
+  border: 1px solid #DEDEDE;
+  margin-top: 1em;
+
+  header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #EAEAEA;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background: #F2F2F2;
+
+    .results {
+      padding-left: 3em;
+      font-size: 1.2em;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      padding-right: 3em;
+
+      a {
+        color: #444;
+      }
+
+      .button {
+        display: flex;
+        align-items: center;
+        padding-left: 1em;
+        padding-right: 1em;
+        font-size: 1.1em;
+        color: #4A4A4A;
+
+        path {
+          fill: #222;
+        }
+
+      }
+
+      .button.filter {
+        svg {
+          width: 1.2em;
+          height: 1.2em;
+          margin-right: 0.4em;
+        }
+      }
+
+      .button.sort {
+        svg {
+          width: 1.3em;
+          height: 1.3em;
+          margin-right: 0.3em;
+        }
+      }
+
+      .button:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .tutorial-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+
+    .actions {
+      width: 160px;
+      display: flex;
+      justify-content: center;
+
+      .button {
+        padding: 20px;
+        //background: #2774AC;
+        background: #3B7CAC;
+        border-radius: 3px;
+        color: #FFF;
+        font-weight: 700;
+      }
+
+      .button:hover {
+        //background: #1F5B87;
+        background: #336C96;
+        cursor: pointer;
+      }
+    }
+
+    .info {
+      width: 580px;
+
+      .title {
+        font-size: 1.25em;
+        font-weight: 700;
+        color: #515151;
+      }
+
+      .description {
+        color: #444;
+        margin-top: 0.4em;
+        font-size: 1em;
+        line-height: 1.2em;
+      }
+
+    }
+
+    .difficulty-container {
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .stars {
+        path {
+          fill: #cfce80;
+        }
+      }
+
+      .difficulty {
+        margin-top: 0.2em;
+      }
+    }
+
+  }
+}
+
+
+

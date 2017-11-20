@@ -1,0 +1,51 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: site-server
+  labels:
+    app: site-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: site-server
+  template:
+    metadata:
+      labels:
+        app: site-server
+    spec:
+      containers:
+      - image: us.gcr.io/exalted-shape-178804/site-server:0.7.2
+        name: site-server
+        # env:
+        # - name: POSTGRES_PASSWORD_PROD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: site-pg
+        #       key: password
+        ports:
+        - containerPort: 80
+          name: site-server
+        volumeMounts:
+        - name: site-server-persistent-storage
+          mountPath: /var/server
+      volumes:
+      - name: site-server-persistent-storage
+        gcePersistentDisk:
+          pdName: site-server-disk
+          fsType: ext4
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: site-server
+  labels:
+    app: site-server
+spec:
+  type: NodePort
+  selector:
+    app: site-server
+  ports:
+  - port: 80
+    targetPort: 80

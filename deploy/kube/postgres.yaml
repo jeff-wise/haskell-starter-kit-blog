@@ -1,0 +1,50 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: site-pg
+  labels:
+    app: site-pg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: site-pg
+  template:
+    metadata:
+      labels:
+        app: site-pg
+    spec:
+      containers:
+      - image: us.gcr.io/exalted-shape-178804/site-pg:0.7.2
+        name: site-pg
+        # env:
+        # - name: POSTGRES_PASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: site-pg
+        #       key: password
+        ports:
+          - containerPort: 5432
+            name: site-pg
+        volumeMounts:
+          - name: site-pg-persistent-storage
+            mountPath: /var/lib/postgresql
+      volumes:
+        - name: site-pg-persistent-storage
+          gcePersistentDisk:
+            pdName: site-postgres-disk
+            fsType: ext4
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: site-pg
+  labels:
+    app: site-pg
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+  selector:
+    app: site-pg
