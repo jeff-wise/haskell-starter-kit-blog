@@ -15,7 +15,7 @@
 # resolver:
 #  name: custom-snapshot
 #  location: "./custom-snapshot.yaml"
-resolver: lts-8.12
+resolver: lts-9.14
 
 docker:
   enable: true
@@ -53,11 +53,7 @@ packages:
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)
 extra-deps: [
-  #  lulo-0.7.0,
-  servant-server-0.11,
-  servant-0.11,
-  servant-multipart-0.10.0.1,
-  cabal-doctest-1.0.2
+  servant-multipart-0.10.0.1
 ]
 
 # Override default flag values for local packages and extra-deps

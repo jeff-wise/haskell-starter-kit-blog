@@ -54,7 +54,6 @@ library
                       , servant-multipart   
                       , servant-server
                       , servant-yaml
-                      , stm
                       , text   
                       , time   
                       , transformers
