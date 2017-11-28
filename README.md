@@ -2,58 +2,94 @@
 
 # Haskell Starter Kit: Blog
 
+Ready to start building *and deploying* applications with Haskell?
+This is your Starter Kit for building your own blog using Haskell and
+the power of pure, strongly-typed functional programming.
 
-reasons for doing:
-haskell is hard to get started with.
-how to choose libraries.
-present one option and explain trade-offs. trade offs are important..
+Does this tutorial look too long? Want your blog now? Clone this
+repository and follow the instructions in the [Deployment][#deployment] 
+section. A few minutes later, you'll be able to create your first
+post: 
 
-"haskell is not production ready"
-deploy your blog now! Docker images and kubernetes config. expand into 
-web app. make your own. learn from decisions already made and expand
-the architeture how you want. 
+> Learning Haskell
+> 
+> Hey! I'm learning Haskell. Stay tuned for updates on my experience.
+>
 
-Pitch. coding in the real-world.
+Of course, you can write whatever you'd like.
 
-Pitch. coding in the real-world. point it show haskell, but most of
-this is relevant irrespective of programming language.
+Learning Haskell can be very difficult, especially when you only have
+experience with imperative languages. First, you have to **understand**
+a lot of new concepts like algebraic data-types, function currying,
+typeclasses, and monads. Then, you have to learn **how to use** algebraic
+data-types, currying, typeclasses, and monads to build non-trivial
+applications that are both efficient and maintainable. The goal of
+this tutorial is not to help you understand specific Haskell concepts,
+but to teach you how you can take the concepts you have learned and
+use them to build high-quality software.
+
+Many of the lessons here are language-agnostic. Great software will
+have similar characteristics, regardless of which language is used to
+write it. Of course, each language has its own vision for the best way
+to write great software. This project is intended to showcase a little
+bit of Haskell's vision. It's only 1000 lines of code, but there's
+a lot to learn if we look closely and examine the trade-offs
+associated with each decision, big and small. In this process, we can
+gain some insight into why learning all those new concepts is worth
+the effort.
+
+Perhaps you'll even come to appreciate why Haskell programmers are so
+passionate about a language that's never gained widespread traction.
+
+------------------------------------------------------------------------------------
+
+#### Contents
+
+- [Overview](#overview)
+  - [Goals](#goals)
+  - [Specification](#specification)
+  - [Components](#components)
+    - [Important Libraries](#important-libraries)
+    - [Important Tools](#important-tools)
+- [Learning Haskell](#learning-haskell)
+- [A Few Principles](#a-few-principles)
+  - [Data Types](#a-few-principles)
+  - [Functions](#a-few-principles)
+  - [Composability](#a-few-principles)
+- [Code Review](#code-review)
+- [Managing the Project](#managing-the-project)
+  - [Generate HTML Documentation](#generate-html-documentation)
+- [Deployment](#deployment)
+  - [Digital Ocean](#digital-ocean)
+  - [Kubernetes (GKE)](#kubernetes-gke)
+- [Footnotes](#footnotes)
+- [FAQ](#faq)
+  - [Which IDE Should I Use?](#which-ide-should-i-use)
+  - [Where Can I Get Help?](#where-can-i-get-help)
+
+## Overview
+
+#### Themes
+
+ * Haskell's simplicity makes it complicated.
+
+### Goals
+
+The application is designed to be very simple for two reasons:
+
+  1. The purpose of this project is to teach about building Haskell
+     applications in general, but not how to build a specific application. Too many
+     details would distract from the more general lessons.
+  2. Because it's simple and makes few assumptions in the application
+     logic, it can easily be used as a base for a more complicated web
+     application.
+
 
 Goal is to show how complex an application can be to do it beyond just
 making it work. how to design it right, make it maintainable, keep the
 code organized, deploy it, keep local and prodution code consistent,
 test it, bring others onto the project easily. 
 
-shows how to build a haskell application and deploy it. can clone it
-and deploy your own blog right now. not just that, but this project
-goes into details of engineering softwar ethat has all of the
-desirable properties we might want and shows how Haskell can help us
-to acheive that goal. goes into everything we need to worry about
-beyond the code.
-
-## Overview
-
-### Components
-
-While the specification is simple, creating a robust implementation
-will require more than a few libraries and tools. 
-
-TODO why did we choose these? what can they teach us? 
-
-#### Major Libraries
- 
- * [Servant][servant-docs] (Web Framework)
- * [Opalaye][opaleye-stackage] (PostgreSQL ORM)
- * [Aeson][aeson-stackage] (JSON / YAML parsing)
- * [BlazeHtml][blaze-stackage] (HTML combinators)
- * [Optparse-Applicative][optparse-stackage] (Command-line parsing) 
-
-#### Major Tools
-
- * [Stack][stack-docs] (with GHC)
- * [Docker][docker-docs]
- * [Kubernetes][kubernetes-docs]
-
-## Goals
 
 engineering. looking at trade-offs. plenty in design of web server and
 database application, but also plenty with Haskell.
@@ -69,13 +105,6 @@ function g - time to take code from version A to version B.
     * cost to write code (now) vs cost to change code (future)
     * more?
 
-
-adding more simple data types is probably the best way to prevent
-coupling in your programs. functions are simpler. everything is
-explicit. data is only used in one way. unambiguous semantics that
-don't depend on context of data. functions then are simpler. can
-always compose smaller data or create bigger objects.
-
 reason why oop code can be easily convoluted. encourages grouping
 together functions and data with encapsulation which encourages
 putting a lot into one class where should be split out. but since
@@ -83,6 +112,39 @@ inheritance doesn't usually work well in practice, this can quickly
 become difficult. In haskell, it's not so hard to reason about. It's
 easy to create data, easy to create functions, and with out explicit
 importing policy, it's easy to bring them into scope. 
+
+
+scope: 
+
+simple enought for beginning to not feel overwhelmed. can fit entire
+codebase in head. also, simple enough to extend to some other type of
+web application because existing code doesn't make too many
+assumptions about future code, can easy extend to be any other type of
+web app.
+
+
+### Specification
+
+### Components
+
+While the specification is simple, creating a robust implementation
+will require more than a few libraries and tools. 
+
+TODO why did we choose these? what can they teach us? 
+
+#### Important Libraries
+ 
+ * [Servant][servant-docs] (Web Framework)
+ * [Opalaye][opaleye-stackage] (PostgreSQL ORM)
+ * [Aeson][aeson-stackage] (JSON / YAML parsing)
+ * [BlazeHtml][blaze-stackage] (HTML combinators)
+ * [Optparse-Applicative][optparse-stackage] (Command-line parsing) 
+
+#### Important Tools
+
+ * [Stack][stack-docs] (with GHC)
+ * [Docker][docker-docs]
+ * [Kubernetes][kubernetes-docs]
 
 ## Learning Haskell
 
@@ -150,7 +212,7 @@ software.
 
 At it's core, there's nothing experimental about Haskell. It's an
 implementation of the [Polymorphic Lambda
-Calculus][poly-lambda-calculus] which itself isn't that hard 
+Calculus][poly-lambda-calculus] which itself isn't too hard 
 to understand (despite the wordy name). This
 simplicity shines through in many applications, but it also stands 
 out when the code grows in complexity. You may be doing fine with
@@ -187,10 +249,52 @@ languages. This project demonstrates some examples with
 [Aeson][aeson-stackage], [Servant][servant-docs], and
 [Opaleye][opaleye-stackage].
 
- 
-## Writing the Application
+## A Few Principles
 
-design considerations.
+Before we review the source coee, let's review some high-level idioms in Haskell programming.
+These will help you understand why the code is structured the way it
+is as well as give you some insight on extending the blog or creating
+a brand new Haskell project.
+
+guiding principles on how to strcuture code. I think these should be
+used in any language, but because Haskell doesn't give you any
+strcuture the way oop does with classes, it's not always obvious how
+to build a program. In OOP it is usually obvious, or at leats, you can
+put related things in a class and however you do so won't matter too
+much for the first few thousand lines of code. 
+
+goal is composability. see how to do that with data types and
+functions. that's all haskell has. why it can be hard. why simplicity
+can make it complicated.
+
+### Data Types
+
+adding more simple data types is probably the best way to prevent
+coupling in your programs. functions are simpler. everything is
+explicit. data is only used in one way. unambiguous semantics that
+don't depend on context of data. functions then are simpler. can
+always compose smaller data or create bigger objects.
+
+article new, article, etc. more type-safe. they *are* different
+things. easier to read. change behavior of one, doesn't affect others.
+This works in OOP too, but because classes are a unit of encapsulation
+and methods are tied to data, it's not as elegant. this is a reason
+why OOP code can get messy. 
+
+encourages being explicit. can just make data type for anything. code
+is more readible and extensible. Modeling in Haskell is easy. really
+helps write good code.
+
+### Functions
+
+Becomes nature to see, but is easy to forget at first. and take
+advantage of. 
+
+
+### Composability
+
+ 
+## Code Review
 
 choose hard libraries in order to learn. hard for beginners.
 
@@ -229,8 +333,6 @@ composable HTML
 
 ## Managing the Project
 
-### The Dev Script
-
 A project may consist of multiple components and
 each component may have multiple associated actions such as compiling, 
 building executables, running tests, deploying, generating documentation,
@@ -259,7 +361,7 @@ written and run in one file and all of the power of Haskell's types
 and ecosystem. But the true advantage is that we can re-use the types 
 and functions defined in our application inside the script.
 
-### Compiling
+### Compilation
 
 TODO
 
@@ -267,17 +369,20 @@ TODO
 
 TODO
 
+### Images
+
+TODO
 alpine image
 
-#### Images
+### Containers
 
 TODO
 
-#### Containers
+### API Documentation
 
 TODO
 
-## Deploying Our Blog
+## Deployment
 
 ### Kubernetes (GKE)
 
@@ -297,7 +402,18 @@ no hasclient multipart support
  1. This section is in the context of the mid-2000s when I started
     programming. Flash games were popular, Ruby on Rails and Django were
     new and exciting, and functional programming had much less momentum
-    that it did today.
+    than it does today.
+
+
+## FAQ
+
+#### Which IDE Should I Use?
+
+list of some good options. won't be update-to-date
+
+#### Where Can I Get Help?
+
+list of options
 
 
 
