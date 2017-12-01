@@ -1,13 +1,17 @@
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/logo.png" width="70%" />
+</div>
 
-# Haskell Starter Kit: Blog
+----------------------------------------------------------------------
 
-Ready to start building *and deploying* applications with Haskell?
+### Ready to start building *and deploying* applications with Haskell?
+
 This is your Starter Kit for building your own blog using Haskell and
 the power of pure, strongly-typed functional programming.
 
 Does this tutorial look too long? Want your blog now? Clone this
-repository and follow the instructions in the [Deployment][#deployment] 
+repository and follow the instructions in the [Deployment][/#deployment] 
 section. A few minutes later, you'll be able to create your first
 post: 
 
@@ -18,8 +22,20 @@ post:
 
 Of course, you can write whatever you'd like.
 
-Learning Haskell can be very difficult, especially when you only have
-experience with imperative languages. First, you have to **understand**
+### What's Here?
+
+  * A cloneable, deployable **Haskell web application** (a blog)
+  * A **tutorial** with some mini-essays about Haskell, a in-depth code
+      review of the engineering trade-offs in the source code, and
+      instructions for using and managing the project
+  * A set of **exercises** of varying difficulty for learning or
+      fine-tuning Haskell programming skills
+  * **Deployment scripts** that can be easily re-used or extended for use
+      in other Haskell projects
+
+### Why?
+
+Learning Haskell is difficult. First, you have to **understand**
 a lot of new concepts like algebraic data-types, function currying,
 typeclasses, and monads. Then, you have to learn **how to use** algebraic
 data-types, currying, typeclasses, and monads to build non-trivial
@@ -28,18 +44,28 @@ this tutorial is not to help you understand specific Haskell concepts,
 but to teach you how you can take the concepts you have learned and
 use them to build high-quality software.
 
-Many of the lessons here are language-agnostic. Great software will
-have similar characteristics, regardless of which language is used to
-write it. Of course, each language has its own vision for the best way
-to write great software. This project is intended to showcase a little
-bit of Haskell's vision. It's only 1000 lines of code, but there's
-a lot to learn if we look closely and examine the trade-offs
-associated with each decision, big and small. In this process, we can
-gain some insight into why learning all those new concepts is worth
-the effort.
+Many of the lessons in this tutorial are language-agnostic. Great software will
+have similar characteristics regardless of the implementation language
+(or even despite the language). Even so, each language has its own vision 
+of how to develop software efficiently, and the best langauges are the
+ones that support a consistent methodology in solving the problems
+commonly encountered when writing complex software. This tutorial showcases 
+a little bit of Haskell's vision for software development, and how it
+approaches the problems of software engineering. It showcases some
+incredible solutions to these problems created by the community that
+take full advantages of Haskell's power and expressiveness.
 
-Perhaps you'll even come to appreciate why Haskell programmers are so
-passionate about a language that's never gained widespread traction.
+If you're new to Haskell, I hope that this project will help you to 
+appreciate Haskell's particular vision and methodology and why Haskell
+programmers are so passionate about things like immutablity, types, and abstract 
+mathematics. If you already know a little (or a lot) of Haskell, then
+this project may be useful as a starting point for new projects or to
+compare different ways of building web applications in Haskell. Whatever the case, 
+I hope that there's something here for everyone to learn. Haskell is
+a language that pushes the limits of programming and challenges you to
+try new ways of doing something you already know how to do. But
+then you find yourself in another language, doing that thing you
+already know how to do, and wishing you could use just a little bit of Haskell.
 
 ------------------------------------------------------------------------------------
 
@@ -61,7 +87,9 @@ passionate about a language that's never gained widespread traction.
   - [Generate HTML Documentation](#generate-html-documentation)
 - [Deployment](#deployment)
   - [Digital Ocean](#digital-ocean)
+  - [Amazon ECS](#amazon-ecs)
   - [Kubernetes (GKE)](#kubernetes-gke)
+- [Exercises](#exercises)
 - [Footnotes](#footnotes)
 - [FAQ](#faq)
   - [Which IDE Should I Use?](#which-ide-should-i-use)
@@ -69,11 +97,13 @@ passionate about a language that's never gained widespread traction.
 
 ## Overview
 
-#### Themes
-
- * Haskell's simplicity makes it complicated.
-
 ### Goals
+
+#### Learn How Using Haskell in the Real-World
+
+#### Software Engineering Decisions Trade-Offs
+
+#### Simple and Extensible
 
 The application is designed to be very simple for two reasons:
 
@@ -91,9 +121,6 @@ code organized, deploy it, keep local and prodution code consistent,
 test it, bring others onto the project easily. 
 
 
-engineering. looking at trade-offs. plenty in design of web server and
-database application, but also plenty with Haskell.
-
 Want to build and change software with minimum work and maximum
 accuracy. Work is time, size of code, readability, how easy to
 mentally process code that is new or unfamiliar (forgotten), how easy
@@ -104,15 +131,6 @@ function g - time to take code from version A to version B.
     * cpu vs memory
     * cost to write code (now) vs cost to change code (future)
     * more?
-
-reason why oop code can be easily convoluted. encourages grouping
-together functions and data with encapsulation which encourages
-putting a lot into one class where should be split out. but since
-inheritance doesn't usually work well in practice, this can quickly
-become difficult. In haskell, it's not so hard to reason about. It's
-easy to create data, easy to create functions, and with out explicit
-importing policy, it's easy to bring them into scope. 
-
 
 scope: 
 
@@ -384,18 +402,19 @@ TODO
 
 ## Deployment
 
-### Kubernetes (GKE)
+TODO
 
 ### Digital Ocean
 
-Kubernetes is potentially overkill for a blog (but it shouldn't be).
-GKE is expensive, but you can deploy based on the images manually for
-cheap.
+TODO
 
-## The Hacks
+### Amazon ECS
 
-stack script yaml?
-no hasclient multipart support
+TODO
+
+### Kubernetes (GKE)
+
+TODO
 
 ## Footnotes
 
