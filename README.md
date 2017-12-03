@@ -8,10 +8,10 @@
 ### Ready to start building *and deploying* applications with Haskell?
 
 This is your Starter Kit for building your own blog using Haskell and
-the power of pure, strongly-typed functional programming.
+the power of <ins>pure, strongly-typed functional programming</ins>.
 
 Does this tutorial look too long? Want your blog now? Clone this
-repository and follow the instructions in the [Deployment][/#deployment] 
+repository and follow the instructions in the [Deployment](#deployment)
 section. A few minutes later, you'll be able to create your first
 post: 
 
@@ -26,18 +26,17 @@ Of course, you can write whatever you'd like.
 
   * A cloneable, deployable **Haskell web application** (a blog)
   * A **tutorial** with some mini-essays about Haskell, a in-depth code
-      review of the engineering trade-offs in the source code, and
-      instructions for using and managing the project
+      review, and instructions for using and managing the project
   * A set of **exercises** of varying difficulty for learning or
       fine-tuning Haskell programming skills
-  * **Deployment scripts** that can be easily re-used or extended for use
+  * **Deployment scripts** that can easily be re-used or extended for use
       in other Haskell projects
 
 ### Why?
 
-Learning Haskell is difficult. First, you have to **understand**
+Learning Haskell is difficult. First, you have to *understand*
 a lot of new concepts like algebraic data-types, function currying,
-typeclasses, and monads. Then, you have to learn **how to use** algebraic
+typeclasses, and monads. Then, you have to learn *how to use* algebraic
 data-types, currying, typeclasses, and monads to build non-trivial
 applications that are both efficient and maintainable. The goal of
 this tutorial is not to help you understand specific Haskell concepts,
@@ -71,13 +70,11 @@ already know how to do, and wishing you could use just a little bit of Haskell.
 
 #### Contents
 
+- [Goals](#goals)
 - [Overview](#overview)
-  - [Goals](#goals)
   - [Specification](#specification)
   - [Components](#components)
-    - [Important Libraries](#important-libraries)
-    - [Important Tools](#important-tools)
-- [Learning Haskell](#learning-haskell)
+- [On Learning Haskell](#on-learning-haskell)
 - [A Few Principles](#a-few-principles)
   - [Data Types](#a-few-principles)
   - [Functions](#a-few-principles)
@@ -95,31 +92,27 @@ already know how to do, and wishing you could use just a little bit of Haskell.
   - [Which IDE Should I Use?](#which-ide-should-i-use)
   - [Where Can I Get Help?](#where-can-i-get-help)
 
-## Overview
+## Goals
 
-### Goals
+Before we jump in, let's take a look at the project's goals. The
+source code and this tutorial are written with the goals in mind, so
+it will be helpful to understand what we're trying to achieve. For
+example, some of the code could be written more concisely, but that
+won't help illuminate Haskell's coding style, and playing code golf
+won't help promote a language with a reputation for being hard to
+understand. Likewise, we could have chosen simpler libraries, but we
+want to showcase what Haskell can do differently and better than other
+languages, as well as generate some useful discussion and insight on
+software engineering in general.
 
-#### Learn How Using Haskell in the Real-World
+#### Learn About Haskell's Approach to Software Development
 
-#### Software Engineering Decisions Trade-Offs
-
-#### Simple and Extensible
-
-The application is designed to be very simple for two reasons:
-
-  1. The purpose of this project is to teach about building Haskell
-     applications in general, but not how to build a specific application. Too many
-     details would distract from the more general lessons.
-  2. Because it's simple and makes few assumptions in the application
-     logic, it can easily be used as a base for a more complicated web
-     application.
-
+#### Analyze Trade-Offs in Engineering a Real-World Web Application
 
 Goal is to show how complex an application can be to do it beyond just
 making it work. how to design it right, make it maintainable, keep the
 code organized, deploy it, keep local and prodution code consistent,
 test it, bring others onto the project easily. 
-
 
 Want to build and change software with minimum work and maximum
 accuracy. Work is time, size of code, readability, how easy to
@@ -132,14 +125,23 @@ function g - time to take code from version A to version B.
     * cost to write code (now) vs cost to change code (future)
     * more?
 
-scope: 
+#### Serve as an Extensible Base for Haskell Web Applications
 
-simple enought for beginning to not feel overwhelmed. can fit entire
-codebase in head. also, simple enough to extend to some other type of
-web application because existing code doesn't make too many
-assumptions about future code, can easy extend to be any other type of
-web app.
+This example application is a very basic blog. We could have created
+something more interesting, but the code would be longer and more
+complex. The brevity and relative simplicity of the blog serves the
+project's goals in two ways:
 
+  1. **Generality** The purpose of this project is to teach about building Haskell
+     applications in general, but not how to build a specific application. Too many
+     details would distract from the more general lessons.
+  2. **Extensibility** Because there are few assumptions in the application
+     logic, the project can easily be used as a base for a more complicated web
+     application.
+
+#### Promote Haskell
+
+## Overview
 
 ### Specification
 
@@ -164,57 +166,83 @@ TODO why did we choose these? what can they teach us?
  * [Docker][docker-docs]
  * [Kubernetes][kubernetes-docs]
 
-## Learning Haskell
+## On Learning Haskell
 
-When I first started programming, what really captured me were those
-moments where I became fluent at telling the computer what I wanted to
-do and watching as it did just that, knowing that I now had the power
-to bring to life whichever ideas popped into my head. The immediate
-feedback you get from creating something is incredibly addictive. My brain was
+When I first started programming, what really captured me were the 
+moments when I became fluent at telling the computer what I wanted to
+do. At the time I loved to write and play piano, but once I could
+code, programming became my primary means of expression. The immediate
+feedback from creating something is incredibly addictive. My brain was
 so stimulated I couldn't stop programming, exploring new domains, and
-learning new frameworks. I created Flash games<sup>1</sup>, built websites, configured Linux
-until it didn't work, made a Wordpress blog, studied hacking, and
-everything else with the desire to be proficient at creating and
-manipulating software. 
+learning new frameworks. I created Flash games<sup>1</sup>, built websites, 
+configured Linux until it didn't work, made a Wordpress blog, learned VIM, 
+switched to ArchLinux and broke my OS again, studied cybersecurity, and
+a lot more with a desire to be proficient in expressing myself through
+digital mediums.
 
 Eventually, I began to work on bigger and more ambitious projects. But
-I slowed down. The think-code-reward loop got longer as it took me
+my pace slowed down. The think->code->reward loop got longer as it took me
 more time to (1) figure out what I actually needed to do, (2) write
 the code that did what I wanted, and (3) test that what I built was
-correct. I took one step up, poked my head above the clouds, and
-realized there was another, much longer staircase. This happens a lot
-in software development where adding just one feature multiplies the
-complexity because that feature interacts with every pre-existing
-feature. There are many proven ways to address this. One way is simply
-having a lot of experience and developing a great deal of intuition
-with one programming language and framework. Often, the tools don't
-matter as much as the person using them (and how they use them). 
+correct. I learned that building software is actually very difficult
+and oftentimes, incredibly frustrating. I started to do something
+weird - I focused less on *what* I was building and more on *how* I was
+building it. It was like stopping my car in the middle of the race, 
+taking the engine out and trying to tweak it to make it go faster. 
+I knew I wasn't going to catch up. But I did find a new hobby.
 
-My mind works differently though. Instead of focusing with one set of
-tools, I wanted to know which tools were the best and why. Like I just
-said, there aren't really a set of "best" tools to use, but I didn't
-know how to evaluate what the best way to build a particular program
-was, and that bothered me. I was writing a lot of object-oriented
-code, and I had a lot of questions that I really couldn't find
-satisfying answers to such as (1) Why should I organize my code with
-the MVC architeture?, (2) Why are there so many design patterns and
-shouldn't they seem less arbitrary since programming is mathematical
-in nature?, (3) Where do I put this method?, (4) What's the best way
-to write re-usable code?, (5) 
+Programming languages are *human* languages -- they are designed to be
+written and read by people. I didn't fully appreciate this until my
+second year of college, when I learned about assembly languages and
+compilers. A compiler translates one language into another, sometimes
+with one or more intermediary languages. Programming langauges are
+designed to be translated into machine langauge while being easy to
+use by people. Of course, we have to consider who these people are?
+Everyone is different, has different ways of thinking, different
+goals, and different attitudes about building or managing software.
+This is one reason why we end up with so many different programming
+languages as well as code editors, tools, frameworks, and libraries.
+The other reason is of course technical. Sometimes one way of doing
+something is *better* than another way, one tool may be more
+*efficient* than another, and we hope that these comparisons are
+objective. So how do we know whether we're choosing a tool because it
+meshes with our way of thinking or because it's the best?
 
-Programming languages are a way for humans to translate human ideas 
-into instructions a computer can understand, and many of these
-solutions appealed to the human side of this translational barrier.
-I wanted to understand the mathematics behind software engineering and
-answer the question: how can I build better software not with
-funny-sounding design patterns or architectures but with mathematical 
-structures and theorems. When I started learning Haskell, I didn't
+Now that I had my new hobby -- my quest to find more efficient ways to
+build complex software -- I started researching. I was writing a lot
+of object-oriented code, so I spent a lot of time investigating design
+patterns, inheritance, polymorphism, how to structure and organize
+code in general, and how to use all of those concepts to build better
+software. What I found was frustrating. I found a lot of "sage advice"
+or mottos, quotes or phrases that are often repeated and sound very
+good, but are very rarely substantiated. Sometimes I found them to
+very well substantiated in specific contexts, but not in general.
+I also found a lot of design patterns or "framework" patterns like
+MVC. These also looked good initially, were intuitive and appealed to
+an aesthetic sense of organization that I had, but I could never find
+a good argument as to why they were better. I wasn't aware at the
+time, but I was searching for some
+sort of underlying mathematical logic or structure, some kind of
+consistent principles where I could reason about how to bulild good
+software, but I couldn't find it.
+
+I realized that a lot of software development is done in a way which
+appeals to our intuition. It creates structures and processes that are
+easy to understand and manipulate. This is a very effective way to
+program -- it's simply optimizing programming for the natural way that
+humans think. Unfortunately, and I'll be the first to admit, humans
+aren't as smart as they think, and what is intuitive for us is very
+rarely optimal. I wanted 
+
+I wanted to understand the mathematics behind software engineering, if
+there were any. I wanted to be able to objectively 
+. When I started learning Haskell, I didn't
 know that it was going to help me answer that question. I didn't think
 that question had a good answer. In that respect, Haskell really
 changed the way I thought about software engineering.
 
 Now, it's important to say that it took me a long time to become
-a proficient Haskell programmer. I didn't come into Haskell with
+proficient with Haskell. I didn't come into Haskell with
 a strong background in abstract or discrete mathematics. In fact,
 I didn't truly appreciate math at all before learning Haskell. Haskell
 introduced me into mathematical thinking before I had ever written any
@@ -229,7 +257,7 @@ and then immmediately put them into practice building high-quality
 software.
 
 At it's core, there's nothing experimental about Haskell. It's an
-implementation of the [Polymorphic Lambda
+ML-dialect, an implementation of the [Polymorphic Lambda
 Calculus][poly-lambda-calculus] which itself isn't too hard 
 to understand (despite the wordy name). This
 simplicity shines through in many applications, but it also stands 
@@ -267,6 +295,13 @@ languages. This project demonstrates some examples with
 [Aeson][aeson-stackage], [Servant][servant-docs], and
 [Opaleye][opaleye-stackage].
 
+All this being said, if you spend any time reading Haskell discussions
+online, you'll see that more than a few problems are far from solved.
+You'll also see a smart, passionate community actively engaged in
+solving these problems. That passion comes from a confidence in the
+power of the langauge to think about these problems and encode elegant
+solutions.
+
 ## A Few Principles
 
 Before we review the source coee, let's review some high-level idioms in Haskell programming.
@@ -277,7 +312,8 @@ a brand new Haskell project.
 guiding principles on how to strcuture code. I think these should be
 used in any language, but because Haskell doesn't give you any
 strcuture the way oop does with classes, it's not always obvious how
-to build a program. In OOP it is usually obvious, or at leats, you can
+to build a program. side effect handling complicates this too.
+In OOP it is usually obvious, or at leats, you can
 put related things in a class and however you do so won't matter too
 much for the first few thousand lines of code. 
 
@@ -305,13 +341,93 @@ helps write good code.
 
 ### Functions
 
-Becomes nature to see, but is easy to forget at first. and take
+currying: Becomes nature to see, but is easy to forget at first. and take
 advantage of. 
 
+composing.
 
-### Composability
+### Composition
 
- 
+If someone asks me why I think Haskell programs are more concise and
+more maintainable than programs written in C, Java, Go, etc... I would
+say that *Haskell enables compositional programming*.
+
+## Managing the Project
+
+A software project, even something as simple as this blog, may have
+multiple components. Each compenent will have a set of actions that
+can be performed on it such as compiling, running tests, generating
+documentation, deploying, etc...
+
+Onboarding a new developer to a project, its components, and all the
+actions that the developer will need to do with those components
+should be simple. It shouldn't take a full day of another developer's
+time to walk someone though running and testing a project. That time
+should be spent on walking through the code and discussing any design
+decisions, goals, or active issues.
+
+Futheremore, onboarding yourself after a few weeks away from the
+project should be just as easy. If you can't remember what you ate for
+dinner two weeks ago, it's perfectly fine that you also forgot which
+exact command compiles the source code, runs the test suite, and spams
+your team Slack channel with gifs of baby elephants. This
+acceptable amnesia is remedied by a clear, concise interface,
+preferably one available on the command line, clearly documented, and
+easily extensible.
+
+Our Haskell blog app comes with a command-line interface that
+satifies these goals perfectly. It's called `dev.hs`. After you clone
+the repository and follow the environment setup tutorial, you can run
+`./dev.hs --help`:
+
+```bash
+Blog Development Commands
+
+Usage: dev.hs COMMAND
+  Run ./dev.hs --help for a list of commands.
+
+Available options:
+  -h,--help                Show this help text
+
+Available commands:
+  build                    Build the [executable, docker images, ...]
+  run                      Run the [docker container, executable, etc...].
+  sh                       Open a shell in a running docker container.
+  psql                     Open PSQL in a running docker container.
+  init                     Initialize the database.
+```
+
+Often, command-line utilities are
+implemented a shell language like Bash or an interpreted langauge like
+Python. Both are great choices, but lucky for us, we can just
+use Haskell! Stack allows us to write *Haskell scripts* that can be
+run on the command line as executables. We get the best of both worlds
+-- simple, self-contained scripts and the full power of Haskell.
+Futheremore, because our script is written in Haskell, it has full
+access to the types and functions in our application. This can be very
+convenient.
+
+### Compilation
+
+TODO
+
+### Docker
+
+TODO
+
+### Images
+
+TODO
+alpine image
+
+### Containers
+
+TODO
+
+### API Documentation
+
+TODO
+
 ## Code Review
 
 choose hard libraries in order to learn. hard for beginners.
@@ -349,56 +465,7 @@ TODO
 advantage over templating languages
 composable HTML
 
-## Managing the Project
 
-A project may consist of multiple components and
-each component may have multiple associated actions such as compiling, 
-building executables, running tests, deploying, generating documentation,
-and so on. 
-
-Onboarding a new developer to a project should be simple. Futheremore, 
-onboarding yourselfafter you haven't worked on the project in a month should also be
-simple. It's good practice to treat your project as its own entity and
-provide a comprehensive, easy-to-use interface for the common project 
-workflows.
-
-Command-line utiltiies are easy to implement and very flexible. This
-project comes with a script called `dev.hs` which serves as the
-primary interface for working with our project. Perhaps we haven't
-written a line of code on the project in a few weeks or we are showing
-a co-worked how to get started, we can start with `./dev.hs --help`.
-
-[image]
-
-Bash or an interpreted language such as Python are commonly used to
-implement simple programs without a project structure like our `dev.hs`. 
-Either would be a good choice, but we can do better and just use
-Haskell. Stack allows us to write Haskell scripts that can be run as
-executables. We get the best of both worlds -- code that can be
-written and run in one file and all of the power of Haskell's types
-and ecosystem. But the true advantage is that we can re-use the types 
-and functions defined in our application inside the script.
-
-### Compilation
-
-TODO
-
-### Docker
-
-TODO
-
-### Images
-
-TODO
-alpine image
-
-### Containers
-
-TODO
-
-### API Documentation
-
-TODO
 
 ## Deployment
 
@@ -415,6 +482,16 @@ TODO
 ### Kubernetes (GKE)
 
 TODO
+
+
+## Exercises
+
+### :star: Beginner
+
+### :star::star: Intermediate
+
+### :star::star::star: Advanced
+
 
 ## Footnotes
 

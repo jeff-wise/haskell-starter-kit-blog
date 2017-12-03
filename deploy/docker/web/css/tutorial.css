@@ -1,0 +1,504 @@
+#tutorial-header {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: #455055;
+  color: #414141; }
+  #tutorial-header #breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.05em; }
+    #tutorial-header #breadcrumbs .category {
+      color: #F2F2F2; }
+    #tutorial-header #breadcrumbs .tutorial {
+      color: #F2F2F2; }
+    #tutorial-header #breadcrumbs .path-segment {
+      color: #EAEAEA; }
+    #tutorial-header #breadcrumbs .path-segment-divider img {
+      width: 1em;
+      height: 1em;
+      margin-left: 0.3em;
+      margin-right: 0.3em; }
+
+#getting-started-header {
+  background-color: #455055;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  height: 70px;
+  font-family: AvenirNextLTPro-Regular, sans-serif;
+  z-index: 10000; }
+
+#getting-started-header-nav {
+  font-size: 1.05em;
+  color: #B2D0DB; }
+
+#getting-started-header-nav .button {
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+  color: #C7E8F5;
+  border: 1px solid #5B6A70;
+  padding: 7px 8px 5px 8px;
+  border-radius: 4px;
+  font-size: 0.93em; }
+
+#getting-started-header-nav .game.button:hover {
+  border: 1px solid #6A7B82;
+  cursor: pointer; }
+
+#getting-started-header-nav .platform.button:hover {
+  border: 1px solid #6A7B82;
+  cursor: pointer; }
+
+#site-lesson-header {
+  background-color: #455055;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  height: 70px; }
+  #site-lesson-header #site-lesson-breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 0.85em; }
+  #site-lesson-header #site-lesson-breadcrumbs-tutorial {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #68797F;
+    padding: 0.3em 0.5em;
+    border-radius: 4px; }
+    #site-lesson-header #site-lesson-breadcrumbs-tutorial svg {
+      width: 1.5em;
+      height: 1.5em;
+      margin-right: 0.3em; }
+      #site-lesson-header #site-lesson-breadcrumbs-tutorial svg path {
+        fill: #B2D0DB; }
+    #site-lesson-header #site-lesson-breadcrumbs-tutorial span.tutorial {
+      color: #B2D0DB; }
+  #site-lesson-header #site-lesson-breadcrumbs-tutorial:hover {
+    border: 1px solid #72848C;
+    cursor: pointer; }
+  #site-lesson-header #site-lesson-breadcrumbs-tutorial span:hover {
+    color: #C7E8F5; }
+  #site-lesson-header #site-lesson-breadcrumbs-path {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    #site-lesson-header #site-lesson-breadcrumbs-path svg {
+      width: 1.2em;
+      height: 1.2em;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      padding-top: 1px; }
+      #site-lesson-header #site-lesson-breadcrumbs-path svg path {
+        fill: #8BA2AB; }
+    #site-lesson-header #site-lesson-breadcrumbs-path .path-segment {
+      display: flex;
+      flex-direction: row;
+      align-items: center; }
+    #site-lesson-header #site-lesson-breadcrumbs-path .path-segment > span {
+      color: #B2D0DB; }
+    #site-lesson-header #site-lesson-breadcrumbs-path .path-segment > span:hover {
+      cursor: pointer;
+      color: #BAD9E5; }
+  #site-lesson-header #site-lesson-breadcrumbs-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    #site-lesson-header #site-lesson-breadcrumbs-title svg {
+      width: 1.2em;
+      height: 1.2em;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      padding-top: 1px; }
+      #site-lesson-header #site-lesson-breadcrumbs-title svg path {
+        fill: #8BA2AB; }
+    #site-lesson-header #site-lesson-breadcrumbs-title span {
+      color: #B2D0DB; }
+  #site-lesson-header #site-lesson-breadcrumbs-title > span:hover {
+    cursor: pointer;
+    color: #BAD9E5; }
+
+#tutorial-context {
+  font-size: 1.1em; }
+
+#tutorial-game-button {
+  display: flex;
+  align-items: center;
+  margin-right: 1em; }
+  #tutorial-game-button img {
+    width: 1.3em;
+    height: 1.3em; }
+  #tutorial-game-button .game-selection {
+    margin-left: 0.4em; }
+
+#tutorial-medium-button {
+  display: flex;
+  align-items: center;
+  margin-left: 1em; }
+  #tutorial-medium-button img {
+    width: 1.6em;
+    height: 1.6em; }
+  #tutorial-medium-button .medium-selection {
+    margin-left: 0.35em; }
+
+#tutorial-context {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+#lesson {
+  border-top: 1px solid #DDDDDD;
+  background-color: #F6F6F6; }
+
+#lesson-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+
+#lesson-content {
+  padding-left: 2em;
+  padding-top: 25px;
+  background-color: #F6F6F6;
+  font-family: 'Lato', sans-serif;
+  width: 950px; }
+
+#lesson-title {
+  margin-bottom: 2em; }
+  #lesson-title h1 {
+    font-size: 2em;
+    color: #494949;
+    font-weight: 700; }
+
+#lesson-body {
+  color: #3C3C3C;
+  line-height: 1.3em; }
+  #lesson-body code {
+    font-family: 'Source Code Pro', monospace; }
+  #lesson-body h2 {
+    font-size: 1.6em;
+    color: #323232; }
+  #lesson-body .introduction {
+    display: flex;
+    margin-bottom: 2em;
+    align-items: flex-start;
+    justify-content: space-between; }
+    #lesson-body .introduction h2 {
+      font-size: 1.6em;
+      color: #323232;
+      margin-bottom: 0.6em;
+      margin-top: 1em; }
+    #lesson-body .introduction h3 {
+      font-size: 1.4em;
+      color: #353535;
+      margin-bottom: 0.6em; }
+    #lesson-body .introduction .body {
+      width: 700px; }
+      #lesson-body .introduction .body a {
+        text-decoration: none;
+        color: #085B7E; }
+      #lesson-body .introduction .body a:hover {
+        text-decoration: underline; }
+      #lesson-body .introduction .body p:not(:first-child) {
+        margin-top: 1em; }
+      #lesson-body .introduction .body figure {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+        #lesson-body .introduction .body figure figcaption {
+          padding: 0.7em;
+          background: #FFF;
+          color: #333;
+          border: 1px solid #E8E8E8;
+          margin-top: 1em; }
+    #lesson-body .introduction .index {
+      font-size: 0.84em;
+      margin-left: 3em;
+      border: 1px solid #E1E1E1;
+      border-radius: 5px;
+      background: #FAFAFA;
+      font-family: 'Noto Sans', 'Lato', sans-serif; }
+      #lesson-body .introduction .index li {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        border-bottom: 1px solid #E1E1E1; }
+      #lesson-body .introduction .index li.scenario a {
+        color: #555;
+        font-weight: 700;
+        text-decoration: none; }
+      #lesson-body .introduction .index li.step a {
+        color: #555;
+        text-decoration: none; }
+      #lesson-body .introduction .index li:hover {
+        background: #EFEFEF;
+        cursor: pointer; }
+        #lesson-body .introduction .index li:hover a {
+          color: #2774AC; }
+  #lesson-body span.note {
+    display: block;
+    margin-top: 1.5em;
+    background: #ECDFDF;
+    padding: 0.7em;
+    font-size: 0.97em;
+    color: #864242; }
+
+#lesson-body > .scenario {
+  padding-top: 2em;
+  border-top: 1px solid #DDD; }
+
+.scenario > header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1em;
+  margin-bottom: 1.5em; }
+  .scenario > header .body {
+    width: 700px; }
+    .scenario > header .body code {
+      background: #EDEDED;
+      padding-left: 0.4em;
+      padding-right: 0.4em;
+      color: #070707;
+      border-radius: 1px;
+      font-size: 0.95em; }
+    .scenario > header .body p:not(:first-child) {
+      margin-top: 1em; }
+    .scenario > header .body a {
+      text-decoration: none;
+      color: #085B7E; }
+    .scenario > header .body a:hover {
+      text-decoration: underline; }
+  .scenario > header .examples {
+    margin-left: 2em; }
+
+.steps > .step {
+  background: #FFFFFF;
+  border-radius: 2px;
+  margin-bottom: 2em;
+  border: 1px solid #EAEAEA; }
+  .steps > .step h3 {
+    font-size: 1.1em;
+    color: #474747;
+    font-weight: 700; }
+  .steps > .step .header {
+    padding-left: 1.5em;
+    border-bottom: 1px solid #E8E8E8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px; }
+    .steps > .step .header .title {
+      width: 900px; }
+  .steps > .step .code-examples {
+    background: #343C40;
+    margin-top: 1em; }
+  .steps > .step .code-example {
+    padding-top: 1em;
+    padding-bottom: 1.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    color: #E7E7E7; }
+    .steps > .step .code-example code {
+      font-size: 0.9em; }
+  .steps > .step .code-example > header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #455055;
+    margin-bottom: 0.5em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em; }
+    .steps > .step .code-example > header h6 {
+      font-weight: 700;
+      font-size: 0.95em; }
+    .steps > .step .code-example > header .button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 2em;
+      color: #CCC;
+      font-size: 0.87em; }
+      .steps > .step .code-example > header .button svg {
+        width: 1.2em;
+        height: 1.2em;
+        margin-right: 0.3em; }
+      .steps > .step .code-example > header .button .icon-download-file {
+        fill: #BBB; }
+      .steps > .step .code-example > header .button .icon-download-file.selected {
+        fill: #FFF; }
+      .steps > .step .code-example > header .button .icon-copy {
+        fill: #BBB; }
+      .steps > .step .code-example > header .button .icon-copy.selected {
+        fill: #FFF; }
+    .steps > .step .code-example > header .button:hover {
+      cursor: pointer;
+      color: #FFF; }
+
+.step > .content {
+  display: flex;
+  flex-direction: row; }
+
+.step > .content > .left {
+  max-width: 700px; }
+  .step > .content > .left .title {
+    border-bottom: 1px solid #EAEAEA;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 1.5em; }
+  .step > .content > .left .text {
+    color: #444;
+    padding-left: 1.5em; }
+    .step > .content > .left .text p {
+      margin-top: 1em; }
+    .step > .content > .left .text code {
+      background: #EDEDED;
+      padding-left: 0.4em;
+      padding-right: 0.4em;
+      color: #070707;
+      border-radius: 1px;
+      font-size: 0.95em; }
+    .step > .content > .left .text a {
+      text-decoration: none;
+      color: #085B7E; }
+    .step > .content > .left .text a:hover {
+      text-decoration: underline; }
+
+.step > .content > .right .tabs {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 50px;
+  border-bottom: 1px solid #EAEAEA;
+  justify-content: center; }
+  .step > .content > .right .tabs .tab {
+    padding-bottom: 1em;
+    padding-top: 1em;
+    width: 3em;
+    color: #666;
+    font-weight: 700;
+    text-align: center; }
+  .step > .content > .right .tabs .tab:hover {
+    cursor: pointer; }
+  .step > .content > .right .tabs .tab.selected {
+    color: #2d69a1; }
+.step > .content > .right .images {
+  display: flex;
+  justify-content: center;
+  margin-left: 3em;
+  margin-right: 3em;
+  margin-top: 1em;
+  margin-bottom: 1em; }
+.step > .content > .right .images > img {
+  height: 25em;
+  display: none; }
+.step > .content > .right .images > img.selected {
+  display: block; }
+
+.yaml-examples {
+  margin-right: 2em;
+  flex: 1; }
+
+#lesson-index {
+  width: 320px;
+  padding-bottom: 1em;
+  margin-top: 15px;
+  border-right: 4px solid #E3E3E3;
+  font-size: 0.85em; }
+
+#lesson-index-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  font-size: 0.9em;
+  margin-top: 10px;
+  border-radius: 3px;
+  background: #EDEDED;
+  border: 1px solid #D9D9D9;
+  margin-right: 0.8em;
+  font-weight: 700;
+  box-shadow: 0 1px 0px #C4C4C4;
+  position: sticky;
+  top: 95px;
+  height: 28px; }
+  #lesson-index-header a {
+    color: #747474; }
+  #lesson-index-header .button {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+
+#lesson-prev-button {
+  flex: 2;
+  border-right: 1px solid #D9D9D9; }
+  #lesson-prev-button svg {
+    width: 0.85em;
+    height: 0.85em;
+    margin-right: 0.2em; }
+    #lesson-prev-button svg path {
+      fill: #6B6B6B; }
+
+#lesson-prev-button:hover {
+  background: #E7E7E7;
+  cursor: pointer; }
+
+#lesson-next-button {
+  flex: 2; }
+  #lesson-next-button svg {
+    width: 0.85em;
+    height: 0.85em;
+    margin-left: 0.2em; }
+    #lesson-next-button svg path {
+      fill: #6B6B6B; }
+
+#lesson-next-button:hover {
+  background: #E7E7E7;
+  cursor: pointer; }
+
+#lesson-up-button {
+  flex: 1;
+  border-right: 1px solid #D9D9D9; }
+
+#lesson-up-button:hover {
+  background: #E7E7E7;
+  cursor: pointer; }
+
+#lesson-index-list {
+  margin-top: 15px;
+  position: sticky;
+  top: 138px;
+  margin-left: 0.1em; }
+  #lesson-index-list a {
+    color: #555555;
+    text-decoration: none; }
+  #lesson-index-list a:hover {
+    cursor: pointer;
+    color: #375f84; }
+  #lesson-index-list li.node {
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    padding-right: 1em; }
+  #lesson-index-list li.node.selected a {
+    font-weight: 600;
+    color: #2774AC; }
+  #lesson-index-list li.node.level-one {
+    padding-top: 1.1em; }
+  #lesson-index-list li.node.level-two {
+    padding-left: 0.7em; }
+  #lesson-index-list li.node.level-three {
+    padding-left: 1.4em; }
+  #lesson-index-list li.node.level-four {
+    padding-left: 2.1em; }
+  #lesson-index-list li.node.level-five {
+    padding-left: 2.8em; }
+
+/*# sourceMappingURL=tutorial.css.map */

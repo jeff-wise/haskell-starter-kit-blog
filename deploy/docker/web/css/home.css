@@ -1,0 +1,72 @@
+body {
+  background-color: #323a3e; }
+
+#navbar-home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; }
+  #navbar-home a {
+    color: #E7E7E7;
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    text-decoration: none;
+    margin-left: 1.5em;
+    margin-right: 1.5em; }
+  #navbar-home a:hover {
+    cursor: pointer;
+    color: #FEFEFE; }
+
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+#home-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8em;
+  width: 1200px;
+  font-size: 90%; }
+  #home-main .title {
+    margin-right: 30px; }
+    #home-main .title h1 {
+      font-size: 8em;
+      font-family: AvenirNextLTPro-Heavy;
+      color: #EEEEEE; }
+    #home-main .title h3 {
+      font-size: 3.2em;
+      font-family: AvenirNextLTPro-BoldCn;
+      color: #BABABA;
+      margin-top: 15px; }
+    #home-main .title h5 {
+      font-size: 1.8em;
+      font-family: AvenirNextLTPro-Regular;
+      color: #BABABA;
+      margin-top: 15px; }
+  #home-main .description .item {
+    background: #353E42;
+    width: 450px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 0.9em;
+    font-family: AvenirNextLTPro-Regular;
+    font-size: 1.1em;
+    border-radius: 1px;
+    color: #D3D3D3;
+    line-height: 1.3em; }
+    #home-main .description .item h5 {
+      color: #F5F5F5;
+      margin-bottom: 0.4em;
+      font-family: AvenirNextLTPro-Regular;
+      font-size: 1.1em;
+      font-weight: 700; }
+    #home-main .description .item a {
+      color: #87e8ff; }
+    #home-main .description .item a:hover {
+      text-decoration: underline;
+      cursor: pointer; }
+
+/*# sourceMappingURL=home.css.map */

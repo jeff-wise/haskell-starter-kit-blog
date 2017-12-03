@@ -1,0 +1,24 @@
+#site-news-header {
+  display: flex;
+  justify-content: center;
+  font-size: 1.2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: #455055; }
+  #site-news-header #site-news-tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    #site-news-header #site-news-tabs .tab {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: #414141;
+      margin-left: 2em;
+      margin-right: 2em; }
+      #site-news-header #site-news-tabs .tab img {
+        width: 1.3em;
+        height: 1.3em;
+        margin-right: 0.5em; }
+
+/*# sourceMappingURL=news.css.map */
