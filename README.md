@@ -7,7 +7,7 @@
 
 ### Ready to start building *and deploying* applications with Haskell?
 
-This is your Starter Kit for building your own blog using Haskell and
+This Starter Kit will help you create your own blog powered by Haskell and
 the power of <ins>pure, strongly-typed functional programming</ins>.
 
 Does this tutorial look too long? Want your blog now? Clone this
@@ -39,32 +39,37 @@ a lot of new concepts like algebraic data-types, function currying,
 typeclasses, and monads. Then, you have to learn *how to use* algebraic
 data-types, currying, typeclasses, and monads to build non-trivial
 applications that are both efficient and maintainable. The goal of
-this tutorial is not to help you understand specific Haskell concepts,
-but to teach you how you can take the concepts you have learned and
-use them to build high-quality software.
+this tutorial isn't to help you understand these Haskell concepts 
+individually, but to help you use them generally, in the process of building
+real-world applications.
 
-Many of the lessons in this tutorial are language-agnostic. Great software will
+Much of this tutorial is language-agnostic. Great software will
 have similar characteristics regardless of the implementation language
-(or even despite the language). Even so, each language has its own vision 
+(or even despite it). Even so, each language has its own vision 
 of how to develop software efficiently, and the best langauges are the
-ones that support a consistent methodology in solving the problems
-commonly encountered when writing complex software. This tutorial showcases 
-a little bit of Haskell's vision for software development, and how it
-approaches the problems of software engineering. It showcases some
-incredible solutions to these problems created by the community that
-take full advantages of Haskell's power and expressiveness.
+ones that support a consistent methodology. This tutorial showcases 
+a little bit of Haskell's vision and methodology for software
+development. We'll discuss some common problems in software and show
+how Haskell's type system and expressiveness lead to some fascinating
+solutions.
 
-If you're new to Haskell, I hope that this project will help you to 
-appreciate Haskell's particular vision and methodology and why Haskell
-programmers are so passionate about things like immutablity, types, and abstract 
-mathematics. If you already know a little (or a lot) of Haskell, then
-this project may be useful as a starting point for new projects or to
-compare different ways of building web applications in Haskell. Whatever the case, 
-I hope that there's something here for everyone to learn. Haskell is
-a language that pushes the limits of programming and challenges you to
-try new ways of doing something you already know how to do. But
-then you find yourself in another language, doing that thing you
-already know how to do, and wishing you could use just a little bit of Haskell.
+If you're new to Haskell, I hope that this project will help you to
+appreciate Haskell's vision for software development and to understand
+why Haskell programmers are so passionate about things like immutablity, 
+types, and abstract mathematics. If you already know a little Haskell 
+(or maybe a lot), then perhaps this project will be useful as a starting point 
+for your next application. Whatever the case, there should be
+something here for everyone. 
+
+Haskell pushes the limits of software development. It challenges you
+to try new ways of doing something that you already know how to do in
+another language. But it's not just a new syntax, it's a new paradigm,
+a new way of thinking about how to structure your code and solve
+common problems in software engineering. If you put enough effort into
+this new way of thinking, there's a good chance that the next time
+your coding in another language you'll think of the Haskell solution
+and wish you could just write a simple `where` clause, curry
+a function, or create a typeclass.
 
 ------------------------------------------------------------------------------------
 
@@ -97,33 +102,31 @@ already know how to do, and wishing you could use just a little bit of Haskell.
 Before we jump in, let's take a look at the project's goals. The
 source code and this tutorial are written with the goals in mind, so
 it will be helpful to understand what we're trying to achieve. For
-example, some of the code could be written more concisely, but that
+example, some of the source code could be written more concisely, but that
 won't help illuminate Haskell's coding style, and playing code golf
 won't help promote a language with a reputation for being hard to
 understand. Likewise, we could have chosen simpler libraries, but we
-want to showcase what Haskell can do differently and better than other
+wanted to showcase what Haskell can do differently and better than other
 languages, as well as generate some useful discussion and insight on
 software engineering in general.
 
-#### Learn About Haskell's Approach to Software Development
+#### Analyze Engineering Real World Applications with Haskell
 
-#### Analyze Trade-Offs in Engineering a Real-World Web Application
+Is pure functional programming better? When is it better? What are its
+advantages when building real world applications? In this tutorial,
+we'll discuss the trade-offs associated with engineering applications
+in Haskell.
 
-Goal is to show how complex an application can be to do it beyond just
-making it work. how to design it right, make it maintainable, keep the
-code organized, deploy it, keep local and prodution code consistent,
-test it, bring others onto the project easily. 
+In particular, we'll pursue answers to the following questions:
 
-Want to build and change software with minimum work and maximum
-accuracy. Work is time, size of code, readability, how easy to
-mentally process code that is new or unfamiliar (forgotten), how easy
-to find people proficient in language and tools, degree of coupling, 
-function g - time to take code from version A to version B. 
-
-  tradeoffs:
-    * cpu vs memory
-    * cost to write code (now) vs cost to change code (future)
-    * more?
+   * How do you write code that is easy to understand?
+   * How do you write code that is easy to extend?
+   * How do you write code fast or how do write code that works the
+     first or second time its run?
+   * How do you write code with minimum errors?
+   * How do you create a web application that is easy to deploy?
+   * How do you manage a software project's common tasks and metadata?
+   * How do you structure the code in a Haskell web application?
 
 #### Serve as an Extensible Base for Haskell Web Applications
 
@@ -140,6 +143,10 @@ project's goals in two ways:
      application.
 
 #### Promote Haskell
+
+Haskell is awesome, but misunderstood. If this project is successful,
+then it should help to showcase Haskell's strengths and serve as an
+entrypoint to building real Haskell applications.
 
 ## Overview
 
@@ -221,25 +228,26 @@ I also found a lot of design patterns or "framework" patterns like
 MVC. These also looked good initially, were intuitive and appealed to
 an aesthetic sense of organization that I had, but I could never find
 a good argument as to why they were better. I wasn't aware at the
-time, but I was searching for some
-sort of underlying mathematical logic or structure, some kind of
-consistent principles where I could reason about how to bulild good
-software, but I couldn't find it.
+time, but I was searching for some sort of underlying mathematical 
+logic or structure, some set of consistent principles that I could 
+use to reason about how to bulild good software, but I couldn't find it.
 
-I realized that a lot of software development is done in a way which
+I realized that a lot of software development is done in a manner that 
 appeals to our intuition. It creates structures and processes that are
-easy to understand and manipulate. This is a very effective way to
-program -- it's simply optimizing programming for the natural way that
-humans think. Unfortunately, and I'll be the first to admit, humans
-aren't as smart as they think, and what is intuitive for us is very
-rarely optimal. I wanted 
-
-I wanted to understand the mathematics behind software engineering, if
-there were any. I wanted to be able to objectively 
-. When I started learning Haskell, I didn't
-know that it was going to help me answer that question. I didn't think
-that question had a good answer. In that respect, Haskell really
-changed the way I thought about software engineering.
+easy to understand and manipulate. This is a very effective method -- 
+it's simply optimizing programming for the natural way that
+humans think. Unfortunately -- and I'll be the first to admit -- humans
+aren't as smart as they like to believe, and what's intuitive for us is very
+rarely optimal. In my search, I just wasn't motivated by intuitive solutions. 
+They were fun, sure, and I enjoyed programming with them, but I always
+felt like something was missing. I wanted to understand the mathematics 
+behind software engineering, if there were any. I wanted some sense of
+objectivity about how to build better software. When I discovered
+Haskell and started learning it, I didn't know that my search was
+over. I didn't believe that there were objective ways to understand
+software development. In that respect, Haskell really changed the way
+I thought about programming. It put a new ceiling to software
+development in my eyes, and I was inspired to reach it. 
 
 Now, it's important to say that it took me a long time to become
 proficient with Haskell. I didn't come into Haskell with
@@ -257,9 +265,10 @@ and then immmediately put them into practice building high-quality
 software.
 
 At it's core, there's nothing experimental about Haskell. It's an
-ML-dialect, an implementation of the [Polymorphic Lambda
-Calculus][poly-lambda-calculus] which itself isn't too hard 
-to understand (despite the wordy name). This
+ML-dialect, and therefore an implementation of the [Polymorphic Lambda
+Calculus][poly-lambda-calculus]. It's not trivial to understand, but 
+it's also not that difficult. It's a simple model of computation, one
+derived in parallel to Turing's abstract machine. This
 simplicity shines through in many applications, but it also stands 
 out when the code grows in complexity. You may be doing fine with
 Haskell when it comes to writing simple, pure functions, but as soon as
@@ -391,7 +400,7 @@ Available options:
 
 Available commands:
   build                    Build the [executable, docker images, ...]
-  run                      Run the [docker container, executable, etc...].
+  run                      Run the [docker container, executable, ...].
   sh                       Open a shell in a running docker container.
   psql                     Open PSQL in a running docker container.
   init                     Initialize the database.
@@ -407,9 +416,27 @@ Futheremore, because our script is written in Haskell, it has full
 access to the types and functions in our application. This can be very
 convenient.
 
+### Getting Started
+
+go from zero to running project
+
 ### Compilation
 
-TODO
+We can compile the web server using stack:
+
+```bash
+stack build
+```
+
+or using `dev.hs`:
+
+```bash
+./dev.hs build --exe
+```
+
+If you want to play around with the executable, you can use stack. For
+example, `stack exec` will run the web server locally. See the
+[stack documentation](stack-docs) for more information and commands.
 
 ### Docker
 
@@ -453,19 +480,9 @@ explicit imports for learning
 
 TODO 
 
-usable without understanding complex types
-explain arrows / syntax.
-type-saftey
-composability
-
 ### HTML (with Blaze)
 
 TODO
-
-advantage over templating languages
-composable HTML
-
-
 
 ## Deployment
 
@@ -486,11 +503,11 @@ TODO
 
 ## Exercises
 
-### :star: Beginner
+### Beginner :star: 
 
-### :star::star: Intermediate
+### Intermediate :star::star: 
 
-### :star::star::star: Advanced
+### Advanced :star::star::star:
 
 
 ## Footnotes
@@ -510,7 +527,6 @@ list of some good options. won't be update-to-date
 #### Where Can I Get Help?
 
 list of options
-
 
 
 [poly-lambda-calculus]: https://en.wikipedia.org/wiki/System_F
