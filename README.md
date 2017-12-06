@@ -144,7 +144,7 @@ project's goals in two ways:
 
 #### Promote Haskell
 
-Haskell is awesome, but misunderstood. If this project is successful,
+Haskell is awesome, but often misunderstood. If this project is successful,
 then it should help to showcase Haskell's strengths and serve as an
 entrypoint to building real Haskell applications.
 
@@ -152,12 +152,12 @@ entrypoint to building real Haskell applications.
 
 ### Specification
 
+TODO
+
 ### Components
 
 While the specification is simple, creating a robust implementation
 will require more than a few libraries and tools. 
-
-TODO why did we choose these? what can they teach us? 
 
 #### Important Libraries
  
@@ -313,53 +313,36 @@ solutions.
 
 ## A Few Principles
 
-Before we review the source coee, let's review some high-level idioms in Haskell programming.
-These will help you understand why the code is structured the way it
-is as well as give you some insight on extending the blog or creating
-a brand new Haskell project.
+Before we review the source code, let's review some principles of
+Haskell programming. Learning Haskell can be difficult because there 
+are so many new concepts and it's hard to figure out to use them when 
+you finally sit down to start programming. Fortunately,
+while there are a lot of concepts, we can group
+them into three simple categories: data types, functions, and
+composition. We'll show how understanding these three simple
+concepts in Haskell is enough to start writing great software.
 
-guiding principles on how to strcuture code. I think these should be
-used in any language, but because Haskell doesn't give you any
-strcuture the way oop does with classes, it's not always obvious how
-to build a program. side effect handling complicates this too.
-In OOP it is usually obvious, or at leats, you can
-put related things in a class and however you do so won't matter too
-much for the first few thousand lines of code. 
-
-goal is composability. see how to do that with data types and
-functions. that's all haskell has. why it can be hard. why simplicity
-can make it complicated.
+While these principles are universal, it's often difficult to apply
+them in other programming languages. This is either because other
+languages lack certain features such as sum types or function currying
+or because those languages encourage a different way of thinking about
+or modeling software.
 
 ### Data Types
 
-adding more simple data types is probably the best way to prevent
-coupling in your programs. functions are simpler. everything is
-explicit. data is only used in one way. unambiguous semantics that
-don't depend on context of data. functions then are simpler. can
-always compose smaller data or create bigger objects.
-
-article new, article, etc. more type-safe. they *are* different
-things. easier to read. change behavior of one, doesn't affect others.
-This works in OOP too, but because classes are a unit of encapsulation
-and methods are tied to data, it's not as elegant. this is a reason
-why OOP code can get messy. 
-
-encourages being explicit. can just make data type for anything. code
-is more readible and extensible. Modeling in Haskell is easy. really
-helps write good code.
+TODO
 
 ### Functions
 
-currying: Becomes nature to see, but is easy to forget at first. and take
-advantage of. 
-
-composing.
+TODO
 
 ### Composition
 
-If someone asks me why I think Haskell programs are more concise and
+If someone asked me why I think Haskell programs are more concise and
 more maintainable than programs written in C, Java, Go, etc... I would
 say that *Haskell enables compositional programming*.
+
+TODO
 
 ## Managing the Project
 
@@ -400,10 +383,11 @@ Available options:
 
 Available commands:
   build                    Build the [executable, docker images, ...]
-  run                      Run the [docker container, executable, ...].
+  run                      Run the [docker container, executable, etc...].
   sh                       Open a shell in a running docker container.
   psql                     Open PSQL in a running docker container.
   init                     Initialize the database.
+  deploy                   Deploy the application.
 ```
 
 Often, command-line utilities are
@@ -412,7 +396,7 @@ Python. Both are great choices, but lucky for us, we can just
 use Haskell! Stack allows us to write *Haskell scripts* that can be
 run on the command line as executables. We get the best of both worlds
 -- simple, self-contained scripts and the full power of Haskell.
-Futheremore, because our script is written in Haskell, it has full
+Futhermore, because our script is written in Haskell, it has full
 access to the types and functions in our application. This can be very
 convenient.
 
@@ -428,7 +412,7 @@ We can compile the web server using stack:
 stack build
 ```
 
-or using `dev.hs`:
+or with `dev.hs`:
 
 ```bash
 ./dev.hs build --exe
@@ -445,7 +429,6 @@ TODO
 ### Images
 
 TODO
-alpine image
 
 ### Containers
 
@@ -457,16 +440,6 @@ TODO
 
 ## Code Review
 
-choose hard libraries in order to learn. hard for beginners.
-
-but no matter what you choose, you always get some sort of convulted
-DSL. if you choose one in Haskell, usually those decisions aren't
-arbitrary but consistent as part of an underlying algebra. and they
-tend to provide more safety and types, which give more ability to
-reason about errors .
-
-Common.hs
-
 ### Imports
 
 TODO 
@@ -475,6 +448,8 @@ custom prelude
 explicit imports for learning
 
 ### API (with Servant)
+
+TODO
 
 ### Database (with Opaleye)
 

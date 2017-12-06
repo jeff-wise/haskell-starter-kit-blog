@@ -88,17 +88,88 @@ main = execParser opts >>= runCommand
        <> header "Blog Development Commands" )
 
 
--- PARAMETER TYPES
+-- COMMANDS
 --------------------------------------------------------------------------------
 
 data Command =
+    -- Build executable or docker images
     CmdBuild BuildParameters
+    -- Run executable or image containers
   | CmdRun RunParameters
-  | CmdSh ShParameters
-  | CmdPSQL
+    -- Build and run application
+  | CmdDeploy
+    -- Initialize database data
   | CmdInit InitParameters
+    -- Sh into running containers
+  | CmdSh ShParameters
+    -- Run psql on running containers
+  | CmdPSQL
   deriving (Eq, Show)
 
+
+-- | Parse a command
+commandParser :: Parser Command
+commandParser = hsubparser ( 
+     command "build" (info buildParser buildInfo)
+  <> command "run" (info _runParser runInfo)
+  <> command "sh" (info shParser shInfo)
+  <> command "psql" (info psqlParser psqlInfo)
+  <> command "init" (info initParser initInfo)
+  <> command "deploy" (info deployParser deployInfo) )
+
+  where
+
+    buildInfo = (
+         fullDesc
+      <> progDesc ("Build the [executable, docker images, ...]")
+      <> header    "Build Commands" )
+    runInfo = (
+         fullDesc
+      <> progDesc ("Run the [docker container, executable, etc...].")
+      <> header    "Run Commands" )
+    shInfo = (
+         fullDesc
+      <> progDesc ("Open a shell in a running docker container.")
+      <> header    "Open a shell on the server." )
+    psqlInfo = (
+         fullDesc
+      <> progDesc ("Open PSQL in a running docker container.")
+      <> header    "Open PSQL on the server" )
+    initInfo = (
+         fullDesc
+      <> progDesc ("Initialize the database.")
+      <> header    "Initialize the database." )
+    deployInfo = (
+         fullDesc
+      <> progDesc ("Deploy the application.")
+      <> header    "Deploy the application." )
+
+
+-- | Perform the actions for a command
+runCommand :: Command -> IO ()
+runCommand (CmdBuild  params) = do
+  -- Executable
+  when (buildExecutable params) compileWebExecutable
+  -- Local Web Image 
+  when (buildWebImage params) $ buildServerDockerImage
+  -- Local DB Image 
+  when (buildDBImage params) $ buildDbDockerImage
+  -- All
+  when (buildAll params) $ buildAllImages
+runCommand (CmdRun    params) = do
+  when (runServer params) runServerDockerContainer
+  when (runDB     params) runDbDockerContainer
+runCommand CmdDeploy = deploy
+runCommand (CmdInit params) = do 
+  when (initTestDB params) initializeDatabase
+  when (initProdDB params) initializeDatabase
+runCommand (CmdSh     params) = do
+  when (shServer params) shServerDockerContainer
+  when (shDB     params) shDbDockerContainer
+runCommand CmdPSQL           = connectToPSql
+
+-- Commands > Build
+--------------------------------------------------------------------------------
 
 data BuildParameters = BuildParameters
   { buildExecutable :: Bool
@@ -108,68 +179,7 @@ data BuildParameters = BuildParameters
   } deriving (Eq, Show)
 
 
-data RunParameters = RunParameters
-  { runServer :: Bool
-  , runDB     :: Bool
-  } deriving (Eq, Show)
-
-
-data ShParameters = ShParameters
-  { shServer :: Bool
-  , shDB     :: Bool
-  } deriving (Eq, Show)
-
-
-data InitParameters = InitParameters
-  { initTestDB :: Bool
-  , initProdDB :: Bool
-  } deriving (Eq, Show)
-
-
--- instance Read DeployCommand where
---   readsPrec _ s = 
---     case s of
---       "images" -> [(UpdateImages, "")]
---       ""       -> [(Update, "")]
---       _        -> []
-                      
-
-
--- COMMAND LINE PARSERS
---------------------------------------------------------------------------------
-
--- | Parse the subcommands 
-commandParser :: Parser Command
-commandParser = hsubparser ( 
-     command "build" (info buildParser buildInfo)
-  <> command "run" (info _runParser runInfo)
-  <> command "sh" (info shParser shInfo)
-  <> command "psql" (info psqlParser psqlInfo)
-  <> command "init" (info initParser initInfo) )
-  where
-  buildInfo = (
-       fullDesc
-    <> progDesc ("Build the [executable, docker images, ...]")
-    <> header    "Build Commands" )
-  runInfo = (
-       fullDesc
-    <> progDesc ("Run the [docker container, executable, etc...].")
-    <> header    "Run Commands" )
-  shInfo = (
-       fullDesc
-    <> progDesc ("Open a shell in a running docker container.")
-    <> header    "Open a shell on the server." )
-  psqlInfo = (
-       fullDesc
-    <> progDesc ("Open PSQL in a running docker container.")
-    <> header    "Open PSQL on the server" )
-  initInfo = (
-       fullDesc
-    <> progDesc ("Initialize the database.")
-    <> header    "Initialize the database." )
-
-
--- | Parse the options for the Service subcommand
+-- | Parse a build command
 buildParser :: Parser Command
 buildParser = CmdBuild <$> params
   where
@@ -190,8 +200,15 @@ buildParser = CmdBuild <$> params
           <> short 'd'
           <> help "Build the local docker database image." )
 
+-- Commands > Run
+--------------------------------------------------------------------------------
 
--- | Parse the options for the Service subcommand
+data RunParameters = RunParameters
+  { runServer :: Bool
+  , runDB     :: Bool
+  } deriving (Eq, Show)
+
+-- | Parse a run command
 _runParser :: Parser Command
 _runParser = CmdRun <$> params
   where
@@ -205,28 +222,22 @@ _runParser = CmdRun <$> params
           <> short 'd'
           <> help "Run the database container." )
 
+-- Commands > Deploy
+--------------------------------------------------------------------------------
 
--- | Parse the options for the Service subcommand
-shParser :: Parser Command
-shParser = CmdSh <$> params
-  where
-    params = ShParameters 
-         <$> switch
-           ( long "server"
-          <> short 's'
-          <> help "Run the server container." )
-         <*> switch
-           ( long "db"
-          <> short 'd'
-          <> help "Run the database container." )
+-- | Parse a deploy command
+deployParser :: Parser Command
+deployParser = pure CmdDeploy
 
+-- Commands > Init
+--------------------------------------------------------------------------------
 
--- | Parse the options for the Service subcommand
-psqlParser :: Parser Command
-psqlParser = pure CmdPSQL
+data InitParameters = InitParameters
+  { initTestDB :: Bool
+  , initProdDB :: Bool
+  } deriving (Eq, Show)
 
-
--- | Parse the options for the Service subcommand
+-- | Parse an init command
 initParser :: Parser Command
 initParser = CmdInit <$> params
   where
@@ -240,53 +251,60 @@ initParser = CmdInit <$> params
           <> short 'p'
           <> help "Initialize the PROD database." )
 
-
--- > COMMANDS
+-- Commands > Sh
 --------------------------------------------------------------------------------
 
-runCommand :: Command -> IO ()
+data ShParameters = ShParameters
+  { shServer :: Bool
+  , shDB     :: Bool
+  } deriving (Eq, Show)
 
-runCommand (CmdBuild  params) = do
-  -- Executable
-  when (buildExecutable params) compileApp
-  -- Local Web Image 
-  when (buildWebImage params) $ buildServerDockerImage Local
-  -- Local DB Image 
-  when (buildDBImage params) $ buildDbDockerImage Local
-  -- All
-  when (buildAll params) $ do
-    compileApp
-    buildServerDockerImage Local
-    buildDbDockerImage Local
+-- | Parse an sh command
+shParser :: Parser Command
+shParser = CmdSh <$> params
+  where
+    params = ShParameters 
+         <$> switch
+           ( long "server"
+          <> short 's'
+          <> help "Run the server container." )
+         <*> switch
+           ( long "db"
+          <> short 'd'
+          <> help "Run the database container." )
 
-runCommand (CmdRun    params) = do
-  when (runServer params) runServerDockerContainer
-  when (runDB     params) runDbDockerContainer
+-- Commands > PSQL
+--------------------------------------------------------------------------------
 
-runCommand (CmdSh     params) = do
-  when (shServer params) shServerDockerContainer
-  when (shDB     params) shDbDockerContainer
-
-runCommand CmdPSQL           = connectToPSql
-
-runCommand (CmdInit params) = do 
-  when (initTestDB params) initializeDatabase
-  when (initProdDB params) initializeDatabase
+-- | Parse a PSQL command 
+psqlParser :: Parser Command
+psqlParser = pure CmdPSQL
 
 
+-- TASKS
+--------------------------------------------------------------------------------
 
-compileApp :: IO ()
-compileApp = run (Just ".") "stack" ["build"] "COMPILE APPLICATION"
+-- | Compile the executable for the web server
+compileWebExecutable :: IO ()
+compileWebExecutable = run "." "stack" ["build"] "COMPILE APPLICATION"
 
+-- | Compile the server executable and then build the web and db images
+buildAllImages :: IO ()
+buildAllImages = do
+  compileWebExecutable
+  run "." "docker-compose" ["build"] "BUILD ALL IMAGES"
 
-data BuildEnv = Local | GCloud
-
+-- | Compile the server executable, build the images, and run the containers
+deploy :: IO ()
+deploy = do
+  compileWebExecutable
+  run "." "docker-compose" ["up", "-d"] "DEPLOY"
 
 -- | Build a new Docker image for a new service executable
-buildServerDockerImage :: BuildEnv -> IO ()
-buildServerDockerImage buildEnv = do
+buildServerDockerImage :: IO ()
+buildServerDockerImage = do
   -- The name of the application Docker image
-  imageName <- appServerImageName buildEnv
+  imageName <- appServerImageName
   -- Remove the old image (of the same version), if there is one
   (rmExitCode, rmOut, _) <- P.readProcessWithExitCode
                                     "docker" ["rmi", imageName] ""
@@ -300,29 +318,30 @@ buildServerDockerImage buildEnv = do
     -- FROM
     ".stack-work/install/x86_64-linux-dkc84f957ff3bc3d6b09a019caded09bcf/lts-8.12/8.0.2/bin/blog-exe"
     -- TO
-    "deploy/docker/server/run"
+    "deploy/docker/web/run"
   -- Copy CSS files
-  Sh.shelly $ Sh.rm_rf "deploy/docker/server/css/"
-  Sh.shelly $ Sh.cp_r "assets/css" "deploy/docker/server/css/"
+  Sh.shelly $ Sh.rm_rf "deploy/docker/web/css/"
+  Sh.shelly $ Sh.cp_r "assets/css" "deploy/docker/web/css/"
   -- Copy SVG files
-  Sh.shelly $ Sh.rm_rf "deploy/docker/server/svg/"
-  Sh.shelly $ Sh.cp_r "assets/svg" "deploy/docker/server/svg/"
+  Sh.shelly $ Sh.rm_rf "deploy/docker/web/svg/"
+  Sh.shelly $ Sh.cp_r "assets/svg" "deploy/docker/web/svg/"
   -- Copy JS files
-  Sh.shelly $ Sh.rm_rf "deploy/docker/server/js/"
-  Sh.shelly $ Sh.cp_r "js" "deploy/docker/server/js/"
+  Sh.shelly $ Sh.rm_rf "deploy/docker/web/js/"
+  Sh.shelly $ Sh.cp_r "js" "deploy/docker/web/js/"
   -- Copy Font files
-  Sh.shelly $ Sh.rm_rf "deploy/docker/server/fonts/"
-  Sh.shelly $ Sh.cp_r "assets/fonts" "deploy/docker/server/fonts/"
+  Sh.shelly $ Sh.rm_rf "deploy/docker/web/fonts/"
+  Sh.shelly $ Sh.cp_r "assets/fonts" "deploy/docker/web/fonts/"
   -- Build the new image
-  run (Just "deploy/docker/server")
+  run "deploy/docker/web"
       "docker" ["build", "-t", imageName, "."]
       "BUILD NEW IMAGE"
 
+
 -- | Build a new Docker image for a new service executable
-buildDbDockerImage :: BuildEnv -> IO ()
-buildDbDockerImage buildEnv = do
+buildDbDockerImage :: IO ()
+buildDbDockerImage = do
   -- The name of the application Docker image
-  imageName <- appDbImageName buildEnv
+  imageName <- appDbImageName
   -- Remove the old image (of the same version), if there is one
   -- (rmExitCode, rmOut, _) <- P.readProcessWithExitCode
   --                                   "docker" ["rmi", imageName] ""
@@ -333,15 +352,18 @@ buildDbDockerImage buildEnv = do
   -- -- Copy the server executable to the Docker directory
   Sh.shelly $ Sh.cp "db/schema.sql" "deploy/docker/db/schema.sql"
   -- Build the new image
-  run (Just "deploy/docker/db")
+  run "deploy/docker/db"
       "docker" ["build", "-t", imageName, "."]
       "BUILD NEW IMAGE"
+
+  -- docker compose up -d --no-deps --build db
+
 
 -- | Run the Docker image
 runServerDockerContainer :: IO ()
 runServerDockerContainer = do
   -- The docker image name
-  imageName <- appServerImageName Local
+  imageName <- appServerImageName
   -- Remove the containers (if they exist)
   (rmExitCode, rmOut, _) <- P.readProcessWithExitCode
                                     "docker" ["rm", "-f", serverContainerName]
@@ -349,7 +371,7 @@ runServerDockerContainer = do
   when (rmExitCode == ExitSuccess) $ do
     putStrLn "> Delete Old Container"
     putStrLn rmOut
-  run Nothing
+  run "."
       "docker" ["run",
                 "--name",
                 serverContainerName,
@@ -366,7 +388,7 @@ runServerDockerContainer = do
 runDbDockerContainer :: IO ()
 runDbDockerContainer = do
   -- The docker image name
-  imageName <- appDbImageName Local
+  imageName <- appDbImageName
   -- Remove the containers (if they exist)
   (rmExitCode, rmOut, _) <- P.readProcessWithExitCode
                                     "docker" ["rm", "-f", dbContainerName]
@@ -374,7 +396,7 @@ runDbDockerContainer = do
   when (rmExitCode == ExitSuccess) $ do
     putStrLn "> Delete Old Container"
     putStrLn rmOut
-  run Nothing
+  run "."
       "docker" ["run",
                 "--name",
                 dbContainerName,
@@ -388,10 +410,10 @@ runDbDockerContainer = do
 pushGCloudImage :: Container ->  IO ()
 pushGCloudImage container = do
   containerImageName <- case container of
-                          DbContainer -> appDbImageName GCloud
-                          ServerContainer -> appServerImageName GCloud
+                          DbContainer -> appDbImageName
+                          ServerContainer -> appServerImageName
   let cmd = "gcloud docker -- push " <> containerImageName
-  run Nothing cmd [] cmdName
+  run "." cmd [] cmdName
   where
     cmdName = "PUSH GCLOUD " 
                  <> (map toUpper $ show container) 
@@ -460,21 +482,15 @@ versionText = do
   pkgDesc <- readPackageDescription silent "blog.cabal"
   return $ showVersion $ pkgVersion $ package $ packageDescription pkgDesc 
 
-appServerImageName :: BuildEnv -> IO String
-appServerImageName Local = do
+appServerImageName :: IO String
+appServerImageName = do
   version <- versionText
-  return $ "blog/server:" ++ version
-appServerImageName GCloud = do
-  version <- versionText
-  return $ "us.gcr.io/exalted-shape-178804/site-server:" ++ version
+  return $ "blog/web:" ++ version
 
-appDbImageName :: BuildEnv -> IO String
-appDbImageName Local = do
+appDbImageName :: IO String
+appDbImageName = do
   version <- versionText
   return $ "blog/db:" ++ version
-appDbImageName GCloud = do
-  version <- versionText
-  return $ "us.gcr.io/exalted-shape-178804/site-pg:" ++ version
 
 serverContainerName :: String
 serverContainerName = "blog-server"
@@ -487,28 +503,20 @@ callProcessAndPrint cmd args = do
   putStrLn $ (L.intercalate " " $ cmd:args)
   P.callProcess cmd args
 
-run :: Maybe FilePath -> FilePath -> [String] -> String -> IO ()
-run mDir cmd args name = do
+run :: FilePath -> FilePath -> [String] -> String -> IO ()
+run dir cmd args name = do
   putStrLn name
   -- Print the command that is being run, especially so it can be used manually
   -- if needed
   putStrLn $ "Command: " ++ (L.intercalate " " $ cmd:args)
   putStrLn ""
-  let process = (P.proc cmd args) { P.cwd = mDir }
+  let process = (P.proc cmd args) { P.cwd = Just dir }
   P.readCreateProcess process  "" >> return ()
 
 
 --------------------------------------------------------------------------------
 -- CONFIGURATION
 --------------------------------------------------------------------------------
-
-
-dbImageVersion :: String 
-dbImageVersion = "0.7"
-
-webImageVersion :: String 
-webImageVersion = "0.7"
-
 
 dataDirPath :: FilePath
 dataDirPath = "data/"

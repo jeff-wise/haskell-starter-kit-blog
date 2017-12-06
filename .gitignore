@@ -25,3 +25,4 @@ tags
 /deploy/docker/server/css
 /deploy/docker/server/js
 /deploy/docker/server/svg
+.sass-cache/
