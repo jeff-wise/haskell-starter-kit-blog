@@ -1,10 +1,11 @@
 
 
 CREATE TABLE article (
-  id      serial PRIMARY KEY,
-  title   text   NOT NULL,
-  date    date   NOT NULL,
-  body    text   NOT NULL
+  id            serial PRIMARY KEY,
+  title         text         NOT NULL,
+  time_created  timestamptz  NOT NULL,
+  summary       text         NOT NULL,
+  body          text         NOT NULL
 );
 
 

@@ -12,15 +12,16 @@
 module Blog.Types.Article where
 
 
-import Blog.Common
-  ( Eq, Int, Text
+import Blog.Prelude
+  ( Int, Text, Maybe
+  , Eq, Ord
   , ($), (<$>), (<*>), (<>)
   , return
   )
 
 import Data.Aeson
   ( FromJSON (parseJSON), ToJSON (toJSON, toEncoding)
-  , (.:), (.=)
+  , (.:), (.:?), (.=), (.!=)
   , withObject, object, pairs
   )
 import Data.Time (UTCTime)
@@ -35,7 +36,8 @@ import Text.Blaze.Html5 (ToMarkup (toMarkup))
 data Article = Article
   { articleId          :: ArticleId
   , articleTitle       :: ArticleTitle
-  , articleCreatedTime :: ArticleCreatedTime
+  , articleTimeCreated :: ArticleTimeCreated
+  , articleSummary     :: ArticleSummary
   , articleBody        :: ArticleBody
   } deriving (Eq)
 
@@ -47,22 +49,25 @@ instance FromJSON Article where
   parseJSON = withObject "Article" $ \obj -> Article
     <$> obj .: "id"
     <*> obj .: "title"
-    <*> obj .: "created_time"
+    <*> obj .: "time_created"
+    <*> obj .:? "summary" .!= (ArticleSummary "")
     <*> obj .: "body"
 
 
 instance ToJSON Article where
-  toJSON (Article id title createdTime body) = object 
+  toJSON (Article id title timeCreated summary body) = object 
     [ "id" .= id
     , "title" .= title
-    , "created_time" .= createdTime
+    , "time_created" .= timeCreated
+    , "summary" .= summary
     , "body" .= body
     ]
-  toEncoding (Article id title createdTime body) = pairs (
-        "id" .= id
-    <>  "title" .= title
-    <>  "created_time" .= createdTime
-    <>  "body" .= body
+  toEncoding (Article id title timeCreated summary body) = pairs (
+       "id" .= id
+    <> "title" .= title
+    <> "time_created" .= timeCreated
+    <> "summary" .= summary
+    <> "body" .= body
     )
 
 
@@ -92,8 +97,16 @@ newtype ArticleTitle = ArticleTitle
 -- Article > Created Time
 --------------------------------------------------------------------------------
 
-newtype ArticleCreatedTime = ArticleCreatedTime
-  { getArticleCreatedTime :: UTCTime }
+newtype ArticleTimeCreated = ArticleTimeCreated
+  { getArticleTimeCreated :: UTCTime }
+  deriving (Eq, Ord, FromJSON, ToJSON)
+
+
+-- Article > Summary
+--------------------------------------------------------------------------------
+
+newtype ArticleSummary = ArticleSummary
+  { getArticleSummary :: Text }
   deriving (Eq, FromJSON, ToJSON)
 
 
@@ -109,8 +122,10 @@ newtype ArticleBody = ArticleBody
 --------------------------------------------------------------------------------
 
 data NewArticle = NewArticle
-  { newArticleTitle :: ArticleTitle
-  , newArticleBody  :: ArticleBody
+  { newArticleTitle       :: ArticleTitle
+  , newArticleTimeCreated :: Maybe ArticleTimeCreated
+  , newArticleBody        :: ArticleBody
+  , newArticleSummary     :: ArticleSummary
   } deriving (Eq)
 
 
@@ -118,18 +133,24 @@ data NewArticle = NewArticle
 --------------------------------------------------------------------------------
 instance FromJSON NewArticle where
   parseJSON = withObject "NewArticle" $ \obj -> NewArticle
-    <$> obj .: "title"
-    <*> obj .: "body"
+    <$> obj .:  "title"
+    <*> obj .:? "time_created"
+    <*> obj .:  "body"
+    <*> obj .:? "summary" .!= (ArticleSummary "")
 
 
 instance ToJSON NewArticle where
-  toJSON (NewArticle title body) = object 
-    [ "title" .= title
-    , "body" .= body
+  toJSON (NewArticle title timeCreated body summary) = object 
+    [ "title"        .= title
+    , "body"         .= body
+    , "time_created" .= timeCreated
+    , "summary"      .= summary
     ]
-  toEncoding (NewArticle title body) = pairs (
-        "title" .= title
-    <>  "body" .= body
+  toEncoding (NewArticle title timeCreated body summary) = pairs (
+       "title"        .= title
+    <> "body"         .= body
+    <> "time_created" .= timeCreated
+    <> "summary"      .= summary
     )
 
 

@@ -6,7 +6,7 @@
 module Blog.CLI where
 
 
-import Blog.Common
+import Blog.Prelude
   ( IO
   , (<>), (<$>), (<**>), (>>=)
   )

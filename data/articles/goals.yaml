@@ -1,0 +1,54 @@
+
+---
+title: Goals
+time_created: 2017-12-06T00:00:00Z
+body: |+
+  Before we jump in, let's take a look at the project's goals. The
+  source code and this tutorial are written with the goals in mind, so
+  it will be helpful to understand what we're trying to achieve. For
+  example, some of the source code could be written more concisely, but that
+  won't help illuminate Haskell's coding style, and playing code golf
+  won't help promote a language with a reputation for being hard to
+  understand. Likewise, we could have chosen simpler libraries, but we
+  wanted to showcase what Haskell can do differently and better than other
+  languages, as well as generate some useful discussion and insight on
+  software engineering in general.
+
+  #### Analyze Engineering Real World Applications with Haskell
+
+  Is pure functional programming better? When is it better? What are its
+  advantages when building real world applications? In this tutorial,
+  we'll discuss the trade-offs associated with engineering applications
+  in Haskell.
+
+  In particular, we'll pursue answers to the following questions:
+
+     * How do you write code that is easy to understand?
+     * How do you write code that is easy to extend?
+     * How do you write code fast or how do write code that works the
+       first or second time its run?
+     * How do you write code with minimum errors?
+     * How do you create a web application that is easy to deploy?
+     * How do you manage a software project's common tasks and metadata?
+     * How do you structure the code in a Haskell web application?
+
+  #### Serve as an Extensible Base for Haskell Web Applications
+
+  This example application is a very basic blog. We could have created
+  something more interesting, but the code would be longer and more
+  complex. The brevity and relative simplicity of the blog serves the
+  project's goals in two ways:
+
+    1. **Generality** The purpose of this project is to teach about building Haskell
+       applications in general, but not how to build a specific application. Too many
+       details would distract from the more general lessons.
+    2. **Extensibility** Because there are few assumptions in the application
+       logic, the project can easily be used as a base for a more complicated web
+       application.
+
+  #### Promote Haskell
+
+  Haskell is awesome, but often misunderstood. If this project is successful,
+  then it should help to showcase Haskell's strengths and serve as an
+  entrypoint to building real Haskell applications.
+

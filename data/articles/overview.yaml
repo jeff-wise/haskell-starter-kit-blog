@@ -1,0 +1,27 @@
+
+---
+title: Overview
+time_created: 2017-12-01T00:00:00Z
+body: |+
+  ### Specification
+
+  TODO
+
+  ### Components
+
+  While the specification is simple, creating a robust implementation
+  will require more than a few libraries and tools. 
+
+  #### Important Libraries
+   
+   * [Servant][servant-docs] (Web Framework)
+   * [Opalaye][opaleye-stackage] (PostgreSQL ORM)
+   * [Aeson][aeson-stackage] (JSON / YAML parsing)
+   * [BlazeHtml][blaze-stackage] (HTML combinators)
+   * [Optparse-Applicative][optparse-stackage] (Command-line parsing) 
+
+  #### Important Tools
+
+   * [GHC](https://www.haskell.org/ghc/)
+   * [Stack][stack-docs]
+   * [Docker][docker-docs]

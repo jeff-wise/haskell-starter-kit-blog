@@ -13,19 +13,22 @@
 module Blog.DB.Article where
 
 
-import Blog.Common
+import Blog.Prelude
   ( Int, Maybe (Nothing, Just), Text
   , IO
-  , ($), (.)
+  , ($), (<$>)
   , return
   )
 import Blog.Types.Article 
-  ( Article (Article), articleId, articleTitle, articleCreatedTime, articleBody
+  ( Article (Article), articleId, articleTitle
+  , articleTimeCreated, articleSummary, articleBody
   , ArticleId (ArticleId), getArticleId
   , ArticleTitle (ArticleTitle), getArticleTitle
-  , ArticleCreatedTime (ArticleCreatedTime), getArticleCreatedTime
+  , ArticleTimeCreated (ArticleTimeCreated), getArticleTimeCreated
+  , ArticleSummary (ArticleSummary), getArticleSummary
   , ArticleBody (ArticleBody), getArticleBody 
-  , NewArticle, newArticleTitle, newArticleBody
+  , NewArticle, newArticleTitle, newArticleTimeCreated
+  , newArticleSummary, newArticleBody
   )
 
 import Control.Arrow (returnA)
@@ -45,24 +48,27 @@ import Opaleye
 
 
 
-data DB_Article' a b c d = DB_Article 
+data DB_Article' a b c d e = DB_Article 
   { dbArticleId          :: a
   , dbArticleTitle       :: b
   , dbArticleCreatedTime :: c 
-  , dbArticleBody        :: d
+  , dbArticleSummary     :: d
+  , dbArticleBody        :: e
   }
 
 
-type DB_Article = DB_Article' Int Text UTCTime Text
+type DB_Article = DB_Article' Int Text UTCTime Text Text
 
 
 type ArticleRowRead = DB_Article' (Column PGInt4) 
                                   (Column PGText) 
                                   (Column PGTimestamptz) 
                                   (Column PGText)
+                                  (Column PGText)
 type ArticleRowWrite = DB_Article' (Maybe (Column PGInt4))
                                    (Column PGText) 
                                    (Column PGTimestamptz) 
+                                   (Column PGText)
                                    (Column PGText)
 
 
@@ -71,26 +77,31 @@ $(makeAdaptorAndInstance "pArticle" ''DB_Article')
 
 articleTable :: Table ArticleRowWrite ArticleRowRead 
 articleTable = Table "article"
-                    (pArticle $ DB_Article (optional "id"   )
-                                           (required "title") 
-                                           (required "date" )
-                                           (required "body" ))
+                    (pArticle $ DB_Article (optional "id"          )
+                                           (required "title"       ) 
+                                           (required "time_created")
+                                           (required "summary"     )
+                                           (required "body"        ))
 
 
 articleNewRow :: NewArticle -> IO ArticleRowWrite
 articleNewRow article = do
-  currentTime <- getCurrentTime
+  dbTime <- case newArticleTimeCreated article of
+              Just timeCreated -> return $ pgUTCTime $ getArticleTimeCreated timeCreated
+              Nothing          -> pgUTCTime <$> getCurrentTime
   return $ DB_Article Nothing
-                     (pgStrictText $ getArticleTitle $ newArticleTitle article)
-                     (pgUTCTime currentTime)
-                     (pgStrictText $ getArticleBody $ newArticleBody article)
+                      (pgStrictText $ getArticleTitle $ newArticleTitle article)
+                      dbTime
+                      (pgStrictText $ getArticleSummary $ newArticleSummary article)
+                      (pgStrictText $ getArticleBody $ newArticleBody article)
 
 
 articleUpdateRow :: Article -> ArticleRowWrite
 articleUpdateRow article =
   DB_Article (Just $ pgInt4 $ getArticleId $ articleId article)
              (pgStrictText $ getArticleTitle $ articleTitle article)
-             (pgUTCTime $ getArticleCreatedTime $ articleCreatedTime article)
+             (pgUTCTime $ getArticleTimeCreated $ articleTimeCreated article)
+             (pgStrictText $ getArticleSummary $ articleSummary article)
              (pgStrictText $ getArticleBody $ articleBody article)
 
 
@@ -100,7 +111,7 @@ allArticlesQuery = queryTable articleTable
 
 articleWithIdQuery :: Int -> Query ArticleRowRead
 articleWithIdQuery targetId = proc () -> do
-  article@(DB_Article rowId _ _ _) <- allArticlesQuery -< ()
+  article@(DB_Article rowId _ _ _ _) <- allArticlesQuery -< ()
   restrict -< rowId .== pgInt4 targetId
   returnA -< article
 
@@ -109,6 +120,7 @@ articleFromDB :: DB_Article -> Article
 articleFromDB dbArticle = Article 
   (ArticleId $ dbArticleId dbArticle)
   (ArticleTitle $ dbArticleTitle dbArticle)
-  (ArticleCreatedTime $ dbArticleCreatedTime dbArticle)
+  (ArticleTimeCreated $ dbArticleCreatedTime dbArticle)
+  (ArticleSummary $ dbArticleSummary dbArticle)
   (ArticleBody $ dbArticleBody dbArticle)
 

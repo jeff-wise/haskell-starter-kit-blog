@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/logo.png" width="70%" />
+  <img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/logo.png" width="70%" />
 </div>
 
 ----------------------------------------------------------------------
@@ -28,7 +28,8 @@ Of course, you can write whatever you'd like.
   * A **tutorial** with some mini-essays about Haskell, a in-depth code
       review, and instructions for using and managing the project
   * A set of **exercises** of varying difficulty for learning or
-      fine-tuning Haskell programming skills
+      fine-tuning Haskell programming skills. It's homework that you
+      can use when you're done!
   * **Deployment scripts** that can easily be re-used or extended for use
       in other Haskell projects
 
@@ -62,14 +63,15 @@ for your next application. Whatever the case, there should be
 something here for everyone. 
 
 Haskell pushes the limits of software development. It challenges you
-to try new ways of doing something that you already know how to do in
-another language. But it's not just a new syntax, it's a new paradigm,
-a new way of thinking about how to structure your code and solve
-common problems in software engineering. If you put enough effort into
-this new way of thinking, there's a good chance that the next time
-your coding in another language you'll think of the Haskell solution
-and wish you could just write a simple `where` clause, curry
-a function, or create a typeclass.
+to try new ways of doing something you might already know how to do in
+another language. But it's not just a different syntax, it's a different way of 
+thinking. You'll see old problems in a new way, and the tried-and-true
+solutions that you've relied upon before may start to appear a little
+rusty. It's happened to all of us -- there we are, programming in another
+language, as comfortable and confident as we've always been, when we
+find ourselves thinking about the Haskell approach and wishing we could 
+write a simple `where` clause, curry a function, or do just a little bit 
+of type-level programming.
 
 ------------------------------------------------------------------------------------
 
@@ -84,14 +86,18 @@ a function, or create a typeclass.
   - [Data Types](#a-few-principles)
   - [Functions](#a-few-principles)
   - [Composability](#a-few-principles)
-- [Code Review](#code-review)
 - [Managing the Project](#managing-the-project)
   - [Generate HTML Documentation](#generate-html-documentation)
+- [Code Review](#code-review)
+- [Developing New Features](#developing-new-features)
 - [Deployment](#deployment)
   - [Digital Ocean](#digital-ocean)
   - [Amazon ECS](#amazon-ecs)
   - [Kubernetes (GKE)](#kubernetes-gke)
 - [Exercises](#exercises)
+  - [Easy](#easy)
+  - [Medium](#medium)
+  - [Difficult](#difficult)
 - [Footnotes](#footnotes)
 - [FAQ](#faq)
   - [Which IDE Should I Use?](#which-ide-should-i-use)
@@ -169,9 +175,9 @@ will require more than a few libraries and tools.
 
 #### Important Tools
 
- * [Stack][stack-docs] (with GHC)
+ * [GHC](https://www.haskell.org/ghc/)
+ * [Stack][stack-docs]
  * [Docker][docker-docs]
- * [Kubernetes][kubernetes-docs]
 
 ## On Learning Haskell
 
@@ -471,18 +477,18 @@ TODO
 
 TODO
 
-### Kubernetes (GKE)
+### Kubernetes (Google Container Engine)
 
 TODO
 
 
 ## Exercises
 
-### Beginner :star: 
+### Easy :star: 
 
-### Intermediate :star::star: 
+### Medium :star::star: 
 
-### Advanced :star::star::star:
+### Difficult :star::star::star:
 
 
 ## Footnotes

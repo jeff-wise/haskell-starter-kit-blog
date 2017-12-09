@@ -18,12 +18,13 @@ library
   exposed-modules:      Blog.CLI
                         Blog.Web.API
                         Blog.Types.Article
-  other-modules:        Blog.Common
+  other-modules:        Blog.Prelude
                         Blog.Config
                         Blog.Server
                         Blog.Types
                         Blog.DB.Article
                         Blog.DB.Image
+                        Blog.HTML.ArticleList
                         Blog.HTML.Combinators
                         Blog.HTML.Page
                         Blog.Types.ArticleList

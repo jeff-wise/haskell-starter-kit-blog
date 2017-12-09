@@ -9,7 +9,8 @@
 module Blog.Server where
 
 
-import Blog.Common (IO, ($), (<|>))
+import Blog.Prelude (IO, ($), (<|>))
+
 import qualified Blog.Web.Server as Web
 import Blog.Types
   ( Env (Env)

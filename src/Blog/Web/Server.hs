@@ -16,7 +16,7 @@ module Blog.Web.Server (
   ) where
 
 
-import Blog.Common
+import Blog.Prelude
   ( Int, IO, return
   , (==), ($), (&&)
   )

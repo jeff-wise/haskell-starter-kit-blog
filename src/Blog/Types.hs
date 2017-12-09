@@ -14,7 +14,7 @@
 module Blog.Types where
 
 
-import Blog.Common (Int)
+import Blog.Prelude (Int)
 
 import qualified Database.PostgreSQL.Simple.Internal as PG
 

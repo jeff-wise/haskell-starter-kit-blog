@@ -1,12 +1,15 @@
 version: "3"
 services:
+  db:
+    build: ./deploy/docker/db
+    image: blog/db
+    container_name: blog-db
   web:
     build: ./deploy/docker/web
     image: blog/web
     container_name: blog-web
     ports:
-      - "8080:80"
-  db:
-    build: ./deploy/docker/db
-    image: blog/db
-    container_name: blog-db
+    - "8080:80"
+    depends_on:
+    - "db"
+

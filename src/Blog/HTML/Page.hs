@@ -1,4 +1,3 @@
-
 {-| Page HTML
 -}
 
@@ -9,7 +8,11 @@
 module Blog.HTML.Page where
 
 
-import Blog.Common (($), return)
+import Blog.Prelude
+  ( ($), return
+  , Text
+  )
+import Blog.Types.Article (ArticleTitle)
 import Blog.Web.Config (cssFilePath)
 
 import Data.Foldable (forM_)
@@ -19,6 +22,7 @@ import System.FilePath (FilePath)
 import Text.Blaze.Html5
   ( Html
   , (!), toValue
+  , preEscapedToHtml
   )
 
 import qualified Text.Blaze.Html5.Attributes as A
@@ -26,32 +30,82 @@ import qualified Text.Blaze.Html5 as H
 
 
 
-page :: [FilePath] -> [FilePath ]-> Html -> Html
-page cssFilePaths jsFilePaths contentHtml = do
+--------------------------------------------------------------------------------
+-- TYPES
+--------------------------------------------------------------------------------
+
+data Page =
+    Home
+  | Article ArticleTitle
+  | About
+
+
+--------------------------------------------------------------------------------
+-- HTML
+--------------------------------------------------------------------------------
+
+pageHtml :: Page -> [FilePath] -> [FilePath ]-> Html -> Html
+pageHtml pageType cssFilePaths jsFilePaths contentHtml = do
   H.docTypeHtml $ do
     H.head $ do
+      -- Page Title
       H.title "My Haskell Blog"
+      -- Default Stylesheets
+      -- (1) Normalize
+      H.link ! A.rel "stylesheet" 
+             ! A.type_ "text/css" 
+             ! A.href (toValue $ cssFilePath "normalize")
+      -- (2) Page
       H.link ! A.rel "stylesheet" 
              ! A.type_ "text/css" 
              ! A.href (toValue $ cssFilePath "page")
+      -- Other Stylesheets
       forM_ cssFilePaths $ \path ->
         H.link ! A.rel "stylesheet" 
                ! A.type_ "text/css" 
                ! A.href (toValue path)
-      H.link ! A.href "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
+      -- Fonts
+      -- (1) Source Sans Pro (default)
+      H.link ! A.href "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700"
              ! A.rel "stylesheet"
+      -- (2) Source Code Pro (monospace)
       H.link ! A.href "https://fonts.googleapis.com/css?family=Source+Code+Pro"
              ! A.rel "stylesheet"
     H.body $ do
-      pageHeaderHtml
+      pageHeaderHtml pageType
       H.div ! A.id "content" $ contentHtml
       forM_ jsFilePaths $ \path ->
         H.script ! A.src (toValue path) $ return ()
       -- H.script $ preEscapedToHtml pageScript
 
 
-pageHeaderHtml :: Html
-pageHeaderHtml = H.div ! A.id "header" $ return ()
+pageHeaderHtml :: Page -> Html
+pageHeaderHtml page = 
+  H.header ! A.class_ "page-header" $ do
+    H.a ! A.href "/"
+        ! A.class_ homeLinkClass
+        $ preEscapedToHtml ("&#955; My Haskell Blog" :: Text)
+    H.h3 ! A.class_ "page-title" 
+         ! A.class_ articleLinkClass
+         $ ""
+    H.div ! A.class_ "page-nav" $ do
+      H.a ! A.href "/about"
+          ! A.class_ aboutLinkClass 
+          $ "About Me"
+      H.a ! A.href "/" $ "My Github"
+  where
+    homeLinkClass = case page of 
+                      Home -> "home selected"
+                      _    -> "home"
+    articleLinkClass = case page of 
+                         Article _ -> "selected"
+                         _    -> ""
+    aboutLinkClass = case page of 
+                       About -> "selected"
+                       _    -> ""
+
+                                
+
 
 -- pageHeaderHtml :: SectionType -> Html -> Html
 -- pageHeaderHtml sectionType subheaderHtml = do

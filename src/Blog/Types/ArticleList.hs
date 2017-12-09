@@ -15,13 +15,12 @@
 module Blog.Types.ArticleList where
 
 
-import Blog.Common 
+import Blog.Prelude 
   ( Eq
-  , return
-  , (<$>)
+  , (<$>), (.)
   )
 
-import Blog.HTML.Page (page)
+import Blog.HTML.ArticleList (articleListPageHtml)
 import Blog.Types.Article (Article)
 
 import Data.Aeson
@@ -51,10 +50,11 @@ instance ToJSON ArticleList where
   toJSON (ArticleList articles) = toJSON articles
   toEncoding (ArticleList articles) = toEncoding articles
 
+
 -- * HTML Representation
 --------------------------------------------------------------------------------
 
 instance ToMarkup ArticleList where
-  toMarkup _ = page [] [] (return ())
+  toMarkup = articleListPageHtml . articleListArticles
 
 

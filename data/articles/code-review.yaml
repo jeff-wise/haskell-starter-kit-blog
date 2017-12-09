@@ -1,0 +1,23 @@
+
+---
+title: Code Review
+time_created: 2017-11-05T00:00:00Z
+body: |+
+  ### Imports
+
+  TODO 
+
+  custom prelude
+  explicit imports for learning
+
+  ### API (with Servant)
+
+  TODO
+
+  ### Database (with Opaleye)
+
+  TODO 
+
+  ### HTML (with Blaze)
+
+  TODO

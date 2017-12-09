@@ -1,0 +1,96 @@
+
+---
+title: Managing the Project
+time_created: 2017-11-08T00:00:00Z
+body: |+
+  A software project, even something as simple as this blog, may have
+  multiple components. Each compenent will have a set of actions that
+  can be performed on it such as compiling, running tests, generating
+  documentation, deploying, etc...
+
+  Onboarding a new developer to a project, its components, and all the
+  actions that the developer will need to do with those components
+  should be simple. It shouldn't take a full day of another developer's
+  time to walk someone though running and testing a project. That time
+  should be spent on walking through the code and discussing any design
+  decisions, goals, or active issues.
+
+  Futheremore, onboarding yourself after a few weeks away from the
+  project should be just as easy. If you can't remember what you ate for
+  dinner two weeks ago, it's perfectly fine that you also forgot which
+  exact command compiles the source code, runs the test suite, and spams
+  your team Slack channel with gifs of baby elephants. This
+  acceptable amnesia is remedied by a clear, concise interface,
+  preferably one available on the command line, clearly documented, and
+  easily extensible.
+
+  Our Haskell blog app comes with a command-line interface that
+  satifies these goals perfectly. It's called `dev.hs`. After you clone
+  the repository and follow the environment setup tutorial, you can run
+  `./dev.hs --help`:
+
+  ```bash
+  Blog Development Commands
+
+  Usage: dev.hs COMMAND
+    Run ./dev.hs --help for a list of commands.
+
+  Available options:
+    -h,--help                Show this help text
+
+  Available commands:
+    build                    Build the [executable, docker images, ...]
+    run                      Run the [docker container, executable, etc...].
+    sh                       Open a shell in a running docker container.
+    psql                     Open PSQL in a running docker container.
+    init                     Initialize the database.
+    deploy                   Deploy the application.
+  ```
+
+  Often, command-line utilities are
+  implemented a shell language like Bash or an interpreted langauge like
+  Python. Both are great choices, but lucky for us, we can just
+  use Haskell! Stack allows us to write *Haskell scripts* that can be
+  run on the command line as executables. We get the best of both worlds
+  -- simple, self-contained scripts and the full power of Haskell.
+  Futhermore, because our script is written in Haskell, it has full
+  access to the types and functions in our application. This can be very
+  convenient.
+
+  ### Getting Started
+
+  go from zero to running project
+
+  ### Compilation
+
+  We can compile the web server using stack:
+
+  ```bash
+  stack build
+  ```
+
+  or with `dev.hs`:
+
+  ```bash
+  ./dev.hs build --exe
+  ```
+
+  If you want to play around with the executable, you can use stack. For
+  example, `stack exec` will run the web server locally. See the
+  [stack documentation](stack-docs) for more information and commands.
+
+  ### Docker
+
+  TODO
+
+  ### Images
+
+  TODO
+
+  ### Containers
+
+  TODO
+
+  ### API Documentation
+
+  TODO

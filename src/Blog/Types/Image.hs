@@ -12,7 +12,7 @@
 module Blog.Types.Image where
 
 
-import Blog.Common
+import Blog.Prelude
   ( Eq, Int
   , (<$>)
   )

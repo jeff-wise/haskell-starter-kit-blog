@@ -13,12 +13,12 @@
 module Blog.Web.Handler where
 
 
-import Blog.Common
+import Blog.Prelude
   ( Int, Int64, show
   , Maybe (Just, Nothing)
   , Either (Left, Right)
   , IO, liftIO
-  , return
+  , return, fmap
   , ($), (<>), (/=)
   , id
   )
@@ -27,6 +27,7 @@ import Blog.DB.Article
   ( articleTable
   , articleNewRow, articleUpdateRow
   , articleWithIdQuery
+  , allArticlesQuery
   , dbArticleId
   , articleFromDB
   , DB_Article
@@ -82,8 +83,12 @@ import Servant.Server
 --------------------------------------------------------------------------------
 
 home :: SiteHandler ArticleList
-home = return $ ArticleList []
- 
+home = do
+  env <- ask
+  dbArticles <- liftIO $ PG.runQuery (envDBConn env) allArticlesQuery :: SiteHandler [DB_Article]
+  let articles = fmap articleFromDB dbArticles
+  return $ ArticleList articles
+
 
 --------------------------------------------------------------------------------
 -- ARTICLES
@@ -200,9 +205,9 @@ putImage multipartData imageId = do
     Just imageData -> do
       imageBS <- liftIO $ BSL.readFile $ fdFilePath imageData
       let image = Image (ImageId imageId) (ImageContent imageBS)
-      rowsUpdated <- liftIO $ PG.runInsertMany (envDBConn env)
-                                           imageTable 
-                                           [imageUpdateRow image]       
+      _ <- liftIO $ PG.runInsertMany (envDBConn env)
+                                               imageTable 
+                                               [imageUpdateRow image]       
       return $ ImageMetadata $ ImageId imageId
     Nothing -> throwError $ err400 { 
                  errBody = "Image not found with id: " <> (BSL.pack $ show imageId) }

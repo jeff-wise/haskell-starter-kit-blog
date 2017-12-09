@@ -13,10 +13,10 @@
 module Blog.DB.Image where
 
 
-import Blog.Common
+import Blog.Prelude
   ( Int
   , Maybe (Just, Nothing)
-  , ($), (.)
+  , ($)
   )
 import Blog.Types.Image 
   ( Image, imageId, imageContent

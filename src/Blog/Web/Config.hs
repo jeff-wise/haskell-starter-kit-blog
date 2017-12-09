@@ -10,7 +10,7 @@
 module Blog.Web.Config where
 
 
-import Blog.Common (String)
+import Blog.Prelude (String)
 
 import System.FilePath (FilePath, (</>), (<.>))
 

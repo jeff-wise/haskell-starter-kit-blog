@@ -9,7 +9,7 @@
 module Blog.HTML.Combinators where
 
 
-import Blog.Common ((==))
+import Blog.Prelude ((==))
 
 import Control.Category ((>>>))
 

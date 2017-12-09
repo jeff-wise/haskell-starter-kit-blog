@@ -23,7 +23,7 @@ module Blog.Web.API
   ) where
 
 
-import Blog.Common (Int)
+import Blog.Prelude (Int)
 import Blog.Types.Article (Article, NewArticle)
 import Blog.Types.ArticleList (ArticleList)
 import Blog.Types.Image (ImageMetadata)
