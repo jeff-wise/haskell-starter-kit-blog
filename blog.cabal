@@ -24,11 +24,13 @@ library
                         Blog.Types
                         Blog.DB.Article
                         Blog.DB.Image
+                        Blog.HTML.Article
                         Blog.HTML.ArticleList
                         Blog.HTML.Combinators
                         Blog.HTML.Page
                         Blog.Types.ArticleList
                         Blog.Types.Image
+                        Blog.Types.Page
                         Blog.Types.User
                         Blog.Web.Config
                         Blog.Web.Handler

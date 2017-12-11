@@ -11,18 +11,15 @@ This Starter Kit will help you create your own blog powered by Haskell and
 the power of <ins>pure, strongly-typed functional programming</ins>.
 
 Does this tutorial look too long? Want your blog now? Clone this
-repository and follow the instructions in the [Deployment](#deployment)
-section. A few minutes later, you'll be able to create your first
-post: 
+repository and follow the instructions in the [I Want My Blog
+Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
+you'll be able to publish your first post:
 
-> Learning Haskell
-> 
-> Hey! I'm learning Haskell. Stay tuned for updates on my experience.
->
+![First post example.](https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/logo.png")
 
 Of course, you can write whatever you'd like.
 
-### What's Here?
+### What's Inside?
 
   * A cloneable, deployable **Haskell web application** (a blog)
   * A **tutorial** with some mini-essays about Haskell, a in-depth code
@@ -73,35 +70,34 @@ find ourselves thinking about the Haskell approach and wishing we could
 write a simple `where` clause, curry a function, or do just a little bit 
 of type-level programming.
 
-------------------------------------------------------------------------------------
+## Table of Contents
 
-#### Contents
-
-- [Goals](#goals)
-- [Overview](#overview)
-  - [Specification](#specification)
-  - [Components](#components)
-- [On Learning Haskell](#on-learning-haskell)
-- [A Few Principles](#a-few-principles)
-  - [Data Types](#a-few-principles)
-  - [Functions](#a-few-principles)
-  - [Composability](#a-few-principles)
-- [Managing the Project](#managing-the-project)
-  - [Generate HTML Documentation](#generate-html-documentation)
-- [Code Review](#code-review)
-- [Developing New Features](#developing-new-features)
-- [Deployment](#deployment)
-  - [Digital Ocean](#digital-ocean)
-  - [Amazon ECS](#amazon-ecs)
-  - [Kubernetes (GKE)](#kubernetes-gke)
-- [Exercises](#exercises)
-  - [Easy](#easy)
-  - [Medium](#medium)
-  - [Difficult](#difficult)
-- [Footnotes](#footnotes)
-- [FAQ](#faq)
-  - [Which IDE Should I Use?](#which-ide-should-i-use)
-  - [Where Can I Get Help?](#where-can-i-get-help)
+1. [Goals](#goals)
+2. [Overview](#overview)
+     1. [Specification](#specification)
+     2. [Components](#components)
+3. [On Learning Haskell](#on-learning-haskell)
+4. [A Few Principles](#a-few-principles)
+     1. [Data Types](#a-few-principles)
+     2. [Functions](#a-few-principles)
+     3. [Composability](#a-few-principles)
+5. [Managing the Project](#managing-the-project)
+     1. [Generate HTML Documentation](#generate-html-documentation)
+6. [Code Review](#code-review)
+7. [Developing New Features](#developing-new-features)
+8. [Deployment](#deployment)
+     1. [Digital Ocean](#digital-ocean)
+     2. [Amazon ECS](#amazon-ecs)
+     3. [Kubernetes (GKE)](#kubernetes-gke)
+9. [Exercises](#exercises)
+     - [Easy](#easy)
+     - [Medium](#medium)
+     - [Difficult](#difficult)
+10. [I Want My Blog Now!](#i-want-my-blog-now)
+11. [Footnotes](#footnotes)
+12. [FAQ](#faq)
+    - [Which IDE Should I Use?](#which-ide-should-i-use)
+    - [Where Can I Get Help?](#where-can-i-get-help)
 
 ## Goals
 
@@ -127,7 +123,7 @@ In particular, we'll pursue answers to the following questions:
 
    * How do you write code that is easy to understand?
    * How do you write code that is easy to extend?
-   * How do you write code fast or how do write code that works the
+   * How do you write code quickly? How do write code that works the
      first or second time its run?
    * How do you write code with minimum errors?
    * How do you create a web application that is easy to deploy?
@@ -154,6 +150,8 @@ Haskell is awesome, but often misunderstood. If this project is successful,
 then it should help to showcase Haskell's strengths and serve as an
 entrypoint to building real Haskell applications.
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Overview
 
 ### Specification
@@ -178,6 +176,8 @@ will require more than a few libraries and tools.
  * [GHC](https://www.haskell.org/ghc/)
  * [Stack][stack-docs]
  * [Docker][docker-docs]
+
+**[⬆ back to top](#table-of-contents)**
 
 ## On Learning Haskell
 
@@ -317,6 +317,8 @@ solving these problems. That passion comes from a confidence in the
 power of the langauge to think about these problems and encode elegant
 solutions.
 
+**[⬆ back to top](#table-of-contents)**
+
 ## A Few Principles
 
 Before we review the source code, let's review some principles of
@@ -350,6 +352,8 @@ say that *Haskell enables compositional programming*.
 
 TODO
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Managing the Project
 
 A software project, even something as simple as this blog, may have
@@ -378,23 +382,7 @@ satifies these goals perfectly. It's called `dev.hs`. After you clone
 the repository and follow the environment setup tutorial, you can run
 `./dev.hs --help`:
 
-```bash
-Blog Development Commands
-
-Usage: dev.hs COMMAND
-  Run ./dev.hs --help for a list of commands.
-
-Available options:
-  -h,--help                Show this help text
-
-Available commands:
-  build                    Build the [executable, docker images, ...]
-  run                      Run the [docker container, executable, etc...].
-  sh                       Open a shell in a running docker container.
-  psql                     Open PSQL in a running docker container.
-  init                     Initialize the database.
-  deploy                   Deploy the application.
-```
+<img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/devhelp.png" width="70%" />
 
 Often, command-line utilities are
 implemented a shell language like Bash or an interpreted langauge like
@@ -444,6 +432,8 @@ TODO
 
 TODO
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Code Review
 
 ### Imports
@@ -465,6 +455,10 @@ TODO
 
 TODO
 
+## Developing New Features
+
+**[⬆ back to top](#table-of-contents)**
+
 ## Deployment
 
 TODO
@@ -481,6 +475,11 @@ TODO
 
 TODO
 
+**[⬆ back to top](#table-of-contents)**
+
+## I Want My Blog Now!
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Exercises
 
@@ -490,6 +489,7 @@ TODO
 
 ### Difficult :star::star::star:
 
+**[⬆ back to top](#table-of-contents)**
 
 ## Footnotes
 
