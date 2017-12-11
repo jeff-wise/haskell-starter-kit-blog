@@ -22,8 +22,9 @@ tags
 /_site/
 /.dir-locals.el
 /assets/css
-/deploy/docker/web/css
-/deploy/docker/web/fonts
-/deploy/docker/web/js
-/deploy/docker/web/svg
+deploy/docker/web/css/
+deploy/docker/web/fonts/
+deploy/docker/web/js/
+deploy/docker/web/svg/
+deploy/docker/web/run
 .sass-cache/
