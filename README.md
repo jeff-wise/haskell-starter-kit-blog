@@ -15,7 +15,7 @@ repository and follow the instructions in the [I Want My Blog
 Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
 you'll be able to publish your first post:
 
-![First post example.](https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/logo.png")
+![First post example.](https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/firstpost.png)
 
 Of course, you can write whatever you'd like.
 
