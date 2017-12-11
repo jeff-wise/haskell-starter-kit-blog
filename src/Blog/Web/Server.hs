@@ -21,6 +21,7 @@ import Blog.Prelude
   , (==), ($), (&&)
   )
 import Blog.Config (staticDirPath)
+import Blog.HTML.Article ()
 import Blog.Types (Env)
 import Blog.Types.ArticleList ()
 import Blog.Types.User (User (User))

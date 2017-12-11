@@ -14,9 +14,8 @@ module Blog.Types.Article where
 
 import Blog.Prelude
   ( Int, Text, Maybe
-  , Eq, Ord
+  , Eq, Ord, Show (show)
   , ($), (<$>), (<*>), (<>)
-  , return
   )
 
 import Data.Aeson
@@ -25,8 +24,6 @@ import Data.Aeson
   , withObject, object, pairs
   )
 import Data.Time (UTCTime)
-
-import Text.Blaze.Html5 (ToMarkup (toMarkup))
 
 
 
@@ -71,19 +68,16 @@ instance ToJSON Article where
     )
 
 
--- * HTML
---------------------------------------------------------------------------------
-
-instance ToMarkup Article where
-  toMarkup _ = return ()
-
-
 -- Article > Id
 --------------------------------------------------------------------------------
 
 newtype ArticleId = ArticleId
   { getArticleId :: Int }
   deriving (Eq, FromJSON, ToJSON)
+
+
+instance Show ArticleId where
+  show (ArticleId id) = show id
 
 
 -- Article > Title

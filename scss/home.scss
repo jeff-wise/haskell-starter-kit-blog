@@ -8,8 +8,9 @@
 
 
 .latest-article-summary {
-  width: 900px;
+  width: 800px;
   padding: 1em 0 2em 0;
+  font-size: 92%;
 
   h2, h3, h4, h5, h6, b {
     color: #414141;
@@ -62,6 +63,7 @@
 .latest-article-summary-text {
   padding: 0.5em 0;
   color: #414141;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .latest-article-summary-date {
@@ -87,6 +89,10 @@
     margin: 0;
     color: #6F4078;
     font-weight: 400;
+  }
+
+  a {
+    text-decoration: none;
   }
 }
 

@@ -9,35 +9,29 @@ module Blog.HTML.Page where
 
 
 import Blog.Prelude
-  ( ($), return
+  ( ($), return, show
   , Text
   )
-import Blog.Types.Article (ArticleTitle)
-import Blog.Web.Config (cssFilePath)
+import Blog.Types.Page 
+  ( Page (PageHome, PageArticle, PageAbout)
+  , ArticlePage (ArticlePage)
+  )
+import Blog.Web.Config (cssFilePath, jsFilePath)
 
+import Data.Monoid ((<>))
 import Data.Foldable (forM_)
 
 import System.FilePath (FilePath)
 
 import Text.Blaze.Html5
   ( Html
-  , (!), toValue
+  , (!), toValue, toHtml
   , preEscapedToHtml
   )
 
 import qualified Text.Blaze.Html5.Attributes as A
 import qualified Text.Blaze.Html5 as H
 
-
-
---------------------------------------------------------------------------------
--- TYPES
---------------------------------------------------------------------------------
-
-data Page =
-    Home
-  | Article ArticleTitle
-  | About
 
 
 --------------------------------------------------------------------------------
@@ -74,37 +68,77 @@ pageHtml pageType cssFilePaths jsFilePaths contentHtml = do
     H.body $ do
       pageHeaderHtml pageType
       H.div ! A.id "content" $ contentHtml
+      -- Scripts
+      -- (1) Highlight.js
+      H.script ! A.src (toValue $ jsFilePath "highlight") $ return ()
+      -- (2) Other scripts
       forM_ jsFilePaths $ \path ->
         H.script ! A.src (toValue path) $ return ()
-      -- H.script $ preEscapedToHtml pageScript
+      -- (3) Initialization script
+      H.script $ preEscapedToHtml pageScript
 
+
+-- HEADER
+--------------------------------------------------------------------------------
 
 pageHeaderHtml :: Page -> Html
-pageHeaderHtml page = 
+pageHeaderHtml page =
   H.header ! A.class_ "page-header" $ do
-    H.a ! A.href "/"
-        ! A.class_ homeLinkClass
-        $ preEscapedToHtml ("&#955; My Haskell Blog" :: Text)
-    H.h3 ! A.class_ "page-title" 
-         ! A.class_ articleLinkClass
-         $ ""
-    H.div ! A.class_ "page-nav" $ do
-      H.a ! A.href "/about"
-          ! A.class_ aboutLinkClass 
-          $ "About Me"
-      H.a ! A.href "/" $ "My Github"
-  where
-    homeLinkClass = case page of 
-                      Home -> "home selected"
-                      _    -> "home"
-    articleLinkClass = case page of 
-                         Article _ -> "selected"
-                         _    -> ""
-    aboutLinkClass = case page of 
-                       About -> "selected"
-                       _    -> ""
+    H.div ! A.class_ "page-header-left" $ homeNavHtml page
+    H.div ! A.class_ "page-header-center" $ pageNavHtml page
+    H.div ! A.class_ "page-header-right" $ do
+      aboutNavHtml page
+      githubNavHtml
 
-                                
+
+-- Header > Left
+--------------------------------------------------------------------------------
+
+homeNavHtml :: Page -> Html
+homeNavHtml page =
+  H.a ! A.href "/"
+      ! A.class_ classes
+      $ preEscapedToHtml ("&#955; My Haskell Blog" :: Text)
+  where
+    classes = case page of
+                PageHome -> "home-nav selected"    
+                _        -> "home-nav"    
+
+
+-- Header > Center
+--------------------------------------------------------------------------------
+
+pageNavHtml :: Page -> Html
+pageNavHtml (PageArticle articlePage) = articleNavHtml articlePage
+pageNavHtml _                         = return ()
+
+
+articleNavHtml :: ArticlePage -> Html
+articleNavHtml (ArticlePage id title date) =
+  H.a ! A.href (toValue $ "/articles" <> show id)
+      ! A.class_ "article-nav selected" $ do
+    H.span ! A.class_ "article-title" $ toHtml title
+    H.span ! A.class_ "article-date" $ toHtml date
+
+
+-- Header > Right
+--------------------------------------------------------------------------------
+ 
+aboutNavHtml :: Page -> Html
+aboutNavHtml page =
+  H.a ! A.href "/about"
+      ! A.class_ classes 
+        $ "About Me"
+  where
+    classes = case page of
+                PageAbout -> "about-nav selected"    
+                _         -> "about-nav"    
+
+githubNavHtml :: Html
+githubNavHtml = H.a ! A.href linkHref $ "My Github"
+  where
+    linkHref = "www.github.com/jeff-wise/haskell-starter-kit-blog"
+
 
 
 -- pageHeaderHtml :: SectionType -> Html -> Html
@@ -150,8 +184,6 @@ pageHeaderHtml page =
 
 
 
--- pageScript :: String
--- pageScript = 
---      "document.addEventListener('DOMContentLoaded', function(event) { "
---   <> "    if (hljs != null) { hljs.initHighlightingOnLoad() };"
---   <> "});"
+pageScript :: Text
+pageScript = "if (hljs) { hljs.initHighlightingOnLoad() };"
+

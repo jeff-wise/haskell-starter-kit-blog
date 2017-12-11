@@ -17,9 +17,7 @@ body {
 
 .page-header {
   display: flex;
-  justify-content: space-between;
   background: #39506b;
-  align-items: center;
   padding: 0em 1.5em;
 
   a {
@@ -32,11 +30,6 @@ body {
     align-items: center;
   }
 
-  a.home {
-    font-weight: 700;
-    font-size: 1.1em;
-  }
-
   a.selected {
     border-top: 5px solid #39506B;
     border-bottom: 5px solid #82B7F5;
@@ -44,13 +37,46 @@ body {
 
 }
 
+.page-header-left {
+  flex: 1;
 
-.page-nav {
+  a.home-nav {
+    font-weight: 700;
+    display: inline-flex;
+  }
+}
+
+
+.page-header-center {
+
+  a.article-nav {
+    display: inline-flex;
+    font-size: 1.2em;
+    padding: 0 1em;
+
+    .article-title {
+      font-weight: 600;
+    }
+
+    .article-date {
+      margin: 0 0 0 4em;
+      color: #D1D1D1;
+      font-size: 0.9em;
+    }
+  }
+
+}
+
+
+.page-header-right {
+  flex: 1;
   display: flex;
+  justify-content: right;
 
   a {
     margin-left: 2.5em;
   }
+
 }
 
 

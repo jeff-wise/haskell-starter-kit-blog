@@ -6,24 +6,28 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 
-module Blog.HTML.ArticleList where
+module Blog.HTML.ArticleList 
+  ( articleListPageHtml
+  ) where
 
 
-import Blog.Prelude (($), Text, String, return)
+import Blog.Prelude (($), Text, String, show, return)
 
 import Blog.HTML.Page
   ( pageHtml
-  , Page (Home)
   ) 
+
 import Blog.Types.Article 
   ( Article (Article)
   , articleTimeCreated
   , getArticleTitle, getArticleTimeCreated, getArticleSummary
   )
+import Blog.Types.Page (Page (PageHome))
 import Blog.Web.Config (cssFilePath)
 
 import Data.Foldable (forM_)
 import Data.List (reverse, sortOn)
+import Data.Monoid ((<>))
 import qualified Data.Text.Lazy as LT (fromStrict)
 import Data.Time.Format 
   ( formatTime
@@ -32,7 +36,7 @@ import Data.Time.Format
 
 import Text.Blaze.Html5
   ( Html
-  , (!), toHtml
+  , (!), toHtml, toValue
   , preEscapedToHtml
   )
 
@@ -45,7 +49,7 @@ import Text.Markdown (markdown, defaultMarkdownSettings)
 
 articleListPageHtml :: [Article] -> Html
 articleListPageHtml articles = 
-  pageHtml Home [cssFilePath "home"] [] $ articleListHtml articles
+  pageHtml PageHome [cssFilePath "home"] [] $ articleListHtml articles
 
 
 articleListHtml :: [Article] -> Html
@@ -94,8 +98,9 @@ pastArticleListHtml articles =
         forM_ articles articleSummaryHtml
   where
     articleSummaryHtml :: Article -> Html
-    articleSummaryHtml (Article _ title timeCreated _ _) =
-      H.div ! A.class_ "article-summary" $ do
+    articleSummaryHtml (Article id title timeCreated _ _) =
+      H.a ! A.class_ "article-summary" 
+          ! A.href (toValue $ "/articles/" <> show id) $ do
         H.div ! A.class_ "article-summary-title" $ 
           toHtml $ getArticleTitle title
         H.div ! A.class_ "article-summary-date" $ do

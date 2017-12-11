@@ -182,7 +182,7 @@ postImage multipartData = do
       insertedImageIds <- liftIO $ insertRow (envDBConn env) newImage
       case insertedImageIds of
         []                -> throwError $ err400 { 
-                               errBody = "no articles inserted" }
+                               errBody = "no images inserted" }
         insertedImageId:_ -> return $ ImageMetadata $ ImageId insertedImageId
     Nothing -> throwError $ err400 { 
                  errBody = "Image data not found" }

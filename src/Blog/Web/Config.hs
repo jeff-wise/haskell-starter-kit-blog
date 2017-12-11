@@ -22,3 +22,8 @@ import System.FilePath (FilePath, (</>), (<.>))
 
 cssFilePath :: String -> FilePath
 cssFilePath cssName = "/static/css/" </> cssName <.> "css"
+
+
+jsFilePath :: String -> FilePath
+jsFilePath scriptName = "/static/js/" </> scriptName <.> "js"
+
