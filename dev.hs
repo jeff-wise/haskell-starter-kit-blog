@@ -58,6 +58,8 @@ import Network.Wreq (auth, basicAuth)
 import qualified Network.Wreq as HTTP
   ( defaults
   , postWith
+  , partFile
+  , Options
   )
 
 import Options.Applicative
@@ -456,15 +458,41 @@ connectToPSql =
 
 initializeDatabase :: IO ()
 initializeDatabase = do
-  -- (1) Gather the test article file paths.
-  let articlesDirPath = dataDirPath </> "articles"
-  articleFileNames <- listDirectory articlesDirPath
-  let articleFilePaths = fmap (articlesDirPath </>) articleFileNames
-  print articleFilePaths
-  newArticles <- catMaybes <$> (forM articleFilePaths Yaml.decodeFile :: IO [Maybe Yaml.Value])
-  let opts = HTTP.defaults & auth ?~ basicAuth "user" "password"
-  responses <- forM newArticles $ HTTP.postWith opts "http://0.0.0.0:8080/articles"
-  putStrLn $ "Added " <> (show $ length responses) <> " articles to the database."
+  uploadArticles
+  uploadImages
+
+  where
+
+    requestOptions :: HTTP.Options
+    requestOptions = HTTP.defaults & auth ?~ basicAuth "user" "password"
+
+    blogURL :: String -> String
+    blogURL = ("http://0.0.0.0:8080/" <>)
+
+    uploadArticles :: IO ()
+    uploadArticles = do
+      -- (1) Gather the test article file paths.
+      let articlesDirPath = dataDirPath </> "articles"
+      articleFileNames <- listDirectory articlesDirPath
+      let articleFilePaths = fmap (articlesDirPath </>) articleFileNames
+      print articleFilePaths
+      newArticles <- catMaybes <$> (forM articleFilePaths Yaml.decodeFile :: IO [Maybe Yaml.Value])
+      responses <- forM newArticles $ 
+                     HTTP.postWith requestOptions $ blogURL "articles"
+      putStrLn $ "Added " <> (show $ length responses) <> " articles to the database."
+
+    uploadImages :: IO ()
+    uploadImages = do
+      let imagesDirPath = dataDirPath </> "images"
+      imageFileNames <- listDirectory imagesDirPath
+      let imageFilePaths = fmap (imagesDirPath </>) imageFileNames
+      responses <- forM imageFilePaths $ \imageFilePath ->
+                     HTTP.postWith requestOptions 
+                                   (blogURL "images") 
+                                   (HTTP.partFile "image" imageFilePath)
+      putStrLn $ "Added " <> (show $ length responses) <> " images to the database."
+
+  -- curl -u editor:312y1G#taVkQsG0 -F "id=$filename" -F "image=@$file" 0.0.0.0:8080/images
 
 
 -- Tasks > WEB
