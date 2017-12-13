@@ -3,12 +3,12 @@
 title: Introduction
 time_created: 2017-12-07T00:00:00Z
 summary: |+
-  ### Ready to start building *and deploying* applications with Haskell?
+  ## Ready to start building *and deploying* applications with Haskell?
 
   This Starter Kit will help you create your own blog powered by Haskell and
   the power of <ins>pure, strongly-typed functional programming</ins>.
 
-  ### What's Here?
+  ## What's Here?
 
    * A cloneable, deployable **Haskell web application** (a blog)
    * A **tutorial** with some mini-essays about Haskell, a in-depth code
@@ -19,24 +19,23 @@ summary: |+
    * **Deployment scripts** that can easily be re-used or extended for use
        in other Haskell projects
 body: |+
-  ### Ready to start building *and deploying* applications with Haskell?
+  ## Ready to start building *and deploying* applications with Haskell?
 
   This Starter Kit will help you create your own blog powered by Haskell and
   the power of <ins>pure, strongly-typed functional programming</ins>.
 
   Does this tutorial look too long? Want your blog now? Clone this
-  repository and follow the instructions in the [Deployment](#deployment)
-  section. A few minutes later, you'll be able to create your first
-  post: 
+  repository and follow the instructions in the [I Want My Blog
+  Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
+  you'll be able to publish your first post:
 
-  > Learning Haskell
-  > 
-  > Hey! I'm learning Haskell. Stay tuned for updates on my experience.
-  >
+  <br/>
+
+  ![First post example.](/images/firstpost.png)
 
   Of course, you can write whatever you'd like.
 
-  ### What's Here?
+  ## What's Inside?
 
     * A cloneable, deployable **Haskell web application** (a blog)
     * A **tutorial** with some mini-essays about Haskell, a in-depth code
@@ -47,7 +46,7 @@ body: |+
     * **Deployment scripts** that can easily be re-used or extended for use
         in other Haskell projects
 
-  ### Why?
+  ## Why?
 
   Learning Haskell is difficult. First, you have to *understand*
   a lot of new concepts like algebraic data-types, function currying,

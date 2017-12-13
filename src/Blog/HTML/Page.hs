@@ -89,6 +89,7 @@ pageHeaderHtml page =
     H.div ! A.class_ "page-header-right" $ do
       aboutNavHtml page
       githubNavHtml
+      donateNavHtml
 
 
 -- Header > Left
@@ -98,7 +99,8 @@ homeNavHtml :: Page -> Html
 homeNavHtml page =
   H.a ! A.href "/"
       ! A.class_ classes
-      $ preEscapedToHtml ("&#955; My Haskell Blog" :: Text)
+      -- $ preEscapedToHtml ("&#955; Haskell Blog Tutorial" :: Text)
+      $ preEscapedToHtml ("Haskell Blog Tutorial" :: Text)
   where
     classes = case page of
                 PageHome -> "home-nav selected"    
@@ -139,6 +141,11 @@ githubNavHtml = H.a ! A.href linkHref $ "My Github"
   where
     linkHref = "www.github.com/jeff-wise/haskell-starter-kit-blog"
 
+
+donateNavHtml :: Html
+donateNavHtml = H.a ! A.href linkHref $ "Donate"
+  where
+    linkHref = "www.github.com/jeff-wise/haskell-starter-kit-blog"
 
 
 -- pageHeaderHtml :: SectionType -> Html -> Html

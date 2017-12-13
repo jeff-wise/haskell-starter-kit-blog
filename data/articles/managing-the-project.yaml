@@ -29,7 +29,25 @@ body: |+
   the repository and follow the environment setup tutorial, you can run
   `./dev.hs --help`:
 
-  ![./dev.hs --help output](/images/1)
+  ```bash
+  Blog Development Commands
+
+  Usage: dev.hs COMMAND
+    Run ./dev.hs --help for a list of commands.
+
+  Available options:
+    -h,--help                Show this help text
+
+  Available commands:
+    build                    Build the [executable, docker images, ...]
+    run                      Run the [docker container, executable, etc...].
+    sh                       Run sh/bash in a running docker container.
+    psql                     run Psql in a running docker container.
+    init                     Initialize the database data.
+    deploy                   Compile, build images, and run containers.
+  ```
+
+
 
   Often, command-line utilities are
   implemented a shell language like Bash or an interpreted langauge like

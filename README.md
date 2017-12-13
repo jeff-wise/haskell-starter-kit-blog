@@ -5,7 +5,10 @@
 
 ----------------------------------------------------------------------
 
-### Ready to start building *and deploying* applications with Haskell?
+> This tutorial is still a rough draft! Please submit any suggestions
+> or corrections.
+
+## Ready to start building *and deploying* applications with Haskell?
 
 This Starter Kit will help you create your own blog powered by Haskell and
 the power of <ins>pure, strongly-typed functional programming</ins>.
@@ -15,11 +18,13 @@ repository and follow the instructions in the [I Want My Blog
 Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
 you'll be able to publish your first post:
 
+<br/>
+
 ![First post example.](https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/firstpost.png)
 
 Of course, you can write whatever you'd like.
 
-### What's Inside?
+## What's Inside?
 
   * A cloneable, deployable **Haskell web application** (a blog)
   * A **tutorial** with some mini-essays about Haskell, a in-depth code
@@ -30,7 +35,7 @@ Of course, you can write whatever you'd like.
   * **Deployment scripts** that can easily be re-used or extended for use
       in other Haskell projects
 
-### Why?
+## Why?
 
 Learning Haskell is difficult. First, you have to *understand*
 a lot of new concepts like algebraic data-types, function currying,
@@ -85,10 +90,10 @@ of type-level programming.
      1. [Generate HTML Documentation](#generate-html-documentation)
 6. [Code Review](#code-review)
 7. [Developing New Features](#developing-new-features)
-8. [Deployment](#deployment)
-     1. [Digital Ocean](#digital-ocean)
-     2. [Amazon ECS](#amazon-ecs)
-     3. [Kubernetes (GKE)](#kubernetes-gke)
+8. [Deploying Your Bog](#deploying-your-blog)
+     - [Digital Ocean](#digital-ocean)
+     - [Amazon ECS](#amazon-ecs)
+     - [Kubernetes (GKE)](#kubernetes-gke)
 9. [Exercises](#exercises)
      - [Easy](#easy)
      - [Medium](#medium)
@@ -101,13 +106,23 @@ of type-level programming.
 
 ## Goals
 
-Before we jump in, let's take a look at the project's goals. The
-source code and this tutorial are written with the goals in mind, so
-it will be helpful to understand what we're trying to achieve. For
-example, some of the source code could be written more concisely, but that
-won't help illuminate Haskell's coding style, and playing code golf
+The code and this tutorial are written with a set of goals in mind.
+The primary goal is to instruct. We want to demonstrate what it takes
+to build a simple web application using Haskell. As we go through the
+code and the tasks involved, there will be a recurring focus on understanding software 
+engineering through the particular trade-offs that Haskell makes as a 
+pure, strongly-typed functional programming language. We are not just
+interested in *how* to build a web application, but *why* we should do
+it with these particular tools and processes. Too often programming
+tutorials focus on the construction and not the engineering. We will
+place equal emphasis on both.
+
+There are many, many ways to build a blog with Haskell. We've done so
+in a way that facilitates teaching and discussion.
+For example, some of the source code could be written more concisely, but that
+won't help explain Haskell's coding style, and playing code golf
 won't help promote a language with a reputation for being hard to
-understand. Likewise, we could have chosen simpler libraries, but we
+understand. Likewise, we could have used less complex libraries, but we
 wanted to showcase what Haskell can do differently and better than other
 languages, as well as generate some useful discussion and insight on
 software engineering in general.
@@ -146,8 +161,8 @@ project's goals in two ways:
 
 #### Promote Haskell
 
-Haskell is awesome, but often misunderstood. If this project is successful,
-then it should help to showcase Haskell's strengths and serve as an
+Haskell is awesome, but often misunderstood. If successful,
+this project will showcase Haskell's strengths and serve as an
 entrypoint to building real Haskell applications.
 
 **[⬆ back to top](#table-of-contents)**
@@ -204,23 +219,6 @@ building it. It was like stopping my car in the middle of the race,
 taking the engine out and trying to tweak it to make it go faster. 
 I knew I wasn't going to catch up. But I did find a new hobby.
 
-Programming languages are *human* languages -- they are designed to be
-written and read by people. I didn't fully appreciate this until my
-second year of college, when I learned about assembly languages and
-compilers. A compiler translates one language into another, sometimes
-with one or more intermediary languages. Programming langauges are
-designed to be translated into machine langauge while being easy to
-use by people. Of course, we have to consider who these people are?
-Everyone is different, has different ways of thinking, different
-goals, and different attitudes about building or managing software.
-This is one reason why we end up with so many different programming
-languages as well as code editors, tools, frameworks, and libraries.
-The other reason is of course technical. Sometimes one way of doing
-something is *better* than another way, one tool may be more
-*efficient* than another, and we hope that these comparisons are
-objective. So how do we know whether we're choosing a tool because it
-meshes with our way of thinking or because it's the best?
-
 Now that I had my new hobby -- my quest to find more efficient ways to
 build complex software -- I started researching. I was writing a lot
 of object-oriented code, so I spent a lot of time investigating design
@@ -236,7 +234,7 @@ an aesthetic sense of organization that I had, but I could never find
 a good argument as to why they were better. I wasn't aware at the
 time, but I was searching for some sort of underlying mathematical 
 logic or structure, some set of consistent principles that I could 
-use to reason about how to bulild good software, but I couldn't find it.
+use to reason about how to bulild good software, but I couldn't find them.
 
 I realized that a lot of software development is done in a manner that 
 appeals to our intuition. It creates structures and processes that are
@@ -246,14 +244,46 @@ humans think. Unfortunately -- and I'll be the first to admit -- humans
 aren't as smart as they like to believe, and what's intuitive for us is very
 rarely optimal. In my search, I just wasn't motivated by intuitive solutions. 
 They were fun, sure, and I enjoyed programming with them, but I always
-felt like something was missing. I wanted to understand the mathematics 
+felt like something was missing. 
+
+Programming languages are a means of communication between humans and
+computers, or more accurately, humans and the universe. That is -- we
+don't say "Hi!" or "I love you" to a computer, but rather, we tell it
+patterns that it should use to manipulate electrical currents flowing
+through the processor and memory. There are infinite languages one could write to
+describe these patterns, but there are only so many that humans can
+use. Can we categorize these possible languages? Can we make an
+assessment of which ones are better than others? We can definitely
+categorize them.
+
+It's hard to assess programming languages. One reason is that they are
+often made with different goals in mind, and it's no use comparing
+apples and oranges. They're both good, but one's sweet and one's
+citrus. A more interesting dilemma in comparing languages is also true
+with apples and oranges -- they're subjective. It depends on your
+taste, or maybe even your mood. While programming languages are built
+with the objective to give instructions to a computer, how exactly
+those intructions are expressed can vary as much as people themselves
+vary. There's a business language, a lazy language, a try-hard language,
+a sassy language, a he's-just-going-through-a-phase language, etc... 
+Languages and other development tools are made by people, for people. 
+This is one reason why we end up with so many different 
+languages as well as code editors, tools, frameworks, and libraries.
+The other reason is of course technical. Sometimes one way of doing
+something *is better* than another way, and we hope that there are
+objective means of comparing options. How can we assess these options
+objectively?
+
+I wanted to understand the mathematics 
 behind software engineering, if there were any. I wanted some sense of
-objectivity about how to build better software. When I discovered
-Haskell and started learning it, I didn't know that my search was
-over. I didn't believe that there were objective ways to understand
-software development. In that respect, Haskell really changed the way
-I thought about programming. It put a new ceiling to software
-development in my eyes, and I was inspired to reach it. 
+objectivity about how to build better software, it there was any to be
+found. When I discovered Haskell and started learning it, I didn't know 
+that my search was over (at least for awhile). I didn't believe that 
+there were objective ways to understand software development. In that 
+respect, Haskell really changed the way I thought about programming. 
+It put a new ceiling to software development in my eyes, a new mountain 
+to climb, and I was surprised that I was so excited to work hard and 
+reach that new persepctive.
 
 Now, it's important to say that it took me a long time to become
 proficient with Haskell. I didn't come into Haskell with
@@ -330,8 +360,8 @@ them into three simple categories: data types, functions, and
 composition. We'll show how understanding these three simple
 concepts in Haskell is enough to start writing great software.
 
-While these principles are universal, it's often difficult to apply
-them in other programming languages. This is either because other
+While these principles are universal, they're often difficult to apply 
+in other programming languages. This is either because other
 languages lack certain features such as sum types or function currying
 or because those languages encourage a different way of thinking about
 or modeling software.
@@ -356,8 +386,8 @@ TODO
 
 ## Managing the Project
 
-A software project, even something as simple as this blog, may have
-multiple components. Each compenent will have a set of actions that
+A software project, even a humble blog, might have a myriad of
+components. Each compenent will have a set of actions that
 can be performed on it such as compiling, running tests, generating
 documentation, deploying, etc...
 
@@ -372,27 +402,29 @@ Futheremore, onboarding yourself after a few weeks away from the
 project should be just as easy. If you can't remember what you ate for
 dinner two weeks ago, it's perfectly fine that you also forgot which
 exact command compiles the source code, runs the test suite, and spams
-your team Slack channel with gifs of baby elephants. This
+your team Slack channel with baby elephant gifs. This
 acceptable amnesia is remedied by a clear, concise interface,
 preferably one available on the command line, clearly documented, and
 easily extensible.
 
-Our Haskell blog app comes with a command-line interface that
+Our Haskell blog app comes with a command-line utility that
 satifies these goals perfectly. It's called `dev.hs`. After you clone
 the repository and follow the environment setup tutorial, you can run
 `./dev.hs --help`:
 
-<img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/devhelp.png" width="70%" />
+<div align="center">
+  <img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/devhelp.png" />
+</div>
 
-Often, command-line utilities are
-implemented a shell language like Bash or an interpreted langauge like
-Python. Both are great choices, but lucky for us, we can just
-use Haskell! Stack allows us to write *Haskell scripts* that can be
+Often, command-line utilities like `dev.hs` are 
+implemented in a shell language like Bash or an interpreted langauge like
+Python. Both are great choices, but actually, we can just use Haskell! 
+Stack allows us to write *Haskell scripts* that can be
 run on the command line as executables. We get the best of both worlds
 -- simple, self-contained scripts and the full power of Haskell.
 Futhermore, because our script is written in Haskell, it has full
-access to the types and functions in our application. This can be very
-convenient.
+access to the types and functions in our application. We'll see later
+how this is really convenient.
 
 ### Getting Started
 
@@ -459,13 +491,102 @@ TODO
 
 **[⬆ back to top](#table-of-contents)**
 
-## Deployment
+## Deploying Your Blog
 
-TODO
+*A blog isn't really a blog if no one can read it.*
+
+Writing good code is something to be proud of. It takes time. There
+are all the hours searching for silly bugs, the hours re-writing
+flawed logic, the minutes spent on one feature and the days spent on
+another.
+
+It's the feeling when you get a puppy and you realize that it's going
+to be a lot of work after all. You need to train it, feed it, walk it,
+play with it, and love it, each and every day, even when you're tired,
+and especially when it's in need. 
+
+I wouldn't try too hard to build an analogy around puppies and web
+applications, but it is really important to understand that maintaining
+active software is going to be a lot of work. It might feel
+unexpected, and it might feel undeserved, but it's necessary. What do
+we need to do to take care of our web application?
+
+  * Create a process for updating the application.
+  * Restart it if it dies (or replicate it so it doesn't).
+  * Keep backups of the data.
+  * Be vigilant of security vulnerabilities.
+  * Upgrade the hardware if it needs more memory or processing power.
+  * Optimize the code if the hardware gets expensive.
+  * Give it a treat if it does something good. (OK, maybe this is
+     just for puppies)
+
+Unfortunately, no matter how much work you put into taking care of
+your blog or other web application, it will, from time to time, nip 
+you on the ankle or knock you on your back, leaving a bruise. And
+living as we are in the age before strong AI, it won't love you back. 
+That's ok -- you have your own motivations. If you're not sure what
+they are, take a break and have a look around. Once you have them, 
+keep them close. Deploy your app, take care of it. 
+
+The fun has just begun.
+
+#### Goals
+
+This section is less opinionated that other sections. That's because
+how you deploy your application will vary much more than how you write
+it. There are dozens of products and platforms available that you
+might want to use. You may want to pay for Docker Cloud, switch to
+particular cloud host, pay for a managed database, or even use
+a container orchestration service if your application begins to scale.
+Some of these products or free, some are cheap, and some are really
+expensive. 
+
+There are varying degrees to which you can automate
+deployment from completely manual (but well-documented) processes to
+a completely automated continuous development cycle. 
+
+This is the graduation. You're on your own now. You will have to evaluate 
+your needs and find the best tools for the job, spending as much or as
+little money was you want.
+
+These deployment instructions are meant to be as simple and as
+extensible as possible. Most steps are manual. It will be up to you to
+automate them in a way that's useful for you.
 
 ### Digital Ocean
 
-TODO
+#### A (Preliminary). Create a Docker Droplet
+
+  1. [Create a droplet that runs Docker](do-docker). A droplet is
+     a just Digital Ocean's name for a virtual server on its platform.
+
+
+#### B (Preliminary). Create a Docker Hub Repository
+
+#### 1. Tag Your Docker Images 
+
+Before we do anything official with our images, we should tag them
+with a version number. This will prevent us from confusing images that
+belong to different versions of our application. 
+
+Just as with version control, it's not very common to go back to
+a previous revision, but when you need to, you're glad that it's
+there. Likewise, there are benefits to archiving previous versions of
+our application. For example, if something were to go wrong with our web
+server, we could always stop the running container and deploy
+a container for the image of the version that was last functioning
+correctly. We don't have to checkout a previous commit in version
+control, recompile anything, or even copy any files. It can all be
+done with Docker.
+
+  1. Use the `docker tag` command to tag your images. Of course, make
+     sure that you tag the images you want to deploy and update the
+     version numbers accordingly. For example:
+
+     `docker tag b0b6fdfe0115 haskell-blog-tutorial/db:0.7.0`
+     `docker tag f77652c4b03e haskell-blog-tutorial/web:0.7.0`
+
+
 
 ### Amazon ECS
 
@@ -519,3 +640,4 @@ list of options
 [stack-docs]: https://docs.haskellstack.org/en/v1.4.0/README/
 [docker-docs]: https://docs.docker.com/
 [kubernetes-docs]: https://kubernetes.io/docs/home/
+[do-docker]: https://www.digitalocean.com/products/one-click-apps/docker/)

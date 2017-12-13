@@ -11,7 +11,11 @@ module Blog.HTML.ArticleList
   ) where
 
 
-import Blog.Prelude (($), Text, String, show, return)
+import Blog.Prelude
+  ( ($)
+  , Text, String, Int
+  , show, return
+  )
 
 import Blog.HTML.Page
   ( pageHtml
@@ -26,7 +30,7 @@ import Blog.Types.Page (Page (PageHome))
 import Blog.Web.Config (cssFilePath)
 
 import Data.Foldable (forM_)
-import Data.List (reverse, sortOn)
+import Data.List (length, reverse, sortOn)
 import Data.Monoid ((<>))
 import qualified Data.Text.Lazy as LT (fromStrict)
 import Data.Time.Format 
@@ -64,7 +68,7 @@ articleListHtml articles = do
       
 
 latestArticleSummaryHtml :: Article -> Html
-latestArticleSummaryHtml (Article _ title timeCreated summary _) =
+latestArticleSummaryHtml (Article id title timeCreated summary _) =
   H.div ! A.class_ "latest-article-summary-container" $ do
     H.div ! A.class_ "latest-article-summary" $ do
       titleHtml
@@ -83,17 +87,17 @@ latestArticleSummaryHtml (Article _ title timeCreated summary _) =
         let summaryText = LT.fromStrict $ getArticleSummary summary
         toHtml $ markdown defaultMarkdownSettings summaryText
     readButtonHtml = 
-      H.button ! A.class_ "read-more" $ do
+      H.a ! A.class_ "read-more button" 
+          ! A.href (toValue $ "/articles/" <> show id) $ do
         H.span "READ ARTICLE"
         H.span ! A.class_ "arrow" $ preEscapedToHtml ("&#8594;" :: Text)
         
 
-
 pastArticleListHtml :: [Article] -> Html
 pastArticleListHtml articles =
-  H.div ! A.class_ "past-articles-container" $
-    H.div ! A.class_ "past-articles" $ do
-      H.h2 "Past Articles"
+  H.div ! A.class_ "past-articles-container" $ do
+    pastArticleListHeaderHtml $ length articles
+    H.div ! A.class_ "past-articles" $
       H.div ! A.class_ "article-list" $ do
         forM_ articles articleSummaryHtml
   where
@@ -107,6 +111,13 @@ pastArticleListHtml articles =
           let timeString = formatTime defaultTimeLocale timeFormatString $ 
                              getArticleTimeCreated timeCreated
           toHtml timeString
+
+pastArticleListHeaderHtml :: Int -> Html
+pastArticleListHeaderHtml articleCount = 
+  H.header ! A.class_ "past-articles-header" $ do
+    H.h2 "ARCHIVE"
+    H.span ! A.class_ "article-count" $ 
+      toHtml (show articleCount <> " articles")
 
 
 timeFormatString :: String
