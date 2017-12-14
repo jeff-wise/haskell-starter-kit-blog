@@ -5,7 +5,7 @@
 
 ----------------------------------------------------------------------
 
-> This tutorial is still a rough draft! Please submit any suggestions
+> **!!!*** This tutorial is still a rough draft! Please submit any suggestions
 > or corrections.
 
 ## Ready to start building *and deploying* applications with Haskell?
@@ -584,6 +584,7 @@ done with Docker.
      version numbers accordingly. For example:
 
      `docker tag b0b6fdfe0115 haskell-blog-tutorial/db:0.7.0`
+
      `docker tag f77652c4b03e haskell-blog-tutorial/web:0.7.0`
 
 
