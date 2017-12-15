@@ -103,9 +103,9 @@ pastArticleListHtml articles =
   where
     articleSummaryHtml :: Article -> Html
     articleSummaryHtml (Article id title timeCreated _ _) =
-      H.a ! A.class_ "article-summary" 
-          ! A.href (toValue $ "/articles/" <> show id) $ do
-        H.div ! A.class_ "article-summary-title" $ 
+      H.div ! A.class_ "article-summary" $ do
+        H.a ! A.class_ "article-summary-title"
+            ! A.href (toValue $ "/articles/" <> show id) $
           toHtml $ getArticleTitle title
         H.div ! A.class_ "article-summary-date" $ do
           let timeString = formatTime defaultTimeLocale timeFormatString $ 

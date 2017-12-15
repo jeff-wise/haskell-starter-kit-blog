@@ -60,7 +60,7 @@ pageHtml pageType cssFilePaths jsFilePaths contentHtml = do
                ! A.href (toValue path)
       -- Fonts
       -- (1) Source Sans Pro (default)
-      H.link ! A.href "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700"
+      H.link ! A.href "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
              ! A.rel "stylesheet"
       -- (2) Source Code Pro (monospace)
       H.link ! A.href "https://fonts.googleapis.com/css?family=Source+Code+Pro"

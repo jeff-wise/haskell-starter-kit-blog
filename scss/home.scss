@@ -9,7 +9,7 @@
 
 .latest-article-summary {
   width: 800px;
-  padding: 0em 0 2em 0;
+  padding: 1em 0 2em 0;
   font-size: 97%;
 
   h4, h5, h6, b {
@@ -17,17 +17,18 @@
   }
 
   h1 {
-    margin: 0.8em 0;
-    font-size: 2.6em;
-    font-weight: 600;
-    color: #323232;
+    margin: 0.5em 0;
+    font-size: 2.4em;
+    font-weight: 400;
+    //color: #323232;
+    color: #004569;
   }
 
   h2 {
-    font-size: 1.5em;
-    font-weight: 600;
-    color: #323232;
-    margin: 1em 0;
+    font-size: 1.6em;
+    font-weight: 400;
+    color: #494949;
+    margin: 1.2em 0 0.3em 0;
   }
 
   h3 {
@@ -66,15 +67,15 @@
 }
 
 .latest-article-summary-text {
-  color: #414141;
-  border-bottom: 1px solid #eaeaea;
-  padding: 1em 0 1em 0;
+  color: #393939;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 1em;
 }
 
 .latest-article-summary-date {
-  color: #626262;
-  border-bottom: 1px solid #eaeaea;
-  padding-bottom: 0.5em;
+  color: #757575;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 0.4em;
 }
 
 
