@@ -5,8 +5,10 @@
 
 ----------------------------------------------------------------------
 
-> **!!!*** This tutorial is still a rough draft! Please submit any suggestions
-> or corrections.
+<div align="center">
+  <h3> Read the blog tutorial as the blog that you will build</h3>
+  <h3><a href="www.haskellblogtutorial.com">Read the blog tutorial as the blog that you will build</a></h3>
+</div>
 
 ## Ready to start building *and deploying* applications with Haskell?
 
@@ -416,6 +418,7 @@ the repository and follow the environment setup tutorial, you can run
   <img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/devhelp.png" />
 </div>
 
+
 Often, command-line utilities like `dev.hs` are 
 implemented in a shell language like Bash or an interpreted langauge like
 Python. Both are great choices, but actually, we can just use Haskell! 
@@ -555,13 +558,47 @@ automate them in a way that's useful for you.
 
 ### Digital Ocean
 
-#### A (Preliminary). Create a Docker Droplet
+#### P1. Create a Docker Droplet
 
-  1. [Create a droplet that runs Docker](do-docker). A droplet is
-     a just Digital Ocean's name for a virtual server on its platform.
+  1. [Create a droplet that runs Docker](do-docker). A droplet is 
+     Digital Ocean's name for a virtual server on its platform.
 
+#### P2. Create a Docker Cloud Repository
 
-#### B (Preliminary). Create a Docker Hub Repository
+Docker Cloud is Docker's premium service for managing Docker
+images and containers. In this tutorial we only use it as a 
+means to share our images between our computer and the server. 
+Generally, it's useful to have the images persisted somewhere where
+they may be easily accessed. You may want to use old images that were
+lost, access them from a different computer, or allow other team
+members to use them.
+
+Docker Cloud organizes images into repositories
+It's free to use for one private repository as well as unlimited public 
+repositories. If you don't want to use Docker Cloud, and aren't
+concerned about any of the benefits we just listed, feel free to copy
+the images manually:
+
+```bash
+docker save <image> | bzip2 | pv | ssh user@host 'bunzip2 | docker load'
+```
+
+It's good to remember that you almost never *need* to use an official
+service to acheive a goal in programming. It's also good to remember
+that your time is often more valuable than you think, and a few
+dollars can go a long way.
+
+To push our images to the server, you'll need a Docker Cloud account
+and a repository. If you already have both, you can continue on to 
+[Step 1](#tag-your-docker-images). Otherwise, it will only take you
+a few steps to create an account and repository:
+
+  1. If you don't already have a Docker Cloud account, create one
+     [here](docker-cloud). 
+  2. Once you are logged in to Docker Cloud, you can follow the
+     [instructions for creating a repository](docker-cloud-repo).
+
+Now you should be ready to deploy your blog. Let's get started.
 
 #### 1. Tag Your Docker Images 
 
@@ -583,9 +620,76 @@ done with Docker.
      sure that you tag the images you want to deploy and update the
      version numbers accordingly. For example:
 
-     `docker tag b0b6fdfe0115 haskell-blog-tutorial/db:0.7.0`
+     `docker tag b0b6fdfe0115 haskell-blog-tutorial/db:1.0`
 
-     `docker tag f77652c4b03e haskell-blog-tutorial/web:0.7.0`
+     `docker tag f77652c4b03e haskell-blog-tutorial/web:1.0`
+
+#### 2. Push the Images to Docker Hub
+
+Following the instructions to [push images to Docker
+Hub](docker-cloud-push). If it tells you to tag the image, you can
+skip that step, since we just did that.
+
+Verify that your images have been uploaded, and then continue to the
+next step, where we'll log on to the server. 
+
+#### 3. Pull the Images to Your Droplet
+
+  1. **Logon to your droplet**. If you're not sure how, follow these
+     [instructions](do-logon-ssh).
+
+  2. **Pull the images from your respository**. You will need the
+     namespace (your account name), the name of the repository, and
+     the tag. Just check your local images or the repository if you've
+     forgotten.
+
+     `docker pull jeffscottwise/haskell-blog-tutorial:db-1.0`
+
+     `docker pull jeffscottwise/haskell-blog-tutorial:web-1.0`
+
+#### 4. Run the Application
+
+Once again, we'll take a more manual approach to running the
+application so you can make your own adjustments and automations
+according to your specific needs.
+
+We'll run the containers for the database and webserver using the
+`docker run` command. Since port 80 should be open by default on your
+droplet, you'll be able to access your application through a web
+browser as soon as the containers are active.
+
+  1. **Create a Network**. In order for the web server container to
+     connect to the database container, it will need to resolve the
+     database container's address base on the name that is hard-coded
+     into the server. Docker Compose does this automatically, but it's
+     very simple to do manually.
+
+     If you already have a network for the containers, then you can
+     skip this step. If you're not sure, run `docker network ls` to
+     check. The `DRIVER` needs to be `bridge`. 
+
+     If you need to create a network, do so now:
+
+     ```bash
+     docker network create blog
+     ```
+
+  2. **Run the Application Containers**. Start the database container,
+     and then start the web server. As before, you will need to
+     substitute your own image names, unless you are using the
+     official haskell-blog-tutorial images.
+
+     ```bash
+     docker run -d --name blog-db --net=blog jeffscottwise/haskell-blog-tutorial:db-0.7.0 
+     ```
+     ```bash
+     docker run -d --name blog-web --net=blog -p 80:80 jeffscottwise/haskell-blog-tutorial:web-0.7.0 
+     ```
+
+  3. **Make sure it works**. Open a web browser and enter the IP
+     address of the docker droplet. You should see the blog homepage.
+
+#### 5. Configure DNS
 
 
 
@@ -642,3 +746,7 @@ list of options
 [docker-docs]: https://docs.docker.com/
 [kubernetes-docs]: https://kubernetes.io/docs/home/
 [do-docker]: https://www.digitalocean.com/products/one-click-apps/docker/)
+[docker-cloud]: https://cloud.docker.com/
+[docker-cloud-repo]: https://docs.docker.com/docker-cloud/builds/repos/
+[docker-cloud-push]: https://docs.docker.com/docker-cloud/builds/push-images/
+[do-logon-ssh]: https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh
