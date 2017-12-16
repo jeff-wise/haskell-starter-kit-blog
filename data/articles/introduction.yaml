@@ -1,88 +1,79 @@
 
 ---
 title: Introduction
-time_created: 2017-12-07T00:00:00Z
-summary: |+
-  ## Ready to start building *and deploying* applications with Haskell?
-
-  This Starter Kit will help you create your own blog powered by Haskell and
-  the power of <ins>pure, strongly-typed functional programming</ins>.
-
-  ## What's Here?
-
-   * A cloneable, deployable **Haskell web application** (a blog)
-   * A **tutorial** with some mini-essays about Haskell, a in-depth code
-       review, and instructions for using and managing the project
-   * A set of **exercises** of varying difficulty for learning or
-       fine-tuning Haskell programming skills. It's homework that you
-       can use when you're done!
-   * **Deployment scripts** that can easily be re-used or extended for use
-       in other Haskell projects
+time_created: 2017-12-14T00:00:00Z
 body: |+
-  ## Ready to start building *and deploying* applications with Haskell?
 
-  This Starter Kit will help you create your own blog powered by Haskell and
-  the power of <ins>pure, strongly-typed functional programming</ins>.
+  This tutorial is written with the assumption that the reader is fluent, 
+  more or less, with the basic concepts of pure functional programming 
+  and Haskell such as referential transparency, algebraic data types, 
+  functors, typeclasses, and monad transformers.
 
-  Does this tutorial look too long? Want your blog now? Clone this
-  repository and follow the instructions in the [I Want My Blog
-  Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
-  you'll be able to publish your first post:
+  But sometimes we want to learn the hard way. Sometimes, we have to learn 
+  the hard way. Life goes fast, and priorities slip away, caught in the 
+  current of careers, relationships, and exhaustion that we are all familiar 
+  with. Learning Haskell is rewarding, but each level gets harder, and 
+  eventually, you might just throw away your controller
 
-  <br/>
+  ## Goals
 
-  ![First post example.](/images/firstpost.png)
+  The code and this tutorial are written with a set of goals in mind.
+  The primary goal is to instruct. We want to demonstrate what it takes
+  to build a simple web application using Haskell. As we go through the
+  code and the tasks involved, there will be a recurring focus on understanding software 
+  engineering through the particular trade-offs that Haskell makes as a 
+  pure, strongly-typed functional programming language. We are not just
+  interested in *how* to build a web application, but *why* we should do
+  it with these particular tools and processes. Too often programming
+  tutorials focus on the construction and not the engineering. We will
+  place equal emphasis on both.
 
-  Of course, you can write whatever you'd like.
+  There are many, many ways to build a blog with Haskell. We've done so
+  in a way that facilitates teaching and discussion.
+  For example, some of the source code could be written more concisely, but that
+  won't help explain Haskell's coding style, and playing code golf
+  won't help promote a language with a reputation for being hard to
+  understand. Likewise, we could have used less complex libraries, but we
+  wanted to showcase what Haskell can do differently and better than other
+  languages, as well as generate some useful discussion and insight on
+  software engineering in general.
 
-  ## What's Inside?
+  #### Analyze Engineering Real World Applications with Haskell
 
-    * A cloneable, deployable **Haskell web application** (a blog)
-    * A **tutorial** with some mini-essays about Haskell, a in-depth code
-        review, and instructions for using and managing the project
-    * A set of **exercises** of varying difficulty for learning or
-        fine-tuning Haskell programming skills. It's homework that you
-        can use when you're done!
-    * **Deployment scripts** that can easily be re-used or extended for use
-        in other Haskell projects
+  Is pure functional programming better? When is it better? What are its
+  advantages when building real world applications? In this tutorial,
+  we'll discuss the trade-offs associated with engineering applications
+  in Haskell.
 
-  ## Why?
+  In particular, we'll pursue answers to the following questions:
 
-  Learning Haskell is difficult. First, you have to *understand*
-  a lot of new concepts like algebraic data-types, function currying,
-  typeclasses, and monads. Then, you have to learn *how to use* algebraic
-  data-types, currying, typeclasses, and monads to build non-trivial
-  applications that are both efficient and maintainable. The goal of
-  this tutorial isn't to help you understand these Haskell concepts 
-  individually, but to help you use them generally, in the process of building
-  real-world applications.
+     * How do you write code that is easy to understand?
+     * How do you write code that is easy to extend?
+     * How do you write code quickly? How do write code that works the
+       first or second time its run?
+     * How do you write code with minimum errors?
+     * How do you create a web application that is easy to deploy?
+     * How do you manage a software project's common tasks and metadata?
+     * How do you structure the code in a Haskell web application?
 
-  Much of this tutorial is language-agnostic. Great software will
-  have similar characteristics regardless of the implementation language
-  (or even despite it). Even so, each language has its own vision 
-  of how to develop software efficiently, and the best langauges are the
-  ones that support a consistent methodology. This tutorial showcases 
-  a little bit of Haskell's vision and methodology for software
-  development. We'll discuss some common problems in software and show
-  how Haskell's type system and expressiveness lead to some fascinating
-  solutions.
+  #### Serve as an Extensible Base for Haskell Web Applications
 
-  If you're new to Haskell, I hope that this project will help you to
-  appreciate Haskell's vision for software development and to understand
-  why Haskell programmers are so passionate about things like immutablity, 
-  types, and abstract mathematics. If you already know a little Haskell 
-  (or maybe a lot), then perhaps this project will be useful as a starting point 
-  for your next application. Whatever the case, there should be
-  something here for everyone. 
+  This example application is a very basic blog. We could have created
+  something more interesting, but the code would be longer and more
+  complex. The brevity and relative simplicity of the blog serves the
+  project's goals in two ways:
 
-  Haskell pushes the limits of software development. It challenges you
-  to try new ways of doing something you might already know how to do in
-  another language. But it's not just a different syntax, it's a different way of 
-  thinking. You'll see old problems in a new way, and the tried-and-true
-  solutions that you've relied upon before may start to appear a little
-  rusty. It's happened to all of us -- there we are, programming in another
-  language, as comfortable and confident as we've always been, when we
-  find ourselves thinking about the Haskell approach and wishing we could 
-  write a simple `where` clause, curry a function, or do just a little bit 
-  of type-level programming.
+    1. **Generality** The purpose of this project is to teach about building Haskell
+       applications in general, but not how to build a specific application. Too many
+       details would distract from the more general lessons.
+    2. **Extensibility** Because there are few assumptions in the application
+       logic, the project can easily be used as a base for a more complicated web
+       application.
+
+  #### Promote Haskell
+
+  Haskell is awesome, but often misunderstood. If successful,
+  this project will showcase Haskell's strengths and serve as an
+  entrypoint to building real Haskell applications.
+
 

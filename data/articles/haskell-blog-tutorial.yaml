@@ -1,0 +1,108 @@
+
+---
+title: Build a Blog with Haskell
+time_created: 2017-12-31T00:00:00Z
+summary: |+
+  ## Ready to start building *and deploying* Haskell web applications?
+
+  This tutorial will guide you, step by step, in creating a blog -- just like 
+  the one you're reading now -- using Haskell, a pure, strongly-typed functional 
+  programming language.
+
+  Impatient? Worry about the details later and [deploy your blog now!](articles/11)
+
+  ## Learn Functional Programming
+  
+  From the smallest functions to the largest modules, we'll walk through 
+  the code and conventions required to build a clean and maintainable web 
+  application with Haskell.
+
+  The tutorial comes with a number of useful resources to help you learn:
+  
+   * Explicit comparisons of code written in Haskell and other languages like 
+       Java and Python.
+   * A set of **exercises** of varying difficulty for learning or
+       fine-tuning Haskell programming skills. The exercises are a way to 
+       learn while making useful improvements to the blog.
+   * Docker images you can use to run your own blog before you even look 
+       at the source code. This is a good way to jump in the deep end with Haskell.
+   * **Deployment scripts** that can easily be re-used or extended for use
+       in other Haskell projects
+
+body: |+
+
+  ## Ready to start building *and deploying* Haskell web applications?
+
+  This tutorial will guide you, step by step, in creating a blog -- just like 
+  the one you're reading now -- using Haskell, a pure, strongly-typed functional 
+  programming language.
+
+  Does this tutorial look too long? Want your blog now? Clone this
+  repository and follow the instructions in the [I Want My Blog
+  Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
+  you'll be able to publish your first post:
+
+  ![First post example.](/images/2)
+
+  Of course, you can write whatever you'd like.
+
+ 
+  ## Learn Functional Programming
+  
+  From the smallest functions to the largest modules, we'll walk through 
+  the code and conventions required to build a clean and maintainable web 
+  application with Haskell.
+
+  The tutorial comes with a number of useful resources to help you learn:
+  
+   * Explicit comparisons of code written in Haskell and other languages like 
+       Java and Python.
+   * A set of **exercises** of varying difficulty for learning or
+       fine-tuning Haskell programming skills. The exercises are a way to 
+       learn while making useful improvements to the blog.
+   * Docker images you can use to run your own blog before you even look 
+       at the source code. This is a good way to jump in the deep end with Haskell.
+   * **Deployment scripts** that can easily be re-used or extended for use
+       in other Haskell projects
+  
+
+  ## Why?
+
+  Learning Haskell is difficult. First, you have to *understand*
+  a lot of new concepts like algebraic data-types, function currying,
+  typeclasses, and monads. Then, you have to learn *how to use* algebraic
+  data-types, currying, typeclasses, and monads to build non-trivial
+  applications that are both efficient and maintainable. The goal of
+  this tutorial isn't to help you understand these Haskell concepts 
+  individually, but to help you use them generally, in the process of building
+  real-world applications.
+
+  Much of this tutorial is language-agnostic. Great software will
+  have similar characteristics regardless of the implementation language
+  (or even despite it). Even so, each language has its own vision 
+  of how to develop software efficiently, and the best langauges are the
+  ones that support a consistent methodology. This tutorial showcases 
+  a little bit of Haskell's vision and methodology for software
+  development. We'll discuss some common problems in software and show
+  how Haskell's type system and expressiveness lead to some fascinating
+  solutions.
+
+  If you're new to Haskell, I hope that this project will help you to
+  appreciate Haskell's vision for software development and to understand
+  why Haskell programmers are so passionate about things like immutablity, 
+  types, and abstract mathematics. If you already know a little Haskell 
+  (or maybe a lot), then perhaps this project will be useful as a starting point 
+  for your next application. Whatever the case, there should be
+  something here for everyone. 
+
+  Haskell pushes the limits of software development. It challenges you
+  to try new ways of doing something you might already know how to do in
+  another language. But it's not just a different syntax, it's a different way of 
+  thinking. You'll see old problems in a new way, and the tried-and-true
+  solutions that you've relied upon before may start to appear a little
+  rusty. It's happened to all of us -- there we are, programming in another
+  language, as comfortable and confident as we've always been, when we
+  find ourselves thinking about the Haskell approach and wishing we could 
+  write a simple `where` clause, curry a function, or do just a little bit 
+  of type-level programming.
+

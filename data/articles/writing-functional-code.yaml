@@ -1,7 +1,7 @@
 
 ---
-title: A Few Principles
-time_created: 2017-11-21T00:00:00Z
+title: Writing Functional Code
+time_created: 2017-11-28T00:00:00Z
 body: |+
   Before we review the source code, let's review some principles of
   Haskell programming. Learning Haskell can be difficult because there 

@@ -1,10 +1,11 @@
 
 ---
-title: Managing the Project
-time_created: 2017-11-08T00:00:00Z
+title: Managing the Application
+time_created: 2017-11-12T00:00:00Z
 body: |+
-  A software project, even something as simple as this blog, may have
-  multiple components. Each compenent will have a set of actions that
+
+  A software project, even a humble blog, often contains of a myriad of
+  components. Each component will have a set of actions that
   can be performed on it such as compiling, running tests, generating
   documentation, deploying, etc...
 
@@ -19,12 +20,12 @@ body: |+
   project should be just as easy. If you can't remember what you ate for
   dinner two weeks ago, it's perfectly fine that you also forgot which
   exact command compiles the source code, runs the test suite, and spams
-  your team Slack channel with gifs of baby elephants. This
+  your team Slack channel with baby elephant gifs. This
   acceptable amnesia is remedied by a clear, concise interface,
   preferably one available on the command line, clearly documented, and
   easily extensible.
 
-  Our Haskell blog app comes with a command-line interface that
+  Our Haskell blog app comes with a command-line utility that
   satifies these goals perfectly. It's called `dev.hs`. After you clone
   the repository and follow the environment setup tutorial, you can run
   `./dev.hs --help`:
@@ -47,23 +48,21 @@ body: |+
     deploy                   Compile, build images, and run containers.
   ```
 
-
-
-  Often, command-line utilities are
-  implemented a shell language like Bash or an interpreted langauge like
-  Python. Both are great choices, but lucky for us, we can just
-  use Haskell! Stack allows us to write *Haskell scripts* that can be
+  Often, command-line utilities like `dev.hs` are 
+  implemented in a shell language like Bash or an interpreted langauge like
+  Python. Both are great choices, but actually, we can just use Haskell! 
+  Stack allows us to write *Haskell scripts* that can be
   run on the command line as executables. We get the best of both worlds
   -- simple, self-contained scripts and the full power of Haskell.
   Futhermore, because our script is written in Haskell, it has full
-  access to the types and functions in our application. This can be very
-  convenient.
+  access to the types and functions in our application. We'll see later
+  how this is really convenient.
 
-  ### Getting Started
+  ## Getting Started
 
   go from zero to running project
 
-  ### Compilation
+  ## Compilation
 
   We can compile the web server using stack:
 
@@ -81,18 +80,19 @@ body: |+
   example, `stack exec` will run the web server locally. See the
   [stack documentation](stack-docs) for more information and commands.
 
-  ### Docker
+  ## Docker
 
   TODO
 
-  ### Images
+  ## Images
 
   TODO
 
-  ### Containers
+  ## Containers
 
   TODO
 
-  ### API Documentation
+  ## API Documentation
 
   TODO
+
