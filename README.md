@@ -3,39 +3,47 @@
   <img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/logo.png" width="70%" />
 </div>
 
-----------------------------------------------------------------------
+<br />
 
 <div align="center">
-  <h3> Read the blog tutorial as the blog that you will build</h3>
-  <h3><a href="www.haskellblogtutorial.com">Read the blog tutorial as the blog that you will build</a></h3>
+  <h3><a href="www.haskellblogtutorial.com">www.haskellblogtutorial.com></a></h3>
 </div>
 
-## Ready to start building *and deploying* applications with Haskell?
+----------------------------------------------------------------------
 
-This Starter Kit will help you create your own blog powered by Haskell and
-the power of <ins>pure, strongly-typed functional programming</ins>.
+### Ready to start building *and deploying* Haskell web applications?
+
+This tutorial will guide you, step by step, in creating a blog -- just like 
+the one you're reading now -- using Haskell, a pure, strongly-typed functional 
+programming language.
 
 Does this tutorial look too long? Want your blog now? Clone this
 repository and follow the instructions in the [I Want My Blog
 Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
 you'll be able to publish your first post:
 
-<br/>
-
-![First post example.](https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/firstpost.png)
+![First post example.](/images/2)
 
 Of course, you can write whatever you'd like.
 
-## What's Inside?
+ 
+### Learn Functional Programming
 
-  * A cloneable, deployable **Haskell web application** (a blog)
-  * A **tutorial** with some mini-essays about Haskell, a in-depth code
-      review, and instructions for using and managing the project
-  * A set of **exercises** of varying difficulty for learning or
-      fine-tuning Haskell programming skills. It's homework that you
-      can use when you're done!
-  * **Deployment scripts** that can easily be re-used or extended for use
-      in other Haskell projects
+From the smallest functions to the largest modules, we'll walk through 
+the code and conventions required to build a clean and maintainable web 
+application with Haskell.
+
+The tutorial comes with a number of useful resources to help you learn:
+
+ * A set of **exercises** of varying difficulty for learning or
+     fine-tuning Haskell programming skills. The exercises are a way to 
+     learn while making useful improvements to the blog.
+ * Immediately deployable **Docker images** you can use to run your own blog 
+    before you even look at the source code. This is a good way to jump in 
+    the deep end with Haskell.
+ * **Deployment scripts** that can easily be re-used or extended for use
+     in other Haskell projects
+
 
 ## Why?
 
@@ -77,17 +85,22 @@ find ourselves thinking about the Haskell approach and wishing we could
 write a simple `where` clause, curry a function, or do just a little bit 
 of type-level programming.
 
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
      1. [Goals](#goals)
 2. [On Learning Haskell](#on-learning-haskell)
 3. [Writing Functional Code](#writing-functional-code)
-     1. [Data Types](#a-few-principles)
-     2. [Functions](#a-few-principles)
-     3. [Composability](#a-few-principles)
+     1. [Data Types](#data-types)
+     2. [Functions](#functions)
+     3. [Composition](#composition)
 4. [Software Structures: Design Patterns
    Revisited](#software-structures-design-patterns-revisited)
+     1. [Monoids](#monoids)
+     2. [Folds](#folds)
+     3. [Functors](#functors)
+     4. [Monads](#monads)
 5. [The Application](#the-application)
 6. [Managing the Application](#managing-the-application)
 7. [Code Review: Program
@@ -108,7 +121,7 @@ of type-level programming.
     - [Which IDE Should I Use?](#which-ide-should-i-use)
     - [Where Can I Get Help?](#where-can-i-get-help)
 
-## Goals
+# Introduction
 
 The code and this tutorial are written with a set of goals in mind.
 The primary goal is to instruct. We want to demonstrate what it takes
@@ -130,6 +143,8 @@ understand. Likewise, we could have used less complex libraries, but we
 wanted to showcase what Haskell can do differently and better than other
 languages, as well as generate some useful discussion and insight on
 software engineering in general.
+
+## Goals
 
 #### Analyze Engineering Real World Applications with Haskell
 
@@ -170,34 +185,6 @@ this project will showcase Haskell's strengths and serve as an
 entrypoint to building real Haskell applications.
 
 **[⬆ back to top](#table-of-contents)**
-
-## Overview
-
-### Specification
-
-TODO
-
-### Components
-
-While the specification is simple, creating a robust implementation
-will require more than a few libraries and tools. 
-
-#### Important Libraries
- 
- * [Servant][servant-docs] (Web Framework)
- * [Opalaye][opaleye-stackage] (PostgreSQL ORM)
- * [Aeson][aeson-stackage] (JSON / YAML parsing)
- * [BlazeHtml][blaze-stackage] (HTML combinators)
- * [Optparse-Applicative][optparse-stackage] (Command-line parsing) 
-
-#### Important Tools
-
- * [GHC](https://www.haskell.org/ghc/)
- * [Stack][stack-docs]
- * [Docker][docker-docs]
-
-**[⬆ back to top](#table-of-contents)**
-
 ## On Learning Haskell
 
 When I first started programming, what really captured me were the 
@@ -353,7 +340,7 @@ solutions.
 
 **[⬆ back to top](#table-of-contents)**
 
-## A Few Principles
+# Writing Functional Code
 
 Before we review the source code, let's review some principles of
 Haskell programming. Learning Haskell can be difficult because there 
@@ -370,15 +357,15 @@ languages lack certain features such as sum types or function currying
 or because those languages encourage a different way of thinking about
 or modeling software.
 
-### Data Types
+## Data Types
 
 TODO
 
-### Functions
+## Functions
 
 TODO
 
-### Composition
+## Composition
 
 If someone asked me why I think Haskell programs are more concise and
 more maintainable than programs written in C, Java, Go, etc... I would
@@ -388,7 +375,42 @@ TODO
 
 **[⬆ back to top](#table-of-contents)**
 
-## Managing the Project
+
+# Software Structures: Design Patterns Revisited
+
+**[⬆ back to top](#table-of-contents)**
+
+
+# The Application
+
+## Specification
+
+TODO
+
+## Components
+
+While the specification is simple, creating a robust implementation
+will require more than a few libraries and tools. 
+
+### Libraries
+ 
+ * [Servant][servant-docs] (Web Framework)
+ * [Opalaye][opaleye-stackage] (PostgreSQL ORM)
+ * [Aeson][aeson-stackage] (JSON / YAML parsing)
+ * [BlazeHtml][blaze-stackage] (HTML combinators)
+ * [Optparse-Applicative][optparse-stackage] (Command-line parsing) 
+
+### Important Tools
+
+ * [GHC](https://www.haskell.org/ghc/)
+ * [Stack][stack-docs]
+ * [Docker][docker-docs]
+
+
+**[⬆ back to top](#table-of-contents)**
+
+
+# Managing the Application
 
 A software project, even a humble blog, might have a myriad of
 components. Each compenent will have a set of actions that
@@ -431,11 +453,11 @@ Futhermore, because our script is written in Haskell, it has full
 access to the types and functions in our application. We'll see later
 how this is really convenient.
 
-### Getting Started
+## Getting Started
 
 go from zero to running project
 
-### Compilation
+## Compilation
 
 We can compile the web server using stack:
 
@@ -453,50 +475,56 @@ If you want to play around with the executable, you can use stack. For
 example, `stack exec` will run the web server locally. See the
 [stack documentation](stack-docs) for more information and commands.
 
-### Docker
+## Docker
 
 TODO
 
-### Images
+## Images
 
 TODO
 
-### Containers
+## Containers
 
 TODO
 
-### API Documentation
+## API Documentation
 
 TODO
 
 **[⬆ back to top](#table-of-contents)**
 
-## Code Review
+# Code Review: Program Organization
 
-### Imports
+## Imports
 
 TODO 
 
 custom prelude
 explicit imports for learning
 
-### API (with Servant)
+# Code Review: Domain Specific Languages
+
+## API (with Servant)
 
 TODO
 
-### Database (with Opaleye)
+## Database (with Opaleye)
 
 TODO 
 
-### HTML (with Blaze)
+## HTML (with Blaze)
 
 TODO
 
-## Developing New Features
+**[⬆ back to top](#table-of-contents)**
+
+
+# Developing New Features
 
 **[⬆ back to top](#table-of-contents)**
 
-## Deploying Your Blog
+
+# Deploying Your Blog
 
 *A blog isn't really a blog if no one can read it.*
 
@@ -558,14 +586,14 @@ These deployment instructions are meant to be as simple and as
 extensible as possible. Most steps are manual. It will be up to you to
 automate them in a way that's useful for you.
 
-### Digital Ocean
+## Digital Ocean
 
-#### P1. Create a Docker Droplet
+### P1. Create a Docker Droplet
 
   1. [Create a droplet that runs Docker](do-docker). A droplet is 
      Digital Ocean's name for a virtual server on its platform.
 
-#### P2. Create a Docker Cloud Repository
+### P2. Create a Docker Cloud Repository
 
 Docker Cloud is Docker's premium service for managing Docker
 images and containers. In this tutorial we only use it as a 
@@ -602,7 +630,7 @@ a few steps to create an account and repository:
 
 Now you should be ready to deploy your blog. Let's get started.
 
-#### 1. Tag Your Docker Images 
+### 1. Tag Your Docker Images 
 
 Before we do anything official with our images, we should tag them
 with a version number. This will prevent us from confusing images that
@@ -626,7 +654,7 @@ done with Docker.
 
      `docker tag f77652c4b03e haskell-blog-tutorial/web:1.0`
 
-#### 2. Push the Images to Docker Hub
+### 2. Push the Images to Docker Hub
 
 Following the instructions to [push images to Docker
 Hub](docker-cloud-push). If it tells you to tag the image, you can
@@ -635,7 +663,7 @@ skip that step, since we just did that.
 Verify that your images have been uploaded, and then continue to the
 next step, where we'll log on to the server. 
 
-#### 3. Pull the Images to Your Droplet
+### 3. Pull the Images to Your Droplet
 
   1. **Logon to your droplet**. If you're not sure how, follow these
      [instructions](do-logon-ssh).
@@ -649,7 +677,7 @@ next step, where we'll log on to the server.
 
      `docker pull jeffscottwise/haskell-blog-tutorial:web-1.0`
 
-#### 4. Run the Application
+### 4. Run the Application
 
 Once again, we'll take a more manual approach to running the
 application so you can make your own adjustments and automations
@@ -691,43 +719,42 @@ browser as soon as the containers are active.
   3. **Make sure it works**. Open a web browser and enter the IP
      address of the docker droplet. You should see the blog homepage.
 
-#### 5. Configure DNS
+### 5. Configure DNS
+
+Configuring your domain name to point to the Digital Ocean droplet is
+straightfoward.
+
+  1. Follow the steps in [this tutorial](do-dns).
 
 
-
-### Amazon ECS
+## Amazon ECS
 
 TODO
 
-### Kubernetes (Google Container Engine)
+## Kubernetes (Google Container Engine)
 
 TODO
 
 **[⬆ back to top](#table-of-contents)**
 
-## I Want My Blog Now!
+
+# I Want My Blog Now!
 
 **[⬆ back to top](#table-of-contents)**
 
-## Exercises
 
-### Easy :star: 
+# Exercises
 
-### Medium :star::star: 
+## Easy :star: 
 
-### Difficult :star::star::star:
+## Medium :star::star: 
+
+## Difficult :star::star::star:
 
 **[⬆ back to top](#table-of-contents)**
 
-## Footnotes
 
- 1. This section is in the context of the mid-2000s when I started
-    programming. Flash games were popular, Ruby on Rails and Django were
-    new and exciting, and functional programming had much less momentum
-    than it does today.
-
-
-## FAQ
+# FAQ
 
 #### Which IDE Should I Use?
 
@@ -752,3 +779,4 @@ list of options
 [docker-cloud-repo]: https://docs.docker.com/docker-cloud/builds/repos/
 [docker-cloud-push]: https://docs.docker.com/docker-cloud/builds/push-images/
 [do-logon-ssh]: https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh
+[do-dns]: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean
