@@ -3,7 +3,7 @@
 title: Build a Blog with Haskell
 time_created: 2017-12-31T00:00:00Z
 summary: |+
-  ## Ready to start building *and deploying* Haskell web applications?
+  ### Ready to start building *and deploying* Haskell web applications?
 
   This tutorial will guide you, step by step, in creating a blog -- just like 
   the one you're reading now -- using Haskell, a pure, strongly-typed functional 
@@ -11,7 +11,7 @@ summary: |+
 
   Impatient? Worry about the details later and [deploy your blog now!](articles/11)
 
-  ## Learn Functional Programming
+  ### Learn Functional Programming
   
   From the smallest functions to the largest modules, we'll walk through 
   the code and conventions required to build a clean and maintainable web 

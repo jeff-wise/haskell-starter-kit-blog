@@ -67,7 +67,7 @@ readerServer env = enter (readerToHandler env) siteServer
             :<|> Handler.getArticle
             :<|> Handler.getImage
     sitePrivate _ = Handler.postArticle
-               :<|> Handler.putArticle
+               :<|> Handler.patchArticle
                :<|> Handler.postImage
                :<|> Handler.putImage
     siteServer = sitePublic :<|> sitePrivate

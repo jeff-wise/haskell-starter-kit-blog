@@ -14,22 +14,8 @@ module Blog.DB.Article where
 
 
 import Blog.Prelude
-  ( Int, Maybe (Nothing, Just), Text
-  , IO
-  , ($), (<$>)
-  , return
-  )
+  
 import Blog.Types.Article 
-  ( Article (Article), articleId, articleTitle
-  , articleTimeCreated, articleSummary, articleBody
-  , ArticleId (ArticleId), getArticleId
-  , ArticleTitle (ArticleTitle), getArticleTitle
-  , ArticleTimeCreated (ArticleTimeCreated), getArticleTimeCreated
-  , ArticleSummary (ArticleSummary), getArticleSummary
-  , ArticleBody (ArticleBody), getArticleBody 
-  , NewArticle, newArticleTitle, newArticleTimeCreated
-  , newArticleSummary, newArticleBody
-  )
 
 import Control.Arrow (returnA)
 
@@ -51,7 +37,7 @@ import Opaleye
 data DB_Article' a b c d e = DB_Article 
   { dbArticleId          :: a
   , dbArticleTitle       :: b
-  , dbArticleCreatedTime :: c 
+  , dbArticleTimeCreated :: c 
   , dbArticleSummary     :: d
   , dbArticleBody        :: e
   }
@@ -96,13 +82,19 @@ articleNewRow article = do
                       (pgStrictText $ getArticleBody $ newArticleBody article)
 
 
-articleUpdateRow :: Article -> ArticleRowWrite
-articleUpdateRow article =
-  DB_Article (Just $ pgInt4 $ getArticleId $ articleId article)
-             (pgStrictText $ getArticleTitle $ articleTitle article)
-             (pgUTCTime $ getArticleTimeCreated $ articleTimeCreated article)
-             (pgStrictText $ getArticleSummary $ articleSummary article)
-             (pgStrictText $ getArticleBody $ articleBody article)
+articleUpdateRow :: ArticleId -> ArticleUpdate -> ArticleRowRead -> ArticleRowWrite
+articleUpdateRow articleId articleUpdate articleRow =
+  DB_Article (Just $ pgInt4 $ getArticleId articleId)
+             (maybe (dbArticleTitle articleRow)
+                    (pgStrictText . getArticleTitle)
+                    (articleUpdateTitle articleUpdate))
+             (dbArticleTimeCreated articleRow)
+             (maybe (dbArticleSummary articleRow)
+                    (pgStrictText . getArticleSummary)
+                    (articleUpdateSummary articleUpdate))
+             (maybe (dbArticleBody articleRow)
+                    (pgStrictText . getArticleBody)
+                    (articleUpdateBody articleUpdate))
 
 
 allArticlesQuery :: Query ArticleRowRead
@@ -120,7 +112,7 @@ articleFromDB :: DB_Article -> Article
 articleFromDB dbArticle = Article 
   (ArticleId $ dbArticleId dbArticle)
   (ArticleTitle $ dbArticleTitle dbArticle)
-  (ArticleTimeCreated $ dbArticleCreatedTime dbArticle)
+  (ArticleTimeCreated $ dbArticleTimeCreated dbArticle)
   (ArticleSummary $ dbArticleSummary dbArticle)
   (ArticleBody $ dbArticleBody dbArticle)
 

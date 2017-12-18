@@ -24,7 +24,8 @@ module Blog.Web.API
 
 
 import Blog.Prelude (Int)
-import Blog.Types.Article (Article, NewArticle)
+
+import Blog.Types.Article (Article, ArticleUpdate, NewArticle)
 import Blog.Types.ArticleList (ArticleList)
 import Blog.Types.Image (ImageMetadata)
 import Blog.Types.User (User)
@@ -32,7 +33,7 @@ import Blog.Types.User (User)
 import Codec.Picture.Types (DynamicImage)
 
 import Servant
-  ( Get, Post, Put
+  ( Get, Patch, Post, Put
   , JSON
   , Capture, ReqBody
   , (:<|>), (:>)
@@ -57,8 +58,8 @@ type PublicAPI =
 type PrivateAPI = 
   -- POST Articles
        "articles" :> ReqBody '[JSON,YAML] NewArticle :> Post '[JSON,YAML] Article
-  -- PUT Articles / [Id]
-  :<|> "articles" :> Capture "article_id" Int :> ReqBody '[JSON,YAML] Article :> Put '[JSON,YAML] Article
+  -- PATCH Articles / [Id]
+  :<|> "articles" :> Capture "article_id" Int :> ReqBody '[JSON,YAML] ArticleUpdate :> Patch '[JSON,YAML] Article
   -- POST Images
   :<|> MultipartForm MultipartData :> "images" :> Post '[JSON,YAML] ImageMetadata
   -- PUT Images / [Id]

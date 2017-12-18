@@ -14,14 +14,7 @@ module Blog.Web.Handler where
 
 
 import Blog.Prelude
-  ( Int, Int64, show
-  , Maybe (Just, Nothing)
-  , Either (Left, Right)
-  , IO, liftIO
-  , return, fmap
-  , ($), (<>), (/=)
-  , id
-  )
+
 import Blog.Types (envDBConn)
 import Blog.DB.Article
   ( articleTable
@@ -40,8 +33,7 @@ import Blog.DB.Image
   , DB_Image
   )
 import Blog.Web.Types (SiteHandler)
-import Blog.Types.Article 
-  ( NewArticle, Article )
+import Blog.Types.Article
 import Blog.Types.ArticleList (ArticleList (ArticleList))
 import Blog.Types.Image
   ( Image (Image)
@@ -65,7 +57,7 @@ import qualified Data.ByteString.Lazy.Char8 as BSL (pack)
 import qualified Opaleye as PG
   ( runQuery
   , runInsertManyReturning, runInsertMany
-  , runUpdate
+  , runUpdateReturning
   , constant
   )
 import Opaleye ((.==))
@@ -125,27 +117,31 @@ postArticle newArticle = do
       PG.runInsertManyReturning conn articleTable [newArticleRow] id
 
 
--- PUT Articles / [Id]
+-- PATCH Articles / [Id]
 --------------------------------------------------------------------------------
 
-putArticle :: Int -> Article -> SiteHandler Article
-putArticle articleId article = do
+patchArticle :: Int -> ArticleUpdate -> SiteHandler Article
+patchArticle articleId articleUpdate = do
   env <- ask
-  rowsUpdated <- liftIO $ updateRow $ envDBConn env
-  if (rowsUpdated /= 0)
-     then return article
-     else throwError $ err400 { 
-        errBody = "article does not exist: " <> (BSL.pack $ show articleId) }
+  updatedArticles <- liftIO $ updateRow $ envDBConn env
+  response updatedArticles
   where
-    updateRow :: PG.Connection -> IO Int64
+    updateRow :: PG.Connection -> IO [DB_Article]
     updateRow conn = do
-      let rowUpdate _ = articleUpdateRow article
+      let rowUpdate = articleUpdateRow (ArticleId articleId) articleUpdate
           rowSelector dbArticle = 
             dbArticleId dbArticle .== PG.constant articleId
-      PG.runUpdate conn         -- Connection
-                   articleTable -- Table 
-                   rowUpdate    -- Update function
-                   rowSelector  -- Which rows to update.
+      PG.runUpdateReturning conn         -- Connection
+                            articleTable -- Table 
+                            rowUpdate    -- Update function
+                            rowSelector  -- Which rows to update.
+                            id
+    response :: [DB_Article] -> SiteHandler Article
+    response []          = do
+      let errMsg = "Article does not exist: " <> (BSL.pack $ show articleId)
+      throwError $ err400 { errBody = errMsg }
+    response (dbArticle:_) = return $ articleFromDB dbArticle
+
 
 --------------------------------------------------------------------------------
 -- IMAGES

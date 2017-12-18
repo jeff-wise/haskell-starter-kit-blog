@@ -148,3 +148,22 @@ instance ToJSON NewArticle where
     )
 
 
+-- ARTICLE UPDATE
+--------------------------------------------------------------------------------
+
+data ArticleUpdate = ArticleUpdate
+  { articleUpdateTitle   :: Maybe ArticleTitle
+  , articleUpdateSummary :: Maybe ArticleSummary
+  , articleUpdateBody    :: Maybe ArticleBody
+  } deriving (Eq)
+
+
+-- * JSON
+--------------------------------------------------------------------------------
+
+instance FromJSON ArticleUpdate where
+  parseJSON = withObject "ArticleUpdate" $ \obj -> ArticleUpdate
+    <$> obj .:? "title"
+    <*> obj .:? "summary"
+    <*> obj .:? "body"
+
