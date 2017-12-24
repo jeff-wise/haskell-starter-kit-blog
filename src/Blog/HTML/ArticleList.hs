@@ -81,7 +81,8 @@ latestArticleSummaryHtml (Article id title timeCreated summary _) =
       H.div ! A.class_ "latest-article-summary-date" $ do
         let timeString = formatTime defaultTimeLocale timeFormatString $ 
                            getArticleTimeCreated timeCreated
-        toHtml timeString 
+        H.span ! A.class_ "published" $ "published on"
+        H.span ! A.class_ "date" $ toHtml timeString 
     summaryHtml = 
       H.div ! A.class_ "latest-article-summary-text" $ do
         let summaryText = LT.fromStrict $ getArticleSummary summary

@@ -57,17 +57,21 @@ a {
 .page-header-center {
 
   a.article-nav {
-    display: inline-flex;
-    font-size: 1.2em;
+    display: flex;
+    font-size: 1.1em;
     padding: 0 1em;
 
     .article-title {
       font-weight: 600;
     }
 
+    .divider {
+      color: #BBB;
+      margin: 0 0.4em;
+    }
+
     .article-date {
-      margin: 0 0 0 4em;
-      color: #D1D1D1;
+      color: #E8E8E8;
       font-size: 0.9em;
     }
   }

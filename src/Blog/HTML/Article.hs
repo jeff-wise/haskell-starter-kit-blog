@@ -86,8 +86,9 @@ articleHtml (Article _ title timeCreated _ body) =
     -- Title
     titleHtml = H.h1 $ toHtml $ getArticleTitle title
     -- Date
-    dateHtml = H.div ! A.class_ "article-date" $ 
-                 toHtml $ dateText timeCreated
+    dateHtml = H.div ! A.class_ "article-date" $ do
+      H.span ! A.class_ "published" $ "published on"
+      H.span ! A.class_ "date" $ toHtml $ dateText timeCreated
     -- Body
     bodyHtml = 
       H.div ! A.class_ "article-body" $ do

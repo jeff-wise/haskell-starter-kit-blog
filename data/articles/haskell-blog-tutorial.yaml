@@ -11,8 +11,6 @@ summary: |+
 
   Impatient? Worry about the details later and [deploy your blog now!](articles/11)
 
-  ### Learn Functional Programming
-  
   From the smallest functions to the largest modules, we'll walk through 
   the code and conventions required to build a clean and maintainable web 
   application with Haskell.
@@ -53,17 +51,16 @@ body: |+
   application with Haskell.
 
   The tutorial comes with a number of useful resources to help you learn:
-  
-   * Explicit comparisons of code written in Haskell and other languages like 
-       Java and Python.
+ 
    * A set of **exercises** of varying difficulty for learning or
        fine-tuning Haskell programming skills. The exercises are a way to 
        learn while making useful improvements to the blog.
-   * Docker images you can use to run your own blog before you even look 
-       at the source code. This is a good way to jump in the deep end with Haskell.
+   * Immediately deployable **Docker images** you can use to run your own blog 
+      before you even look at the source code. This is a good way to jump in 
+      the deep end with Haskell.
    * **Deployment scripts** that can easily be re-used or extended for use
        in other Haskell projects
-  
+
 
   ## Why?
 

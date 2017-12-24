@@ -41,7 +41,7 @@ body: |+
 
   The fun has just begun.
 
-  #### Goals
+  ### Goals
 
   This section is less opinionated that other sections. That's because
   how you deploy your application will vary much more than how you write
@@ -64,14 +64,14 @@ body: |+
   extensible as possible. Most steps are manual. It will be up to you to
   automate them in a way that's useful for you.
 
-  ### Digital Ocean
+  ## Digital Ocean
 
-  #### P1. Create a Docker Droplet
+  ### P1. Create a Docker Droplet
 
     1. [Create a droplet that runs Docker](do-docker). A droplet is 
        Digital Ocean's name for a virtual server on its platform.
 
-  #### P2. Create a Docker Cloud Repository
+  ### P2. Create a Docker Cloud Repository
 
   Docker Cloud is Docker's premium service for managing Docker
   images and containers. In this tutorial we only use it as a 
@@ -108,7 +108,7 @@ body: |+
 
   Now you should be ready to deploy your blog. Let's get started.
 
-  #### 1. Tag Your Docker Images 
+  ### 1. Tag Your Docker Images 
 
   Before we do anything official with our images, we should tag them
   with a version number. This will prevent us from confusing images that
@@ -132,7 +132,7 @@ body: |+
 
        `docker tag f77652c4b03e haskell-blog-tutorial/web:1.0`
 
-  #### 2. Push the Images to Docker Hub
+  ### 2. Push the Images to Docker Hub
 
   Following the instructions to [push images to Docker
   Hub](docker-cloud-push). If it tells you to tag the image, you can
@@ -141,7 +141,7 @@ body: |+
   Verify that your images have been uploaded, and then continue to the
   next step, where we'll log on to the server. 
 
-  #### 3. Pull the Images to Your Droplet
+  ### 3. Pull the Images to Your Droplet
 
     1. **Logon to your droplet**. If you're not sure how, follow these
        [instructions](do-logon-ssh).
@@ -155,7 +155,7 @@ body: |+
 
        `docker pull jeffscottwise/haskell-blog-tutorial:web-1.0`
 
-  #### 4. Run the Application
+  ### 4. Run the Application
 
   Once again, we'll take a more manual approach to running the
   application so you can make your own adjustments and automations
@@ -197,15 +197,15 @@ body: |+
     3. **Make sure it works**. Open a web browser and enter the IP
        address of the docker droplet. You should see the blog homepage.
 
-  #### 5. Configure DNS
+  ### 5. Configure DNS
 
 
 
-  ### Amazon ECS
+  ## Amazon ECS
 
   TODO
 
-  ### Kubernetes (Google Container Engine)
+  ## Kubernetes (Google Container Engine)
 
   TODO
 

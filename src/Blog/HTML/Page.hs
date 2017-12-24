@@ -120,6 +120,7 @@ articleNavHtml (ArticlePage id title date) =
   H.a ! A.href (toValue $ "/articles" <> show id)
       ! A.class_ "article-nav selected" $ do
     H.span ! A.class_ "article-title" $ toHtml title
+    H.span ! A.class_ "divider" $ "|"
     H.span ! A.class_ "article-date" $ toHtml date
 
 
