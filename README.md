@@ -6,7 +6,7 @@
 <br />
 
 <div align="center">
-  <h3><a href="www.haskellblogtutorial.com">www.haskellblogtutorial.com></a></h3>
+  <h3><a href="www.haskellblogtutorial.com">www.haskellblogtutorial.com</a></h3>
 </div>
 
 ----------------------------------------------------------------------
@@ -22,7 +22,7 @@ repository and follow the instructions in the [I Want My Blog
 Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
 you'll be able to publish your first post:
 
-![First post example.](/images/2)
+<img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/firstpost.png" />
 
 Of course, you can write whatever you'd like.
 
@@ -774,7 +774,7 @@ list of options
 [stack-docs]: https://docs.haskellstack.org/en/v1.4.0/README/
 [docker-docs]: https://docs.docker.com/
 [kubernetes-docs]: https://kubernetes.io/docs/home/
-[do-docker]: https://www.digitalocean.com/products/one-click-apps/docker/)
+[do-docker]: https://www.digitalocean.com/products/one-click-apps/docker/
 [docker-cloud]: https://cloud.docker.com/
 [docker-cloud-repo]: https://docs.docker.com/docker-cloud/builds/repos/
 [docker-cloud-push]: https://docs.docker.com/docker-cloud/builds/push-images/
