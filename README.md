@@ -6,7 +6,7 @@
 <br />
 
 <div align="center">
-  <h3><a href="www.haskellblogtutorial.com">www.haskellblogtutorial.com</a></h3>
+  <h3><a href="http://www.haskellblogtutorial.com">www.haskellblogtutorial.com</a></h3>
 </div>
 
 ----------------------------------------------------------------------
@@ -20,13 +20,8 @@ programming language.
 Does this tutorial look too long? Want your blog now? Clone this
 repository and follow the instructions in the [I Want My Blog
 Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
-you'll be able to publish your first post:
+you'll be able to publish your first post.
 
-<img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/firstpost.png" />
-
-Of course, you can write whatever you'd like.
-
- 
 ### Learn Functional Programming
 
 From the smallest functions to the largest modules, we'll walk through 
@@ -90,34 +85,23 @@ of type-level programming.
 
 1. [Introduction](#introduction)
      1. [Goals](#goals)
-2. [On Learning Haskell](#on-learning-haskell)
-3. [Writing Functional Code](#writing-functional-code)
-     1. [Data Types](#data-types)
-     2. [Functions](#functions)
-     3. [Composition](#composition)
-4. [Software Structures: Design Patterns
-   Revisited](#software-structures-design-patterns-revisited)
-     1. [Monoids](#monoids)
-     2. [Folds](#folds)
-     3. [Functors](#functors)
-     4. [Monads](#monads)
-5. [The Application](#the-application)
-6. [Managing the Application](#managing-the-application)
-7. [Code Review: Program
+2. [The Application](#the-application)
+3. [Managing the Application](#managing-the-application)
+4. [Code Review: Program
    Organization](#code-review-program-organization)
-8. [Code Review: Domain Specific
+5. [Code Review: Domain Specific
    Languages](#code-review-domain-specific-languages)
-9. [Developing New Features](#developing-new-features)
-10. [Deploying Your Blog](#deploying-your-blog)
+6. [Developing New Features](#developing-new-features)
+7. [Deploying Your Blog](#deploying-your-blog)
      - [Digital Ocean](#digital-ocean)
      - [Amazon ECS](#amazon-ecs)
      - [Kubernetes (GKE)](#kubernetes-gke)
-11. [I Want My Blog Now!](#i-want-my-blog-now)
-12. [Exercises](#exercises)
+8. [I Want My Blog Now!](#i-want-my-blog-now)
+9. [Exercises](#exercises)
      - [Easy](#easy)
      - [Medium](#medium)
      - [Difficult](#difficult)
-13. [FAQ](#faq)
+10. [FAQ](#faq)
     - [Which IDE Should I Use?](#which-ide-should-i-use)
     - [Where Can I Get Help?](#where-can-i-get-help)
 
@@ -183,200 +167,6 @@ project's goals in two ways:
 Haskell is awesome, but often misunderstood. If successful,
 this project will showcase Haskell's strengths and serve as an
 entrypoint to building real Haskell applications.
-
-**[⬆ back to top](#table-of-contents)**
-## On Learning Haskell
-
-When I first started programming, what really captured me were the 
-moments when I became fluent at telling the computer what I wanted to
-do. At the time I loved to write and play piano, but once I could
-code, programming became my primary means of expression. The immediate
-feedback from creating something is incredibly addictive. My brain was
-so stimulated I couldn't stop programming, exploring new domains, and
-learning new frameworks. I created Flash games<sup>1</sup>, built websites, 
-configured Linux until it didn't work, made a Wordpress blog, learned VIM, 
-switched to ArchLinux and broke my OS again, studied cybersecurity, and
-a lot more with a desire to be proficient in expressing myself through
-digital mediums.
-
-Eventually, I began to work on bigger and more ambitious projects. But
-my pace slowed down. The think->code->reward loop got longer as it took me
-more time to (1) figure out what I actually needed to do, (2) write
-the code that did what I wanted, and (3) test that what I built was
-correct. I learned that building software is actually very difficult
-and oftentimes, incredibly frustrating. I started to do something
-weird - I focused less on *what* I was building and more on *how* I was
-building it. It was like stopping my car in the middle of the race, 
-taking the engine out and trying to tweak it to make it go faster. 
-I knew I wasn't going to catch up. But I did find a new hobby.
-
-Now that I had my new hobby -- my quest to find more efficient ways to
-build complex software -- I started researching. I was writing a lot
-of object-oriented code, so I spent a lot of time investigating design
-patterns, inheritance, polymorphism, how to structure and organize
-code in general, and how to use all of those concepts to build better
-software. What I found was frustrating. I found a lot of "sage advice"
-or mottos, quotes or phrases that are often repeated and sound very
-good, but are very rarely substantiated. Sometimes I found them to
-very well substantiated in specific contexts, but not in general.
-I also found a lot of design patterns or "framework" patterns like
-MVC. These also looked good initially, were intuitive and appealed to
-an aesthetic sense of organization that I had, but I could never find
-a good argument as to why they were better. I wasn't aware at the
-time, but I was searching for some sort of underlying mathematical 
-logic or structure, some set of consistent principles that I could 
-use to reason about how to bulild good software, but I couldn't find them.
-
-I realized that a lot of software development is done in a manner that 
-appeals to our intuition. It creates structures and processes that are
-easy to understand and manipulate. This is a very effective method -- 
-it's simply optimizing programming for the natural way that
-humans think. Unfortunately -- and I'll be the first to admit -- humans
-aren't as smart as they like to believe, and what's intuitive for us is very
-rarely optimal. In my search, I just wasn't motivated by intuitive solutions. 
-They were fun, sure, and I enjoyed programming with them, but I always
-felt like something was missing. 
-
-Programming languages are a means of communication between humans and
-computers, or more accurately, humans and the universe. That is -- we
-don't say "Hi!" or "I love you" to a computer, but rather, we tell it
-patterns that it should use to manipulate electrical currents flowing
-through the processor and memory. There are infinite languages one could write to
-describe these patterns, but there are only so many that humans can
-use. Can we categorize these possible languages? Can we make an
-assessment of which ones are better than others? We can definitely
-categorize them.
-
-It's hard to assess programming languages. One reason is that they are
-often made with different goals in mind, and it's no use comparing
-apples and oranges. They're both good, but one's sweet and one's
-citrus. A more interesting dilemma in comparing languages is also true
-with apples and oranges -- they're subjective. It depends on your
-taste, or maybe even your mood. While programming languages are built
-with the objective to give instructions to a computer, how exactly
-those intructions are expressed can vary as much as people themselves
-vary. There's a business language, a lazy language, a try-hard language,
-a sassy language, a he's-just-going-through-a-phase language, etc... 
-Languages and other development tools are made by people, for people. 
-This is one reason why we end up with so many different 
-languages as well as code editors, tools, frameworks, and libraries.
-The other reason is of course technical. Sometimes one way of doing
-something *is better* than another way, and we hope that there are
-objective means of comparing options. How can we assess these options
-objectively?
-
-I wanted to understand the mathematics 
-behind software engineering, if there were any. I wanted some sense of
-objectivity about how to build better software, it there was any to be
-found. When I discovered Haskell and started learning it, I didn't know 
-that my search was over (at least for awhile). I didn't believe that 
-there were objective ways to understand software development. In that 
-respect, Haskell really changed the way I thought about programming. 
-It put a new ceiling to software development in my eyes, a new mountain 
-to climb, and I was surprised that I was so excited to work hard and 
-reach that new persepctive.
-
-Now, it's important to say that it took me a long time to become
-proficient with Haskell. I didn't come into Haskell with
-a strong background in abstract or discrete mathematics. In fact,
-I didn't truly appreciate math at all before learning Haskell. Haskell
-introduced me into mathematical thinking before I had ever written any
-proofs, and it did so in a way that was gradual and intuitive, because
-it was through the process of programming. While many that learn
-Haskell are attracted to it from their perspectives gained as
-mathematicians, many are like me, coming at it from the other
-direction. Both paths are valid routes to Haskell, and it's Haskell's
-place at this intersection that it makes it both scholarly and
-pragmatic, a language that can implement ideas from research papers
-and then immmediately put them into practice building high-quality 
-software.
-
-At it's core, there's nothing experimental about Haskell. It's an
-ML-dialect, and therefore an implementation of the [Polymorphic Lambda
-Calculus][poly-lambda-calculus]. It's not trivial to understand, but 
-it's also not that difficult. It's a simple model of computation, one
-derived in parallel to Turing's abstract machine. This
-simplicity shines through in many applications, but it also stands 
-out when the code grows in complexity. You may be doing fine with
-Haskell when it comes to writing simple, pure functions, but as soon as
-you try to connect your code to the real-world, you may quickly get
-overwhelmed. In a way, languages such as Java actually provide useful
-abstractions that make writing interactive or graphical applications
-easier, in the sense that they abstract over the underlying
-mathematical model by providing mutability and free use of I/O in the
-code. Haskell chose to keep its model pure, but the trade-off is that
-Haskell was forced to model state mutation and IO using only pure
-functions, and this is largely where Haskell programming becomes
-difficult to learn. I'm talking about Monads.
-
-It's definitely seems like a problem when ubiqutious concepts in
-Haskell like Monads are notoriously difficult to understand. It
-is true that most Haskell beginners run into trouble with Monads, and
-well, they should. The interface itself isn't complicated, but the way
-that they are used can be fairly complex. When using monad transformers, 
-you may likely be applying functions with types that stretch across
-the screen, and you may be doing operations over values that involve
-manipulating those complex types either by adding more types, removing
-types, or modifying types inside the types. When you start writing
-Haskell code, it's a lot to keep track of in your head. But with
-practice you will develop the mental model and visualization skills
-that you need to easily write code with complex types. And it's worth
-it. 
-
-Design patterns in Haskell are mostly just pre-established
-mathematical structures and algorithms. The library ecosystem is full
-of implementations of really audacious ideas that work fantasically
-and would be impossible or impractical to implement in many other
-languages. This project demonstrates some examples with
-[Aeson][aeson-stackage], [Servant][servant-docs], and
-[Opaleye][opaleye-stackage].
-
-All this being said, if you spend any time reading Haskell discussions
-online, you'll see that more than a few problems are far from solved.
-You'll also see a smart, passionate community actively engaged in
-solving these problems. That passion comes from a confidence in the
-power of the langauge to think about these problems and encode elegant
-solutions.
-
-**[⬆ back to top](#table-of-contents)**
-
-# Writing Functional Code
-
-Before we review the source code, let's review some principles of
-Haskell programming. Learning Haskell can be difficult because there 
-are so many new concepts and it's hard to figure out to use them when 
-you finally sit down to start programming. Fortunately,
-while there are a lot of concepts, we can group
-them into three simple categories: data types, functions, and
-composition. We'll show how understanding these three simple
-concepts in Haskell is enough to start writing great software.
-
-While these principles are universal, they're often difficult to apply 
-in other programming languages. This is either because other
-languages lack certain features such as sum types or function currying
-or because those languages encourage a different way of thinking about
-or modeling software.
-
-## Data Types
-
-TODO
-
-## Functions
-
-TODO
-
-## Composition
-
-If someone asked me why I think Haskell programs are more concise and
-more maintainable than programs written in C, Java, Go, etc... I would
-say that *Haskell enables compositional programming*.
-
-TODO
-
-**[⬆ back to top](#table-of-contents)**
-
-
-# Software Structures: Design Patterns Revisited
 
 **[⬆ back to top](#table-of-contents)**
 
