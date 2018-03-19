@@ -11,7 +11,7 @@
 
 ----------------------------------------------------------------------
 
-### Ready to start building *and deploying* Haskell web applications?
+## Ready to start building *and deploying* Haskell web applications?
 
 This tutorial will guide you, step by step, in creating a blog -- just like 
 the one you're reading now -- using Haskell, a pure, strongly-typed functional 
@@ -21,12 +21,6 @@ Does this tutorial look too long? Want your blog now? Clone this
 repository and follow the instructions in the [I Want My Blog
 Now!](#i-want-my-blog-now) section. In less than fifteen minutes,
 you'll be able to publish your first post.
-
-### Learn Functional Programming
-
-From the smallest functions to the largest modules, we'll walk through 
-the code and conventions required to build a clean and maintainable web 
-application with Haskell.
 
 The tutorial comes with a number of useful resources to help you learn:
 
