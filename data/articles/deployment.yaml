@@ -1,26 +1,47 @@
 
 ---
-title: Deploying Your Blog
+title: Deploying Your Blog and Beyond
 time_created: 2017-10-23T00:00:00Z
 body: |+
   
-  *A blog isn't really a blog if no one can read it.*
+  *A blog isn't really a blog if no one can read it. In this chapter, we'll 
+  lay out some simple steps you can take to deploy your blog on one of three 
+  platforms. You're blog will be live in as little as fifteen minutes, but 
+  beware: the training wheels are off. This is the beginning of the end. 
+  You'll be on your own once this chapter ends.*
 
-  Writing good code is something to be proud of. It takes time. There
-  are all the hours searching for silly bugs, the hours re-writing
-  flawed logic, the minutes spent on one feature and the days spent on
-  another.
+  **Writing good code** is something to be proud of. It takes time. There
+  are the never-ending seconds between when you hit compile and when the 
+  entire application spins up or refreshes; the slow minutes refactoring 
+  dumb mistakes from eons past or just 20 minutes ago; the frustrating 
+  hours spent chasing an error through byzantine code paths; and 
+  the arduous days pushing yourself to finish a feature that was 
+  more complex than you could have imagined.
 
-  It's the feeling when you get a puppy and you realize that it's going
-  to be a lot of work after all. You need to train it, feed it, walk it,
-  play with it, and love it, each and every day, even when you're tired,
-  and especially when it's in need. 
+  **Building great applications** is something to be proud of. It takes effort. 
+  There is the perseverance, working every day through the successes and 
+  the failures, keeping the end goal in mind; the ambition, needed to push 
+  yourself past barriers taller and harder than you've seen before, 
+  learning new concepts and new tools along the way; the courage to put your 
+  heart into something, knowing that it might ulmitately fail; and the 
+  passion that brings you joy, and the energy, ambition and courage to 
+  do it all again, each and every day.
+ 
+  **Deploying software** is like getting a puppy. It's what you always 
+  wanted, but you never realized how much work it really takes.
+ 
+  You need to train it, feed it, walk it, cuddle with it, play with it, 
+  give it medicine when it's sick, and discipline it when it eats the food 
+  you left on the table.
 
-  I wouldn't try too hard to build an analogy around puppies and web
-  applications, but it is really important to understand that maintaining
-  active software is going to be a lot of work. It might feel
-  unexpected, and it might feel undeserved, but it's necessary. What do
-  we need to do to take care of our web application?
+  And of course, you'll have to deal with a lot of <span class="poop"> 💩 </span>
+
+  You have to do all of these things, almost every day, even when you're 
+  tired, and especially when it's in need.
+
+  Let's take a break from our puppy analogy and think about our blog. How 
+  do we take care of a web application? What are some of things we might 
+  want to do? Here is a brief, in-complete list of some common tasks:
 
     * Create a process for updating the application.
     * Restart it if it dies (or replicate it so it doesn't).
@@ -28,50 +49,163 @@ body: |+
     * Be vigilant of security vulnerabilities.
     * Upgrade the hardware if it needs more memory or processing power.
     * Optimize the code if the hardware gets expensive.
-    * Give it a treat if it does something good. (OK, maybe this is
+    * Log errors, track feedback, and manage improvements.
+    * Market your product and get new users
+    * Give it a treat when it does something good. (Ok, maybe this is
        just for puppies)
 
   Unfortunately, no matter how much work you put into taking care of
-  your blog or other web application, it will, from time to time, nip 
-  you on the ankle or knock you on your back, leaving a bruise. And
-  living as we are in the age before strong AI, it won't love you back. 
-  That's ok -- you have your own motivations. If you're not sure what
-  they are, take a break and have a look around. Once you have them, 
-  keep them close. Deploy your app, take care of it. 
+  your blog or web application, it will, from time to time, nip 
+  you on the ankle or knock you on your back, leaving a bruise.
+  
+  That's OK -- you'll get back up and learn from your mistakes. Just like 
+  puppies, things will get messy, but in the end it will be worth all 
+  of the trouble.
 
   The fun has just begun.
 
-  ### Goals
+  ### The Fun Part
 
-  This section is less opinionated that other sections. That's because
-  how you deploy your application will vary much more than how you write
-  it. There are dozens of products and platforms available that you
-  might want to use. You may want to pay for Docker Cloud, switch to
-  particular cloud host, pay for a managed database, or even use
-  a container orchestration service if your application begins to scale.
-  Some of these products or free, some are cheap, and some are really
-  expensive. 
+  This chapter contains the steps to deploy your blog on a few different 
+  platforms. Naturally, it's less opinionated than the previous chapters. 
+  Ultimately, this part is up to you. How you deploy your application will 
+  depend a lot on the specific requirements and constraints you have 
+  ranging from hosting preferences, performance demands, or financial 
+  limitations.
 
-  There are varying degrees to which you can automate
-  deployment from completely manual (but well-documented) processes to
-  a completely automated continuous development cycle. 
+  The steps here are intended to be basic and extendable. They require a 
+  lot of manual work, with plenty of room for automation. Because this isn't 
+  a book on automating deployment processes, we won't make any recommendations 
+  here. There are just too many approaches you could take as far as 
+  development processes (e.g. Continous Development), tools (e.g. CircleCI, GitLab), 
+  or platforms (e.g. AWS). The training wheels are off -- you will have 
+  to evaluate these resources and determine what is right for you and 
+  your application. 
 
-  This is the graduation. You're on your own now. You will have to evaluate 
-  your needs and find the best tools for the job, spending as much or as
-  little money was you want.
+  Just for fun, here are some example scenarios you may want to consider, 
+  just to demonstrate the spectrum of what is possible.
 
-  These deployment instructions are meant to be as simple and as
-  extensible as possible. Most steps are manual. It will be up to you to
-  automate them in a way that's useful for you.
+  #### The Minimalist
+  
+  Your blog is working locally, and you have your 
+  server setup, but you just don't feel like dealing with a non-trivial 
+  deployment process. You decide that your blog will only ever be a 
+  blog -- it won't grow into a more complex application. Then, you realize that 
+  your articles are saved in Git, so you don't really need persistence. 
+  If the server somehow dies, you'll just restart it and refresh it with 
+  the data stored in the Git repository. That's when you decide to just scrap 
+  the database -- you get rid of the database Docker files, remove the 
+  database-specific deployment scripts, and delete all of that ugly 
+  database code. 
 
-  ## Digital Ocean
+  Now you have only what you need: a web server to serve your articles 
+  over HTTP as HTML documents, and your articles, written in Markdown.
 
-  ### P1. Create a Docker Droplet
+  #### The Nihilist
 
-    1. [Create a droplet that runs Docker](do-docker). A droplet is 
-       Digital Ocean's name for a virtual server on its platform.
+  Of course, if you really want, you can pre-render the articles in HTML, 
+  put them in a directory, and run a web server like nginx on that 
+  directory. Then, you can delete most of the code except for the HTML 
+  functions. You might want to put those functions into a simple script, 
+  like the dev.hs script, and write some simple bash scripts to 
+  glue everything together.
 
-  ### P2. Create a Docker Cloud Repository
+  Though if you want to do that, chances are you aren't very interested 
+  in this tutorial. Minimalism is great, but if it's not too hard to 
+  serve dynamic content over HTTP and persist it in a database, why not? 
+  Then when you want to go bigger, you're already half way there.
+
+  #### The Pragmatist
+  
+  When you look at the list of all the things you'll need to manage after 
+  you deploy your blog, a good deal of them will have to do with the 
+  database. The database tasks may also be more difficult than the others. 
+  Databases are complicated pieces of software, and ensuring that your 
+  data is always available in the event of too many requests or 
+  hardware failure can be challenging. 
+
+  Managed databases provide a great solution to these problems, especially 
+  when you have a small team. Like the minimalist, you'll be able to 
+  remove some database deployment scripts, but the code should still work. 
+  You'll have to figure out your new development processes with the 
+  managed database, likely seeing the addition of some incidental 
+  complexity. But you'll be able to scale your data and sleep better at night. 
+
+  #### The Guru
+  
+  You've read the Haskell Blog Tutorial and deployed your blog. Only a few 
+  weeks have passed, and you already have a million followers waiting 
+  to read your next insight. The blog turns into a community and the community 
+  turns into a platform. You have articles, streaming videos, and chat. 
+  A single server can no longer handle the traffic, and there is too much 
+  data in the database, causing queries to run for seconds.
+
+  This tutorial includes steps to deploy your blog on Kubernetes, so 
+  you start there. You're able to replicate the web servers with ease so 
+  you can handle more traffic. But your database is stil sluggish. You look 
+  into high avaialability replication setups with PostgreSQL and even other 
+  databases that are designed to be distributed like Cassandra. You pick 
+  one and it works, after a good deal of work. But the codebase is still a 
+  mess and your engineers can't work efficiently, so you hire some qualified 
+  engineerers with fancy engineering hats who tell you how to modularize 
+  you codebase with microservices on Kubernetes. 
+
+  A year goes by, and everything works. There are some hiccups, now and then, 
+  but it really does work. You buy your engineers some hats even more ostentatious 
+  than the ones they had before, check your bank account and walk home. Thinking 
+  back, your long for the days when things were not so complicated, when like 
+  The Nihilist, you could just copy some HTML files onto a server and 
+  call it a day.
+
+  ## Using Digital Ocean
+  
+  ### Setup
+  
+  <h4 class="step">
+    <span class="number">1</span>
+    <span class="step">Create a Docker Droplet</span>
+  </h4>
+
+  A droplet is 
+  Digital Ocean's name for a virtual server on its platform. We need a 
+  server with Docker installed so that we can run our application using Docker 
+  containers, the same way that we do in our local environment.
+
+  Digital Ocean provides servers that come pre-installed with different software. 
+  We will take advantage of the Ubuntu server that comes pre-installed with 
+  Docker. That way, all we need to do is create the Droplet, and we will be 
+  ready to run our blog.
+  
+  You will of course need to create an account with Digital Ocean. This is 
+  also a good time to [setup SSH keys](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets), 
+  if you would like to do so. Configuring SSH with Digtial Ocean now with ensure 
+  that you can log on to your droplet we are going to create via SSH with no 
+  extra steps involved.
+
+  Next, navigate to the page on the Digital Ocean website where you can create a 
+  droplet. 
+
+  Where it says <span class="hl-soft">Choose an image</span> select the tab 
+  called <span class="hl-soft">One-click apps</span>. Then select the box 
+  labeled <span class="hl-soft">Docker X.Y.Z on A.B</span>.
+
+  ![Select Docker droplet option.](/images/3)
+
+  The remaining options are up to you. Here are a few recommendations:
+
+    * The $5 droplet size is more than sufficient for running a blog.
+    * You don't need block storage.
+    * Choose a datacenter region near you.
+    * Under <span class="hl-soft">Add your SSH keys</span> click the 
+      <span class="hl-soft">General</span> checkbox if you've added an SSH 
+      key to your account and would like to use it logon on to the droplet.
+    * Choose a fun hostname. You only live once, after all. I like to use 
+      the names of Adventure Time characters for my droplets.
+
+  <h4 class="step">
+    <span class="number">2</span>
+    <span class="step">Create a Docker Cloud Repository</span>
+  </h4>
 
   Docker Cloud is Docker's premium service for managing Docker
   images and containers. In this tutorial we only use it as a 
@@ -102,13 +236,41 @@ body: |+
   a few steps to create an account and repository:
 
     1. If you don't already have a Docker Cloud account, create one
-       [here](docker-cloud). 
-    2. Once you are logged in to Docker Cloud, you can follow the
-       [instructions for creating a repository](docker-cloud-repo).
+       [here](https://cloud.docker.com/).
+    2. Once you are logged in to Docker Cloud, follow the 
+       [instructions for creating a repository](https://docs.docker.com/docker-cloud/builds/repos/).
 
-  Now you should be ready to deploy your blog. Let's get started.
+  You should end up with a dashboard view of your new repository. We will 
+  come back to this screen later.
 
-  ### 1. Tag Your Docker Images 
+  ![Docker Cloud Haskell Blog Tutorial Repository](/images/4)
+
+  <h4 class="step">
+    <span class="number">3</span>
+    <span class="step">Logon to Your Droplet</span>
+  </h4>
+
+  You will need to access your server's bash terminal in order to run 
+  execute the steps required to run the application. If you're not sure how, 
+  follow these [instructions](do-lhttps://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh) 
+  to get started.
+
+  <h4 class="step">
+    <span class="number">4</span>
+    <span class="step">Configure DNS</span>
+  </h4>
+
+  You'll probably want to host your blog under a domain name that you purchased, 
+  like myhaskellblogname.com.
+
+  Once you have a domain name, it will only take a [few steps](do-dns) to get everything configured. 
+
+  ### Deploy
+
+  <h4 class="step">
+    <span class="number">1</span>
+    <span class="step">Tag Your Docker Images</span>
+  </h4>
 
   Before we do anything official with our images, we should tag them
   with a version number. This will prevent us from confusing images that
@@ -124,15 +286,18 @@ body: |+
   control, recompile anything, or even copy any files. It can all be
   done with Docker.
 
-    1. Use the `docker tag` command to tag your images. Of course, make
-       sure that you tag the images you want to deploy and update the
-       version numbers accordingly. For example:
+  Use the `docker tag` command to tag your images. Of course, make
+  sure that you tag the images you want to deploy and update the
+  version numbers accordingly. For example:
 
-       `docker tag b0b6fdfe0115 haskell-blog-tutorial/db:1.0`
+  `docker tag b0b6fdfe0115 haskell-blog-tutorial/db:1.0`
 
-       `docker tag f77652c4b03e haskell-blog-tutorial/web:1.0`
+  `docker tag f77652c4b03e haskell-blog-tutorial/web:1.0`
 
-  ### 2. Push the Images to Docker Hub
+  <h4 class="step">
+    <span class="number">2</span>
+    <span class="step">Push the Images to Docker Hub</span>
+  </h4>
 
   Following the instructions to [push images to Docker
   Hub](docker-cloud-push). If it tells you to tag the image, you can
@@ -141,63 +306,56 @@ body: |+
   Verify that your images have been uploaded, and then continue to the
   next step, where we'll log on to the server. 
 
-  ### 3. Pull the Images to Your Droplet
+  <h4 class="step">
+    <span class="number">3</span>
+    <span class="step">Pull the Images to Your Droplet</span>
+  </h4>
 
-    1. **Logon to your droplet**. If you're not sure how, follow these
-       [instructions](do-logon-ssh).
+  You will need the
+  namespace (your account name), the name of the repository, and
+  the tag. Just check your local images or the repository if you've
+  forgotten.
+   
+  `docker pull jeffscottwise/haskell-blog-tutorial:db-1.0`
 
-    2. **Pull the images from your respository**. You will need the
-       namespace (your account name), the name of the repository, and
-       the tag. Just check your local images or the repository if you've
-       forgotten.
+  `docker pull jeffscottwise/haskell-blog-tutorial:web-1.0`
 
-       `docker pull jeffscottwise/haskell-blog-tutorial:db-1.0`
 
-       `docker pull jeffscottwise/haskell-blog-tutorial:web-1.0`
-
-  ### 4. Run the Application
+  <h4 class="step">
+    <span class="number">4</span>
+    <span class="step">Run the Application</span>
+  </h4>
 
   Once again, we'll take a more manual approach to running the
   application so you can make your own adjustments and automations
-  according to your specific needs.
+  based on your specific needs.
 
   We'll run the containers for the database and webserver using the
-  `docker run` command. Since port 80 should be open by default on your
+  `docker run` command. Since <span class="hl-soft">port 80</span> should be open by default on your
   droplet, you'll be able to access your application through a web
-  browser as soon as the containers are active.
+  browser as soon as the containers are up.
+    
+  First, we will start the database container, and then we will 
+  start the web server container. As before, you will need to substitute your own 
+  image names, unless you are using the official Haskell Blog Tutorial images.
 
-    1. **Create a Network**. In order for the web server container to
-       connect to the database container, it will need to resolve the
-       database container's address base on the name that is hard-coded
-       into the server. Docker Compose does this automatically, but it's
-       very simple to do manually.
+  ```bash
+  docker run -d --name blog-db --net=blog jeffscottwise/haskell-blog-tutorial:db-0.7.0 
+  ```
 
-       If you already have a network for the containers, then you can
-       skip this step. If you're not sure, run `docker network ls` to
-       check. The `DRIVER` needs to be `bridge`. 
+  ```bash
+  docker run -d --name blog-web --net=blog -p 80:80 jeffscottwise/haskell-blog-tutorial:web-0.7.0 
+  ```
 
-       If you need to create a network, do so now:
 
-       ```bash
-       docker network create blog
-       ```
+  <h4 class="step">
+    <span class="number">5</span>
+    <span class="step">Make Sure it Works</span>
+  </h4>
 
-    2. **Run the Application Containers**. Start the database container,
-       and then start the web server. As before, you will need to
-       substitute your own image names, unless you are using the
-       official haskell-blog-tutorial images.
+  Open a web browser and enter the IP address of the docker droplet. You 
+  should see your blog homepage!
 
-       ```bash
-       docker run -d --name blog-db --net=blog jeffscottwise/haskell-blog-tutorial:db-0.7.0 
-       ```
-       ```bash
-       docker run -d --name blog-web --net=blog -p 80:80 jeffscottwise/haskell-blog-tutorial:web-0.7.0 
-       ```
-
-    3. **Make sure it works**. Open a web browser and enter the IP
-       address of the docker droplet. You should see the blog homepage.
-
-  ### 5. Configure DNS
 
 
 

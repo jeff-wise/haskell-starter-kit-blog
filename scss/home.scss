@@ -3,14 +3,25 @@
 
 .latest-article-summary-container {
   display: flex;
-  justify-content: center;
+  padding-top: 2em;
+}
+
+.latest-article-summary-sidebar {
+  padding-left: 30px;
+  width: 190px;
+
+  .section-label {
+    font-weight: 600;
+    color: #414141;
+  }
 }
 
 
 .latest-article-summary {
   width: 760px;
-  padding: 1em 0 2em 0;
   font-size: 97%;
+  background: #FFFFFF;
+  border-left: 1px solid #EAEAEA;
 
   h4, h5, h6, {
     color: #414141;
@@ -21,24 +32,23 @@
   }
 
   h1 {
-    margin: 0.6em 0;
+    margin: 0em 30px;
     font-size: 2.4em;
-    font-weight: 400;
-    //color: #323232;
-    color: #515151;
+    font-weight: 500;
+    color: #0092CB;
   }
 
   h2 {
     font-size: 1.8em;
-    font-weight: 400;
+    font-weight: 600;
     color: #494949;
-    margin: 1.2em 0 0.3em 0;
+    margin: 1em;
   }
 
   h3 {
     font-size: 1.5em;
     margin: 1em 0;
-    font-weight: 400;
+    font-weight: 600;
     color: #4C4C4C;
   }
 
@@ -49,7 +59,8 @@
   a.button.read-more {
     border-radius: 3px;
     padding: 1em 1.2em;
-    background: #00AE71;
+    // background: $green;
+    background: #00A3D9DD;
     color: #FFF;
     font-size: 0.85em;
     margin-top: 1em;
@@ -65,32 +76,73 @@
 
   a.button.read-more:hover {
     cursor: pointer;
-    background: #009460;
+    background: $green_2;
+  }
+
+  p {
+    line-height: 1.5em;
   }
 
 
 }
 
 .latest-article-summary-text {
-  color: #393939;
-  // border-bottom: 1px solid #bbb;
-  // padding-bottom: 1em;
+  color: #0F0F0F;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-top: 1em;
+}
+
+.latest-article-summary-date-container {
+  display: flex;
+  background: #DDD;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+}
+
+.latest-article-summary-info {
+  margin-left: 30px;
+  display: flex;
+  font-weight: 400;
+  color: #454545;
+  font-size: 85%;
+  margin-top: 1em;
 }
 
 .latest-article-summary-date {
-  color: #757575;
-  padding: 0.7em;
-  margin-bottom: 1.5em;
-  background: #f9f9f9;
-  border-radius: 1px;
-  font-size: 0.9em;
+  font-weight: 400;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  background: #EAEAEA;
+  margin-right: 1px;
+  padding: 0.5em 1em;
 
   span.published {
     margin-right: 0.3em;
   }
 
   span.date {
-    color: #006da5cc;
+  }
+}
+
+.latest-article-summary-author {
+  background: #EAEAEA;
+  margin-right: 1px;
+  padding: 0.5em 1em;
+
+  .author-label {
+    margin-right: 0.3em;
+  }
+}
+
+.latest-article-summary-wc {
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  background: #EAEAEA;
+  padding: 0.5em 1em;
+
+  .wc-label {
+    margin-left: 0.3em;
   }
 }
 
@@ -98,20 +150,17 @@
 .past-articles-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 1.5em 0;
-  background: #F2F2F2;
+  //background: #F5F5F5;
+  background: #E7EAEE;
   border-top: 1px solid #E0E0E0;
 }
 
 
 
 .past-articles-header {
-  background: #EAEAEA;
-  padding: 0.7em 0.5em 0.7em 0.5em;
+  padding: 1em 30px;
   margin-bottom: 0.5em;
   border-radius: 3px;
-  width: 760px;
   display: flex;
   align-items: baseline;
 
@@ -123,8 +172,9 @@
   }
   
   .article-count {
-    margin-left: 0.5em;
-    color: #444;
+    font-weight: 400;
+    color: #6C6C6C;
+    font-size: 1.3em;
   }
 }
 
@@ -145,20 +195,23 @@
 
 .article-summary {
   display: flex;
-  justify-content: space-between;
-  margin: 1.5em 0;
+  justify-content: start;
   border-bottom: 1px dotted #c6c6c6;
-  padding-bottom: 0.5em;
+  padding: 1em 0;
 
   .article-summary-title {
     font-size: 1.1em;
-    font-weight: 600;
-    color: #006da5;
+    font-weight: 400;
+    color: #0075A2;
+    padding-left: 30px;
   }
 
   .article-summary-date {
-    color: #616161;
     font-size: 0.95em;
+    width: 190px;
+    padding-left: 30px;
+    font-weight: 600;
+    color: #414141;
   }
 }
 

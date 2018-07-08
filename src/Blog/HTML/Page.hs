@@ -42,6 +42,7 @@ pageHtml :: Page -> [FilePath] -> [FilePath ]-> Html -> Html
 pageHtml pageType cssFilePaths jsFilePaths contentHtml = do
   H.docTypeHtml $ do
     H.head $ do
+      H.meta ! A.charset "utf-8"
       -- Page Title
       H.title "My Haskell Blog"
       -- Default Stylesheets

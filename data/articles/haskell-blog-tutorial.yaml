@@ -3,27 +3,22 @@
 title: Build a Blog with Haskell
 time_created: 2017-12-31T00:00:00Z
 summary: |+
-  ### Ready to start building *and deploying* Haskell web applications?
-
   This tutorial will guide you, step by step, in creating a blog -- just like 
-  the one you're reading now -- using Haskell, a pure, strongly-typed functional 
+  the one you're reading now -- using [Haskell](http://www.haskell.org), a pure, strongly-typed functional 
   programming language.
 
   Impatient? Worry about the details later and [deploy your blog now!](articles/11)
 
-  From the smallest functions to the largest modules, we'll walk through 
-  the code and conventions required to build a clean and maintainable web 
-  application with Haskell.
-
   The tutorial comes with a number of useful resources to help you learn:
   
-   * A set of **exercises** of varying difficulty for learning or
+   * A complete open-source [implementation](http://www.github.com/jeff-wise/haskell-starter-kit-blog) of a blog written in Haskell.
+   * A set of [exercises](http://www.haskellblogtutorial.com) of varying difficulty for learning or
        fine-tuning Haskell programming skills. The exercises are a way to 
        learn while making useful improvements to the blog.
-   * Immediately deployable **Docker images** you can use to run your own blog 
+   * Immediately deployable [Docker images](https://hub.docker.com/r/jeffscottwise/haskell-blog-tutorial/) you can use to run your own blog 
       before you even look at the source code. This is a good way to jump in 
       the deep end with Haskell.
-   * **Deployment scripts** that can easily be re-used or extended for use
+   * [Deployment scripts](http://www.haskellblogtutorial.com) that can easily be re-used or extended for use
        in other Haskell projects
 
 body: |+

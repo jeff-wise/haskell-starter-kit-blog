@@ -65,24 +65,39 @@ articleListHtml articles = do
     _html (latestArticle:pastArticles) = do
       latestArticleSummaryHtml latestArticle
       pastArticleListHtml pastArticles
-      
+     
 
 latestArticleSummaryHtml :: Article -> Html
 latestArticleSummaryHtml (Article id title timeCreated summary _) =
   H.div ! A.class_ "latest-article-summary-container" $ do
+    H.div ! A.class_ "latest-article-summary-sidebar" $ do
+      labelHtml
     H.div ! A.class_ "latest-article-summary" $ do
       titleHtml
-      dateHtml
+      infoHtml
       summaryHtml
-      readButtonHtml
+      --readButtonHtml
   where
+    labelHtml = H.div ! A.class_ "section-label" $ "Most Recent"
     titleHtml = H.h1 $ toHtml $ getArticleTitle title
     dateHtml = 
       H.div ! A.class_ "latest-article-summary-date" $ do
         let timeString = formatTime defaultTimeLocale timeFormatString $ 
                            getArticleTimeCreated timeCreated
-        H.span ! A.class_ "published" $ "published on"
+        -- H.span ! A.class_ "published" $ "published on"
         H.span ! A.class_ "date" $ toHtml timeString 
+    authorHtml = 
+      H.div ! A.class_ "latest-article-summary-author" $ do
+        H.span ! A.class_ "author-label" $ "By"
+        H.span ! A.class_ "author" $ "Jeff Wise"
+    wordCountHtml = 
+      H.div ! A.class_ "latest-article-summary-wc" $ do
+        H.span ! A.class_ "wc" $ "753"
+        H.span ! A.class_ "wc-label" $ "words"
+    infoHtml = H.div ! A.class_ "latest-article-summary-info" $ do
+      dateHtml
+      authorHtml
+      wordCountHtml
     summaryHtml = 
       H.div ! A.class_ "latest-article-summary-text" $ do
         let summaryText = LT.fromStrict $ getArticleSummary summary
@@ -105,20 +120,19 @@ pastArticleListHtml articles =
     articleSummaryHtml :: Article -> Html
     articleSummaryHtml (Article id title timeCreated _ _) =
       H.div ! A.class_ "article-summary" $ do
-        H.a ! A.class_ "article-summary-title"
-            ! A.href (toValue $ "/articles/" <> show id) $
-          toHtml $ getArticleTitle title
         H.div ! A.class_ "article-summary-date" $ do
           let timeString = formatTime defaultTimeLocale timeFormatString $ 
                              getArticleTimeCreated timeCreated
           toHtml timeString
+        H.a ! A.class_ "article-summary-title"
+            ! A.href (toValue $ "/articles/" <> show id) $
+          toHtml $ getArticleTitle title
 
 pastArticleListHeaderHtml :: Int -> Html
 pastArticleListHeaderHtml articleCount = 
   H.header ! A.class_ "past-articles-header" $ do
-    H.h2 "ARCHIVE"
     H.span ! A.class_ "article-count" $ 
-      toHtml (show articleCount <> " articles")
+      toHtml (show articleCount <> " Articles")
 
 
 timeFormatString :: String

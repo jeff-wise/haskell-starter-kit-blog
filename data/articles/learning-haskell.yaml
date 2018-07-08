@@ -1,30 +1,72 @@
 
 ---
-title: On Learning Haskell
+title: Learning Haskell (A Fictional Memoir)
 time_created: 2017-12-08T00:00:00Z
 body: |+
 
   ## Flash Back
 
-  When I first started programming, what really captured me were the moments 
-  when I became fluent at telling the computer what I wanted to do. At the 
-  time I loved to write and play piano, but once I could code, programming 
-  became my primary means of expression. The immediate feedback from creating 
-  something is incredibly addictive. My brain was so stimulated I couldn't stop 
-  programming, exploring new domains, and learning new frameworks. I created 
-  Flash games1, built websites, configured Linux until it didn't work, made 
-  a Wordpress blog, learned VIM, switched to ArchLinux and broke my OS again, 
-  studied cybersecurity, and a lot more with a desire to be proficient in 
-  expressing myself through digital mediums.
+  In my first year of high school I joined the programming club. We
+  called ourself the The Greys in reference to grey hat hacking, in
+  which we rarely did anything illegal but wanted to 
 
-  It was around 2005 or 2005 when I started programming. Flash dominated the 
-  internet. Smartphones were just arriving -- and still basic -- so it was 
-  flash games that distracted us
+  The club was a bit...boyish. Most members wanted to discuss hacking, 
+  the dark net (along with the things one might find there), or 
+  video games. Those were interesting conversations, and I quickly made 
+  friends, but I felt disappointed. I was expecting 
 
-  Eventually, I began to work on bigger and more ambitious projects. I began 
-  to seek an aesthetic in my code -- a sense of elegance, of structure, 
-  of organization that would make me feel comfortable building something 
-  bigger than I could fit in my head.
+  I stayed after school with her on Tuesdays and Thursdays. We worked
+  alongside each other on separate projects, but we helped each other
+  out when we got stuck. 
+
+  Well, she helped me a lot. I was still figuring out the syntax while
+  she wrangled with semantics, weaving together complex expressions like an
+  artist brushes paint onto a canvas. Her creations were wild landscapes -- 
+  jagged mountains and raging seas, dense forests full of ancient towers, 
+  and rivers that flowed in patterns and fell from cliffs in torrents.
+  
+  When I looked at her code, I was lost. I knew I had a lot to learn.
+
+  Only a few weeks had passed before we became good friends, and I came to 
+  know her well, her interests outside of programming, and her idiosyncracies. 
+  She always wore plaid shirts. She hid her love of country music which she 
+  often listend to while programming. She bit her lip when she couldn't 
+  figure out how to do something. I never saw a bigger reaction from her, 
+  even when she was stuck for hours. She was infinitely patient, squashing
+  large bugs the way a dog herds sheep.
+
+  Of course, I had a crush on her, but I was immature, and I had less 
+  confidence in myself than in my programming. I did my best to hide my feelings. 
+  My feet raced out of control on the way to meet her after school, and my mind 
+  raced wild when she talked or was about to leave, and I couldn't think of 
+  what to say. I always ended up saying something about programming -- C++ or 
+  functions or some non-sense about the OpenGL API. She must have thought 
+  that coding was all I thought about.
+
+  I took out my frustration in my projects, staying up late to finish 
+  sections of code, in the back of my mind hoping that she might be impressed.
+  She was impressed, or at least interested, but her reactions never changed 
+  in the way that I was expecting. When we're young, too many of our expectations 
+  about life come from t.v. or the movies, but it wasn't until much later 
+  that I learned not to expect what I had been expecting. She already knew 
+  I liked programming. She never expected anything unexpected from me. 
+  
+  Our routine continued until February when Sebastian joined the club and 
+  Avery invited him to work with us after school on Tuesdays and Thursdays. 
+  Truly, Sebastian was a great guy. But he liked Avery too, and he didn't 
+  hide it. He was also a better programmer than me, showing off his 
+  cross-platform creations with the Java programming language.
+
+
+
+  That summer, Avery moved to another school and became a Javascript programmer.
+  A long time passed before we met again.
+
+
+  Eventually, I began to work on bigger and more ambitious projects. I craved  
+  a certain aesthetic in my code -- a sense of elegance, structure, 
+  and organization that would make me feel comfortable building and maintaining 
+  something bigger than what I could fit inside my head.
 
   I learned that building software is actually very difficult and oftentimes, 
   incredibly frustrating. I started to do something weird - I focused less 
@@ -49,17 +91,68 @@ body: |+
   some set of consistent principles that I could use to reason about how to 
   bulild good software, but I couldn't find them.
 
-  I realized that a lot of software development is done in a manner that 
-  appeals to our intuition. It creates structures and processes that are 
-  easy to understand and manipulate. This is an effective method -- it's 
-  simply optimizing programming for the natural way that humans think. 
-  Unfortunately -- and I'll be the first to admit -- humans aren't as 
-  smart as they like to believe, and what's intuitive for us is very 
-  rarely optimal. During my search, I found that I wasn't compeled by 
-  intuitive solutions. They were fun, sure, and I enjoyed programming with 
-  them, but I always felt like something was missing.
+  ## Academic Problems
 
-  ## Biased Bits
+  I sat down at a table full of well-known names, thirsting for
+  knowledge. I turned to OOP, and I asked him "How do I write good
+  software?" 
+
+  He replied between sips of coffee, "You only need polymoprhism"
+
+
+  ## A Search Algorithm
+
+  I stood up to leave, feeling hungry and lost. Perhaps I had been
+  naive. Perhaps I had wasted time researching and studying blueprints,
+  when I could have already built a castle, one stone after another,
+  like legos, fitting the pieces together and tearing them apart until
+  it looked like what I wanted. My wall of books would be a wall of trophies.
+
+  I needed some fresh air. I decided to go on a trip to get some
+  perspective. I grabbed the MOTOR framework diagram as a I left, in case 
+  I had any car troubles, and headed north to seek some solitude and 
+  look inward for a little while.
+  packed bags of books on programming
+
+  The roads were long and winding, filled with sudden hair-pin turns
+  that smoked my brakes and tiring climbs up switchbacks where my engine
+  whined and grew hot, but persisted with the pedal to the floor. 
+
+  After some time the road evened out, unwinding like the straight end
+  of a tangled cord. I saw
+  rolling hills and thickets of trees, small farms and fields of crops.
+  I passed an apple orchard and a pen of goats climbing on wooden
+  platforms. There was a lake with carribean blue water, and along its 
+  undulating shoreline houses rested serenely in the shade of lakeside trees 
+  and white boats lounged in the waves, sunbathing.
+
+  The day grew later. I saw more farms and fields. I saw more orchards
+  and another pen of goats. And I saw the lake, again, its beautiful blue
+  waters distinct in my mind. 
+
+  I had not taken a single turn from the road, but before the lake had
+  left my mind, I saw again the orchard, red apples in the rows of
+  trees, and the goats, still playfully climbing. Before I saw the lake
+  again, I knew that I was going in a loop, stuck in a cycle. But as
+  I drove on, I could not find a single turn. There was no way out. 
+
+  I drove for another hour or two. I counted the goats in the pen, and
+  picked out my favorite houses along the lake. I thought about stopping
+  to pick an apple, but I figured it was best to keep on as the sun had
+  passed its highest point and was retreating to the horizon. The goats
+  disappeared, and the brilliance of the lake dulled as shadows
+  stretched over the water from the trees and houses.
+
+  Just as a I ran out of gas, I found myself in a small town called Base Case.
+  I filled my car at the only gas station, still perplexed. As
+  I stretched my legs and rolled my neck in an effort to ease the aches
+  of driving, I realized that I was still hungry -- and quite thirsty too. I drove down 
+  Main street, looking for something to eat. Only a minute had passed before 
+  I reached the other side of the small town where I found a small 
+  restaurant: Haskell's Curry. I was in the mood for something spicy,
+  and maybe a little tangy -- something *different*. Perfect, I thought.
+
+  ## Sojourn - Biased Bits
 
   Programming languages are a means of communication between humans and 
   computers, or more accurately, humans and the universe. That is -- 
@@ -87,6 +180,22 @@ body: |+
   another way, and we hope that there are objective means of comparing options. 
   How can we assess these options objectively?
 
+  # Paradigm Shift
+
+  I realized that a lot of software development is done in a manner that 
+  appeals to our intuition. It creates structures and processes that are 
+  easy to understand and manipulate. This is an effective method -- it's 
+  simply optimizing programming for the natural way that humans think. 
+  Unfortunately -- and I'll be the first to admit -- humans aren't as 
+  smart as they like to believe, and what's intuitive for us is very 
+  rarely optimal. During my search, I found that I wasn't compeled by 
+  intuitive solutions. They were fun, sure, and I enjoyed programming with 
+  them, but I always felt like something was missing.
+
+  I thought that maybe, instead of designing tools to be easy to use,
+  why not design them to be simple
+
+  Before I set out on this trip, 
   I wanted to understand the mathematics behind software engineering, if there 
   were any. I wanted some sense of objectivity about how to build better software, 
   it there was any to be found. When I discovered Haskell and started learning it, 
@@ -96,9 +205,14 @@ body: |+
   to software development in my eyes, a new mountain to climb, and I was surprised 
   that I was so excited to work hard and reach that new persepctive.
 
-  ## A Whole New World
+  The way back was easier and less peculiar. I passed the lake, the goats, the orchid, 
+  and the farms, but they all receded in the review view mirror, never reappearing. 
+  Now, I was on a specific path, a destination in my mind.
 
-  Now, it's important to say that it took me a long time to become proficient 
+
+  ## Feeling the Side Effects
+
+  It took me a long time to become proficient 
   with Haskell. I didn't come into Haskell with a strong background in 
   abstract or discrete mathematics. In fact, I didn't truly appreciate math at 
   all before learning Haskell. Haskell introduced me into mathematical thinking 
@@ -127,7 +241,7 @@ body: |+
   using only pure functions, and this is largely where Haskell programming 
   becomes difficult to learn. I'm talking about Monads.
 
-  It's definitely seems like a problem when ubiqutious concepts in Haskell 
+  It definitely seems like a problem when ubiqutious concepts in Haskell 
   like Monads are notoriously difficult to understand. It is true that most 
   Haskell beginners run into trouble with Monads, and well, they should. The 
   interface itself isn't complicated, but the way that they are used can be 
@@ -135,7 +249,8 @@ body: |+
   functions with types that stretch across the screen, and you may be doing 
   operations over values that involve manipulating those complex types either 
   by adding more types, removing types, or modifying types inside the types. 
-  When you start writing Haskell code, it's a lot to keep track of in your head. 
+  It's a lot to keep track of in your head, especially when you're just
+  starting out with Haskell.
   But with practice you will develop the mental model and visualization 
   skills that you need to easily write code with complex types. And it's worth it.
 
@@ -151,4 +266,5 @@ body: |+
   a smart, passionate community actively engaged in solving these problems. That 
   passion comes from a confidence in the power of the langauge to think about 
   these problems and encode elegant solutions.
+
 

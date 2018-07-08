@@ -3,6 +3,228 @@
 title: I Want My Blog Now!
 time_created: 2017-10-19T00:00:00Z
 body: |+
-  ### Imports
+  *One way to prepare for a marathon is to create a schedule, a diet, 
+  a balanced, paced training regimen and put in the miles and work required 
+  every week until you can run long distances comfortably. A faster way to 
+  train for a marathon is to sign up for a marathon and let stress and 
+  anxiety do the work as the deadline looms in your mind, a constant 
+  reminder of what you want to acheive and strong, motivating force. 
+  This chapter is either for those who would just like a blog, but don't 
+  really care for Haskell, or for those who don't trust themselves to 
+  stick to a strict schedule and routine, and want to learn by jumping in 
+  the deep end, with a live and running Haskell codebase.*
+  
 
+  This chapter is similar to the deployment chapter, only it's shortened 
+  in order to minimize the time required to have your blog up and 
+  running. It completely skips dealing with the source code and relies 
+  only on the pre-built Docker images. This is like eating dessert before 
+  the main course -- you get what you want, but you might get tired before 
+  you finish everything.
+
+  Nevertheless, it may prove invaluable to learn to program Haskell while 
+  working on a concise codebase that's already deployed and running for 
+  anyone to see. Every new concept you learn can be applied immediately. 
+  Perhaps you can gather some readers early on and that will help motivate 
+  you to keep learning and improving your blog.
+
+  If you really want to understand how everything works before diving in, then 
+  you will want to start at the beginning of the book and make your way 
+  up to the deployment chapter. It's a short book! Both approaches have their 
+  merits. You will have to make a decision based on how you learn and 
+  what motivates you. If you're not sure, roll the dice! It's better to 
+  do something now, than dream about doing it later.
+
+  ### The Docker Repository
+  
+  Docker is a format for defining containers. Containers typically represent 
+  running applications or parts of running applications like a web server or a 
+  database. The benefit of using Docker containers is that they can be run anywhere 
+  that supports Docker. The container already contains everything required to 
+  run the application such as the executable, configuration files, and directories. 
+  The container *is* the application. By containerizing your application with Docker 
+  you automatically gain access to a number of features. For example, you can 
+  easily replicate your application, run in on another platform, or plug it into 
+  a container orchestration framework like Kubernetes.
+
+  Containers represent the application processes, but Docker images contain 
+  the actual configuration files and objects. They are static whereas containers 
+  are dynamic and active. You use the image to define what the application is, 
+  and when you want to run the application, you spawn a container based on the 
+  image (or maybe two containers or a hundred containers, it makes no difference).
+
+  This book comes with images that will allow you to run your blog without 
+  glancing at the source code. You only need to download the images and then 
+  run containers from those images. That's it! That is essentially the process 
+  we will follow in this chapter, as it allows you to deploy your blog with 
+  the least amount of effort or possible pitfalls.
+
+  ## Using Digital Ocean
+
+  Digital Ocean is an easy-to-use cloud infrastructure provider. It gives you 
+  the ability to create new servers in minutes. It's also very affordable. 
+  The smallest server size costs $5 / month and is more than sufficient to 
+  run your blog.
+
+  After some initial setup, you will have your blog running in just **3 steps!**
  
+  ### Setup
+  
+  <h4 class="step">
+    <span class="number">1</span>
+    <span class="step">Create a Docker Droplet</span>
+  </h4>
+
+  A droplet is 
+  Digital Ocean's name for a virtual server on its platform. We need a 
+  server with Docker installed so that we can run our application using Docker 
+  containers, the same way that we do in our local environment.
+
+  Digital Ocean provides servers that come pre-installed with different software. 
+  We will take advantage of the Ubuntu server that comes pre-installed with 
+  Docker. That way, all we need to do is create the Droplet, and we will be 
+  ready to run our blog.
+  
+  You will of course need to create an account with Digital Ocean. This is 
+  also a good time to [setup SSH keys](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets), 
+  if you would like to do so. Configuring SSH with Digtial Ocean now with ensure 
+  that you can log on to your droplet we are going to create via SSH with no 
+  extra steps involved.
+
+  Next, navigate to the page on the Digital Ocean website where you can create a 
+  droplet. 
+
+  Where it says <span class="hl-soft">Choose an image</span> select the tab 
+  called <span class="hl-soft">One-click apps</span>. Then select the box 
+  labeled <span class="hl-soft">Docker X.Y.Z on A.B</span>.
+
+  ![Select Docker droplet option.](/images/3)
+
+  The remaining options are up to you. Here are a few recommendations:
+
+    * The $5 droplet size is more than sufficient for running a blog.
+    * You don't need block storage.
+    * Choose a datacenter region near you.
+    * Under <span class="hl-soft">Add your SSH keys</span> click the 
+      <span class="hl-soft">General</span> checkbox if you've added an SSH 
+      key to your account and would like to use it logon on to the droplet.
+    * Choose a fun hostname. You only live once, after all. I like to use 
+      the names of Adventure Time characters for my droplets.
+
+  <h4 class="step">
+    <span class="number">2</span>
+    <span class="step">Create a Docker Cloud Repository</span>
+  </h4>
+
+  Docker Cloud is Docker's premium service for managing Docker
+  images and containers. In this tutorial we only use it as a 
+  means to share our images between our computer and the server. 
+  Generally, it's useful to have the images persisted somewhere where
+  they may be easily accessed. You may want to use old images that were
+  lost, access them from a different computer, or allow other team
+  members to use them.
+
+  Docker Cloud organizes images into repositories
+  It's free to use for one private repository as well as unlimited public 
+  repositories. If you don't want to use Docker Cloud, and aren't
+  concerned about any of the benefits we just listed, feel free to copy
+  the images manually:
+
+  ```bash
+  docker save <image> | bzip2 | pv | ssh user@host 'bunzip2 | docker load'
+  ```
+
+  It's good to remember that you almost never *need* to use an official
+  service to acheive a goal in programming. It's also good to remember
+  that your time is often more valuable than you think, and a few
+  dollars can go a long way.
+
+  To push our images to the server, you'll need a Docker Cloud account
+  and a repository. If you already have both, you can continue on to 
+  [Step 1](#tag-your-docker-images). Otherwise, it will only take you
+  a few steps to create an account and repository:
+
+    1. If you don't already have a Docker Cloud account, create one
+       [here](https://cloud.docker.com/).
+    2. Once you are logged in to Docker Cloud, follow the 
+       [instructions for creating a repository](https://docs.docker.com/docker-cloud/builds/repos/).
+
+  You should end up with a dashboard view of your new repository. We will 
+  come back to this screen later.
+
+  ![Docker Cloud Haskell Blog Tutorial Repository](/images/4)
+
+  <h4 class="step">
+    <span class="number">3</span>
+    <span class="step">Logon to Your Droplet</span>
+  </h4>
+
+  You will need to access your server's bash terminal in order to run 
+  execute the steps required to run the application. If you're not sure how, 
+  follow these [instructions](do-lhttps://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh) 
+  to get started.
+
+  <h4 class="step">
+    <span class="number">4</span>
+    <span class="step">Configure DNS</span>
+  </h4>
+
+  You'll probably want to host your blog under a domain name that you purchased, 
+  like myhaskellblogname.com.
+
+  Once you have a domain name, it will only take a [few steps](do-dns) to get everything configured. 
+
+  ### Deploy
+
+  <h4 class="step">
+    <span class="number">1</span>
+    <span class="step">Pull the Images to Your Droplet</span>
+  </h4>
+
+  You will need the
+  namespace (your account name), the name of the repository, and
+  the tag. Just check your local images or the repository if you've
+  forgotten.
+   
+  `docker pull jeffscottwise/haskell-blog-tutorial:db-1.0`
+
+  `docker pull jeffscottwise/haskell-blog-tutorial:web-1.0`
+
+
+  <h4 class="step">
+    <span class="number">2</span>
+    <span class="step">Run the Application</span>
+  </h4>
+
+  Once again, we'll take a more manual approach to running the
+  application so you can make your own adjustments and automations
+  based on your specific needs.
+
+  We'll run the containers for the database and webserver using the
+  `docker run` command. Since <span class="hl-soft">port 80</span> should be open by default on your
+  droplet, you'll be able to access your application through a web
+  browser as soon as the containers are up.
+    
+  First, we will start the database container, and then we will 
+  start the web server container. As before, you will need to substitute your own 
+  image names, unless you are using the official Haskell Blog Tutorial images.
+
+  ```bash
+  docker run -d --name blog-db --net=blog jeffscottwise/haskell-blog-tutorial:db-0.7.0 
+  ```
+
+  ```bash
+  docker run -d --name blog-web --net=blog -p 80:80 jeffscottwise/haskell-blog-tutorial:web-0.7.0 
+  ```
+
+
+  <h4 class="step">
+    <span class="number">3</span>
+    <span class="step">Make Sure it Works</span>
+  </h4>
+
+  Open a web browser and enter the IP address of the docker droplet. You 
+  should see your blog homepage!
+
+
+

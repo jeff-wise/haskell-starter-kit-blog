@@ -160,7 +160,7 @@ project's goals in two ways:
 
 Haskell is awesome, but often misunderstood. If successful,
 this project will showcase Haskell's strengths and serve as an
-entrypoint to building real Haskell applications.
+entrypoint to building useful Haskell applications.
 
 **[⬆ back to top](#table-of-contents)**
 
