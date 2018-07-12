@@ -29,8 +29,9 @@ import Blog.Types.Article
 import Blog.Types.Page (Page (PageHome))
 import Blog.Web.Config (cssFilePath)
 
+import Data.Char (toUpper)
 import Data.Foldable (forM_)
-import Data.List (length, reverse, sortOn)
+import Data.List (map, length, reverse, sortOn)
 import Data.Monoid ((<>))
 import qualified Data.Text.Lazy as LT (fromStrict)
 import Data.Time.Format 
@@ -74,9 +75,9 @@ latestArticleSummaryHtml (Article id title timeCreated summary _) =
       labelHtml
     H.div ! A.class_ "latest-article-summary" $ do
       titleHtml
-      infoHtml
+    --  infoHtml
       summaryHtml
-      --readButtonHtml
+      readButtonHtml
   where
     labelHtml = H.div ! A.class_ "section-label" $ "Most Recent"
     titleHtml = H.h1 $ toHtml $ getArticleTitle title
@@ -85,10 +86,10 @@ latestArticleSummaryHtml (Article id title timeCreated summary _) =
         let timeString = formatTime defaultTimeLocale timeFormatString $ 
                            getArticleTimeCreated timeCreated
         -- H.span ! A.class_ "published" $ "published on"
-        H.span ! A.class_ "date" $ toHtml timeString 
+        H.span ! A.class_ "date" $ toHtml $ map toUpper timeString 
     authorHtml = 
       H.div ! A.class_ "latest-article-summary-author" $ do
-        H.span ! A.class_ "author-label" $ "By"
+        H.span ! A.class_ "author-label" $ "by"
         H.span ! A.class_ "author" $ "Jeff Wise"
     wordCountHtml = 
       H.div ! A.class_ "latest-article-summary-wc" $ do
@@ -105,14 +106,14 @@ latestArticleSummaryHtml (Article id title timeCreated summary _) =
     readButtonHtml = 
       H.a ! A.class_ "read-more button" 
           ! A.href (toValue $ "/articles/" <> show id) $ do
-        H.span "READ ARTICLE"
+        H.span "Continue reading this article"
         H.span ! A.class_ "arrow" $ preEscapedToHtml ("&#8594;" :: Text)
         
 
 pastArticleListHtml :: [Article] -> Html
 pastArticleListHtml articles =
-  H.div ! A.class_ "past-articles-container" $ do
-    pastArticleListHeaderHtml $ length articles
+  H.div ! A.class_ "past-articles-container" $
+    -- pastArticleListHeaderHtml $ length articles
     H.div ! A.class_ "past-articles" $
       H.div ! A.class_ "article-list" $ do
         forM_ articles articleSummaryHtml

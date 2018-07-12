@@ -12,6 +12,7 @@ import Blog.Prelude
   ( ($), return, show
   , Text
   )
+import Blog.HTML.SVG (aboutSVG, githubSVG, beerSVG)
 import Blog.Types.Page 
   ( Page (PageHome, PageArticle, PageAbout)
   , ArticlePage (ArticlePage)
@@ -85,12 +86,10 @@ pageHtml pageType cssFilePaths jsFilePaths contentHtml = do
 pageHeaderHtml :: Page -> Html
 pageHeaderHtml page =
   H.header ! A.class_ "page-header" $ do
-    H.div ! A.class_ "page-header-left" $ homeNavHtml page
-    H.div ! A.class_ "page-header-center" $ pageNavHtml page
-    H.div ! A.class_ "page-header-right" $ do
-      aboutNavHtml page
-      githubNavHtml
-      donateNavHtml
+    H.div ! A.class_ "page-header-left" $ do
+      homeNavHtml page
+      pageNavHtml page
+    H.div ! A.class_ "page-header-right" $ ""
 
 
 -- Header > Left
@@ -113,7 +112,17 @@ homeNavHtml page =
 
 pageNavHtml :: Page -> Html
 pageNavHtml (PageArticle articlePage) = articleNavHtml articlePage
+pageNavHtml PageHome                  = homePageNavHtml
 pageNavHtml _                         = return ()
+
+
+
+homePageNavHtml :: Html
+homePageNavHtml =
+  H.div ! A.id "page-home-nav" $ do
+    aboutNavHtml
+    githubNavHtml
+    donateNavHtml
 
 
 articleNavHtml :: ArticlePage -> Html
@@ -128,24 +137,31 @@ articleNavHtml (ArticlePage id title date) =
 -- Header > Right
 --------------------------------------------------------------------------------
  
-aboutNavHtml :: Page -> Html
-aboutNavHtml page =
+aboutNavHtml :: Html
+aboutNavHtml =
   H.a ! A.href "/about"
-      ! A.class_ classes 
-        $ "About Me"
-  where
-    classes = case page of
-                PageAbout -> "about-nav selected"    
-                _         -> "about-nav"    
+      ! A.class_ "page-header-nav-button" $ do 
+    preEscapedToHtml aboutSVG
+    H.span $ "About this project"
+  -- where
+  --   classes = case page of
+  --               PageAbout -> "about-nav selected"    
+  --               _         -> "about-nav"    
 
 githubNavHtml :: Html
-githubNavHtml = H.a ! A.href linkHref $ "My Github"
+githubNavHtml = H.a ! A.href linkHref
+                    ! A.class_ "page-header-nav-button" $ do
+    preEscapedToHtml githubSVG
+    H.span $ "Source code"
   where
     linkHref = "www.github.com/jeff-wise/haskell-starter-kit-blog"
 
 
 donateNavHtml :: Html
-donateNavHtml = H.a ! A.href linkHref $ "Donate"
+donateNavHtml = H.a ! A.href linkHref
+                    ! A.class_ "page-header-nav-button" $ do
+    preEscapedToHtml beerSVG
+    H.span $ "Support us"
   where
     linkHref = "www.github.com/jeff-wise/haskell-starter-kit-blog"
 

@@ -28,6 +28,7 @@ library
                         Blog.HTML.ArticleList
                         Blog.HTML.Combinators
                         Blog.HTML.Page
+                        Blog.HTML.SVG
                         Blog.Types.ArticleList
                         Blog.Types.Image
                         Blog.Types.Page

@@ -3,12 +3,13 @@
 
 .latest-article-summary-container {
   display: flex;
-  padding-top: 2em;
+  background: #eceff3;
 }
 
 .latest-article-summary-sidebar {
   padding-left: 30px;
   width: 190px;
+  padding-top: 30px;
 
   .section-label {
     font-weight: 600;
@@ -18,10 +19,11 @@
 
 
 .latest-article-summary {
-  width: 760px;
   font-size: 97%;
-  background: #FFFFFF;
-  border-left: 1px solid #EAEAEA;
+  width: 760px;
+  border-left: 1px solid #e1e4e7;
+  padding-bottom: 1em;
+  padding-top: 30px;
 
   h4, h5, h6, {
     color: #414141;
@@ -33,9 +35,9 @@
 
   h1 {
     margin: 0em 30px;
-    font-size: 2.4em;
-    font-weight: 500;
-    color: #0092CB;
+    font-size: 2em;
+    font-weight: 600;
+    color: #008EC5;
   }
 
   h2 {
@@ -53,41 +55,38 @@
   }
 
   ul {
-    line-height: 1.6em;
+    line-height: 1.4em;
   }
 
   a.button.read-more {
     border-radius: 3px;
-    padding: 1em 1.2em;
-    // background: $green;
-    background: #00A3D9DD;
-    color: #FFF;
-    font-size: 0.85em;
+    padding: 0.75em 1em;
+    background: #fff;
+    color: #008ec5;
     margin-top: 1em;
-    font-weight: 700;
+    font-weight: 400;
     text-decoration: none;
     display: inline-block;
+    margin-left: 30px;
+    border: 1px solid #dadde1;
+    box-shadow: 0px 1px 0px #cacdd0;
 
     span.arrow {
       font-size: 1.1em;
       margin-left: 0.4em;
     }
-  }
 
-  a.button.read-more:hover {
-    cursor: pointer;
-    background: $green_2;
   }
 
   p {
-    line-height: 1.5em;
+    line-height: 1.3em;
   }
 
 
 }
 
 .latest-article-summary-text {
-  color: #0F0F0F;
+  color: #2A2A2A;
   margin-left: 30px;
   margin-right: 30px;
   padding-top: 1em;
@@ -97,25 +96,20 @@
   display: flex;
   background: #DDD;
   border-radius: 4px;
-  padding: 0.5em 1em;
+  padding: 0.7em 1.2em;
 }
 
 .latest-article-summary-info {
   margin-left: 30px;
   display: flex;
   font-weight: 400;
-  color: #454545;
-  font-size: 85%;
-  margin-top: 1em;
+  color: #616161;
+  margin-top: 10px;
 }
 
 .latest-article-summary-date {
   font-weight: 400;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
-  background: #EAEAEA;
   margin-right: 1px;
-  padding: 0.5em 1em;
 
   span.published {
     margin-right: 0.3em;
@@ -126,9 +120,7 @@
 }
 
 .latest-article-summary-author {
-  background: #EAEAEA;
   margin-right: 1px;
-  padding: 0.5em 1em;
 
   .author-label {
     margin-right: 0.3em;
@@ -136,10 +128,7 @@
 }
 
 .latest-article-summary-wc {
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
-  background: #EAEAEA;
-  padding: 0.5em 1em;
+  color: #fff;
 
   .wc-label {
     margin-left: 0.3em;
@@ -151,15 +140,16 @@
   display: flex;
   flex-direction: column;
   //background: #F5F5F5;
-  background: #E7EAEE;
-  border-top: 1px solid #E0E0E0;
+  background: #FFF;
+  border-top: 2px solid #e1e4e7;
+  padding-top: 1em;
+  background: #eceff3;
 }
 
 
 
 .past-articles-header {
-  padding: 1em 30px;
-  margin-bottom: 0.5em;
+  padding: 0.5em 30px;
   border-radius: 3px;
   display: flex;
   align-items: baseline;
@@ -172,9 +162,10 @@
   }
   
   .article-count {
-    font-weight: 400;
-    color: #6C6C6C;
+    font-weight: 300;
+    color: #676767;
     font-size: 1.3em;
+    margin-top: 1em;
   }
 }
 
@@ -196,13 +187,13 @@
 .article-summary {
   display: flex;
   justify-content: start;
-  border-bottom: 1px dotted #c6c6c6;
+  // border-bottom: 1px dotted #c6c6c6;
   padding: 1em 0;
+  font-size: 1.1em;
 
   .article-summary-title {
-    font-size: 1.1em;
-    font-weight: 400;
-    color: #0075A2;
+    font-size: 1em;
+    font-weight: 600;
     padding-left: 30px;
   }
 

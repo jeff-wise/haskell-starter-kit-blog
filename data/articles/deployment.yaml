@@ -3,45 +3,8 @@
 title: Deploying Your Blog and Beyond
 time_created: 2017-10-23T00:00:00Z
 body: |+
-  
-  *A blog isn't really a blog if no one can read it. In this chapter, we'll 
-  lay out some simple steps you can take to deploy your blog on one of three 
-  platforms. You're blog will be live in as little as fifteen minutes, but 
-  beware: the training wheels are off. This is the beginning of the end. 
-  You'll be on your own once this chapter ends.*
 
-  **Writing good code** is something to be proud of. It takes time. There
-  are the never-ending seconds between when you hit compile and when the 
-  entire application spins up or refreshes; the slow minutes refactoring 
-  dumb mistakes from eons past or just 20 minutes ago; the frustrating 
-  hours spent chasing an error through byzantine code paths; and 
-  the arduous days pushing yourself to finish a feature that was 
-  more complex than you could have imagined.
-
-  **Building great applications** is something to be proud of. It takes effort. 
-  There is the perseverance, working every day through the successes and 
-  the failures, keeping the end goal in mind; the ambition, needed to push 
-  yourself past barriers taller and harder than you've seen before, 
-  learning new concepts and new tools along the way; the courage to put your 
-  heart into something, knowing that it might ulmitately fail; and the 
-  passion that brings you joy, and the energy, ambition and courage to 
-  do it all again, each and every day.
- 
-  **Deploying software** is like getting a puppy. It's what you always 
-  wanted, but you never realized how much work it really takes.
- 
-  You need to train it, feed it, walk it, cuddle with it, play with it, 
-  give it medicine when it's sick, and discipline it when it eats the food 
-  you left on the table.
-
-  And of course, you'll have to deal with a lot of <span class="poop"> 💩 </span>
-
-  You have to do all of these things, almost every day, even when you're 
-  tired, and especially when it's in need.
-
-  Let's take a break from our puppy analogy and think about our blog. How 
-  do we take care of a web application? What are some of things we might 
-  want to do? Here is a brief, in-complete list of some common tasks:
+ Here is a brief, in-complete list of some common tasks:
 
     * Create a process for updating the application.
     * Restart it if it dies (or replicate it so it doesn't).
@@ -54,17 +17,7 @@ body: |+
     * Give it a treat when it does something good. (Ok, maybe this is
        just for puppies)
 
-  Unfortunately, no matter how much work you put into taking care of
-  your blog or web application, it will, from time to time, nip 
-  you on the ankle or knock you on your back, leaving a bruise.
-  
-  That's OK -- you'll get back up and learn from your mistakes. Just like 
-  puppies, things will get messy, but in the end it will be worth all 
-  of the trouble.
-
-  The fun has just begun.
-
-  ### The Fun Part
+  ### Approaches
 
   This chapter contains the steps to deploy your blog on a few different 
   platforms. Naturally, it's less opinionated than the previous chapters. 

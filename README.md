@@ -222,10 +222,23 @@ satifies these goals perfectly. It's called `dev.hs`. After you clone
 the repository and follow the environment setup tutorial, you can run
 `./dev.hs --help`:
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/devhelp.png" />
-</div>
+```bash
+Blog Development Commands
 
+Usage: dev.hs COMMAND
+  Run ./dev.hs --help for a list of commands.
+
+Available options:
+  -h,--help                Show this help text
+
+Available commands:
+  build                    Build the [executable, docker images, ...]
+  run                      Run the [docker container, executable, etc...].
+  sh                       Run sh/bash in a running docker container.
+  psql                     run Psql in a running docker container.
+  init                     Initialize the database data.
+  deploy                   Compile, build images, and run containers.
+```
 
 Often, command-line utilities like `dev.hs` are 
 implemented in a shell language like Bash or an interpreted langauge like
@@ -312,21 +325,9 @@ TODO
 
 *A blog isn't really a blog if no one can read it.*
 
-Writing good code is something to be proud of. It takes time. There
-are all the hours searching for silly bugs, the hours re-writing
-flawed logic, the minutes spent on one feature and the days spent on
-another.
+Writing good code is something to be proud of. 
 
-It's the feeling when you get a puppy and you realize that it's going
-to be a lot of work after all. You need to train it, feed it, walk it,
-play with it, and love it, each and every day, even when you're tired,
-and especially when it's in need. 
-
-I wouldn't try too hard to build an analogy around puppies and web
-applications, but it is really important to understand that maintaining
-active software is going to be a lot of work. It might feel
-unexpected, and it might feel undeserved, but it's necessary. What do
-we need to do to take care of our web application?
+What do we need to do to take care of our web application?
 
   * Create a process for updating the application.
   * Restart it if it dies (or replicate it so it doesn't).
@@ -336,16 +337,6 @@ we need to do to take care of our web application?
   * Optimize the code if the hardware gets expensive.
   * Give it a treat if it does something good. (OK, maybe this is
      just for puppies)
-
-Unfortunately, no matter how much work you put into taking care of
-your blog or other web application, it will, from time to time, nip 
-you on the ankle or knock you on your back, leaving a bruise. And
-living as we are in the age before strong AI, it won't love you back. 
-That's ok -- you have your own motivations. If you're not sure what
-they are, take a break and have a look around. Once you have them, 
-keep them close. Deploy your app, take care of it. 
-
-The fun has just begun.
 
 #### Goals
 
@@ -508,7 +499,7 @@ browser as soon as the containers are active.
 Configuring your domain name to point to the Digital Ocean droplet is
 straightfoward.
 
-  1. Follow the steps in [this tutorial](do-dns).
+  1. Follow the steps in [this tutorial][do-dns].
 
 
 ## Amazon ECS
