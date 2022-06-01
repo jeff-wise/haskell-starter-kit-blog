@@ -1,4 +1,28 @@
 
+## :speech_balloon: Deprecated Side-Project
+
+This project was created as a way to showcase Haskell's efficacy at
+building concise, usuable, real-world applications. The intention
+was to demonstrate the complete end-to-end development of a blog in
+Haskell, make the tutorial in the format of the same blog to show
+it's real-world applicability, and along the way, explain or clarify
+various Haskell concepts and techniques.
+
+I still strongly believe that we need (especially with Haskell
+in particular) more real-world, live, open demonstrations of
+software development. It's likely that I will continue this same
+idea in a slightly different form when time permits.
+
+**View the original README below** :arrow_heading_down:
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
 <div align="center">
   <img src="https://raw.githubusercontent.com/jeff-wise/haskell-starter-kit-blog/master/docs/images/logo.png" width="70%" />
 </div>
